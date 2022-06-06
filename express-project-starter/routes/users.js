@@ -8,6 +8,7 @@ const bcrypt = require('bcryptjs');
 //=====Internal Modules====
 const { csrfProtection, asyncHandler } = require('./utils');
 const db = require('../db/models');
+const { loginUser } = require('../auth');
 
 //=====Initialize =======
 
@@ -26,7 +27,7 @@ const userValidators = [
     .withMessage('Please provide a value for Last Name')
     .isLength({ max: 50 })
     .withMessage('Last Name must not be more than 50 characters long'),
-  check('emailAddress')
+  check('email')
     .exists({ checkFalsy: true })
     .withMessage('Please provide a value for Email Address')
     .isLength({ max: 255 })
@@ -61,6 +62,14 @@ const userValidators = [
   })
 ];
 
+const loginValidators = [
+  check('emailAddress')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for Email Address'),
+  check('password')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for Password'),
+];
 
 
 //========Get Sign-Up Page=========
@@ -76,10 +85,10 @@ router.get('/sign-up', csrfProtection,(req, res) => {
 
 //==============Create New User===========
 router.post('/sign-up', csrfProtection, userValidators, asyncHandler (async (req, res, next) => {
-  const { emailAddress, firstName, lastName, password} = req.body;
+  const { email, firstName, lastName, password} = req.body;
 
   const user = await db.User.build({
-    emailAddress, firstName, lastName
+    email, firstName, lastName
   })
 
 
@@ -87,9 +96,9 @@ router.post('/sign-up', csrfProtection, userValidators, asyncHandler (async (req
 
   if (validatorErrors.isEmpty()) {
     const hashedPassword = await bcrypt.hash(password, 10);
-    user.password = hashedPassword;            /////because it's called password in our database. Double Check!
+    user.hashedPassword = hashedPassword;            /////because it's called password in our database. Double Check!
     await user.save();
-    // loginUser(req, res, user);
+    loginUser(req, res, user);
     res.redirect('/');
   } else {
     const errors = validatorErrors.array().map((error) => error.msg);
@@ -107,14 +116,49 @@ router.post('/sign-up', csrfProtection, userValidators, asyncHandler (async (req
 
 
 //========Get Log-in Page==========
-router.get('/log-in', function(req, res, next) {
-  res.send('respond with a resource');
+router.get('/log-in', csrfProtection, (req, res) =>  {
+
+  res.render('user-log-in', {
+    title: 'Log In',
+    csrfToken: req.csrfToken()
+  });
 });
 
 
 //==============Create New User===========
-router.post('/log-in', function(req, res, next) {
-  res.send('respond with a resource');
-});
+router.post('/log-in', csrfProtection, loginValidators, asyncHandler(async(req, res, next) => {
+  const { email, password } = req.body;
+
+  let errors = [];
+
+  const validatorErrors = validationResult(req);
+
+  if (validatorErrors.isEmpty()) {
+    const user = await db.User.findOnde({
+      where: {
+        email
+      },
+    });
+
+    if (user !== null) {
+      const passwordMatch = await bcrypt.compare(password, user.hashedPassword.toString());
+
+      if (passwordMatch) {
+        loginUser(req, res, user);
+        res.redirect('/');
+      }
+    }
+    errors.push('Log-in failed with the provided email and password.');
+  } else {
+    errors = validatorErrors.array().map((error) => error.msg);
+  }
+
+  res.render('user-log-in', {
+    title: 'Log In',
+    email,
+    errors,
+    csrfToken: req.csrfToken(),
+  });
+}));
 
 module.exports = router;
