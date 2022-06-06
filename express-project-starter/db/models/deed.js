@@ -9,6 +9,11 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
     Deed.hasMany(models.Review, {foreignKey: 'deedId'});
     Deed.hasMany(models.Status, {foreignKey: 'deedId'});
+    Deed.belongsToMany(models.Karma, {
+      through: 'KarmasToDeed',
+      foreignKey: 'deedId',
+      otherKey: 'karmaId'
+    })
   };
   return Deed;
 };
