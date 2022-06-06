@@ -6,6 +6,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Karma.associate = function(models) {
     // associations can be defined here
+    Karma.belongsTo(models.User, {foreignKey: 'userId'});
   };
   return Karma;
 };
