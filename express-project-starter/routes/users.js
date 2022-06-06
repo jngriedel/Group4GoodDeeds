@@ -8,7 +8,7 @@ const bcrypt = require('bcryptjs');
 //=====Internal Modules====
 const { csrfProtection, asyncHandler } = require('./utils');
 const db = require('../db/models');
-const { loginUser } = require('../auth');
+const { loginUser, logoutUser } = require('../auth');
 
 //=====Initialize =======
 
@@ -160,5 +160,12 @@ router.post('/log-in', csrfProtection, loginValidators, asyncHandler(async(req, 
     csrfToken: req.csrfToken(),
   });
 }));
+
+//======Log-out=========
+
+router.post('/log-out', (req, res) => {
+  logoutUser(req, res);
+  res.redirect('/');
+});
 
 module.exports = router;
