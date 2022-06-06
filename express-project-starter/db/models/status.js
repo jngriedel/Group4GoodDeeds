@@ -7,7 +7,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Status.associate = function(models) {
     // associations can be defined here
-    Status.belongsTo(models.Deed, {foreignKey: 'deedId'})
+    Status.belongsTo(models.Deed, {foreignKey: 'deedId'});
+    Status.belongsTo(models.User, {foreignKey: 'userId'});
   };
   return Status;
 };
