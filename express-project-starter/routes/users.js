@@ -1,6 +1,5 @@
 //====External Modules====
 var express = require('express');
-const { db } = require('../config');
 const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 
@@ -35,7 +34,7 @@ const userValidators = [
     .isEmail()
     .withMessage('Email Address is not a valid email')
     .custom((value) => {
-      return db.User.findOne({ where: { emailAddress: value } })
+      return db.User.findOne({ where: { email: value } })
         .then((user) => {
           if (user) {
             return Promise.reject('The provided Email Address is already in use by another account');
@@ -63,7 +62,7 @@ const userValidators = [
 ];
 
 const loginValidators = [
-  check('emailAddress')
+  check('email')
     .exists({ checkFalsy: true })
     .withMessage('Please provide a value for Email Address'),
   check('password')
@@ -73,14 +72,15 @@ const loginValidators = [
 
 
 //========Get Sign-Up Page=========
-router.get('/sign-up', csrfProtection,(req, res) => {
-  const user = db.User.build()
-  res.send('user-sign-up',  {
+router.get('/sign-up', csrfProtection, asyncHandler( async(req, res) => {
+  const user = await db.User.build()
+
+  res.render('user-sign-up',  {
     title: "Sign-Up",
     user,
-    csrfToken: req.csrfToken()
+    csrfToken: req.csrfToken(),
   });
-});
+}));
 
 
 //==============Create New User===========
@@ -96,7 +96,7 @@ router.post('/sign-up', csrfProtection, userValidators, asyncHandler (async (req
 
   if (validatorErrors.isEmpty()) {
     const hashedPassword = await bcrypt.hash(password, 10);
-    user.hashedPassword = hashedPassword;            /////because it's called password in our database. Double Check!
+    user.password = hashedPassword;
     await user.save();
     loginUser(req, res, user);
     res.redirect('/');
@@ -141,7 +141,7 @@ router.post('/log-in', csrfProtection, loginValidators, asyncHandler(async(req, 
     });
 
     if (user !== null) {
-      const passwordMatch = await bcrypt.compare(password, user.hashedPassword.toString());
+      const passwordMatch = await bcrypt.compare(password, user.password.toString());
 
       if (passwordMatch) {
         loginUser(req, res, user);
