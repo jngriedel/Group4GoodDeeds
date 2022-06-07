@@ -23,6 +23,12 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
     const reviews = await db.Review.findAll({where: {
       deedId
     }, include: db.User})
+
+
+    if (!deed) {
+      res.status(404)                   
+      return  res.send("Error 404 Deed not Found!")
+    }
     res.render('deed',  {
       title: `Deed #${deedId}`,
       deed,
