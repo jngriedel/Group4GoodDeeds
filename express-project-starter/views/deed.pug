@@ -3,10 +3,43 @@ extends layout.pug
 include includes/utils
 
 block content
+  div(id='main')
+    script(src="/javascripts/addReview.js" type="module")
     div
       p= deed.name
     div
       p= deed.description
     div
       p= deed.rating
-    
+
+    div
+      p What do you Think?
+      button(id=`add-review`) Write a Review
+    div(id='review-container')
+        table(id='reviewTable')
+          thead
+            tr
+              th Title
+              th Review
+              th Deed Rating
+              th User
+
+          tbody
+            each review in reviews
+              tr
+                td= review.title
+                td= review.body
+                td= review.rating
+                td #{review.User.firstName} #{review.User.lastName}
+  div(id='opinion')
+    div(id='pop-up-form')
+      +validationErrorSummary(errors)
+      form(action=`/deeds/${deed.id}` method='post')
+          input(type='hidden' name='_csrf' value=csrfToken)
+          input(type='hidden' id='deedHolder' value=deed.id)
+          +field('Title', 'title', null)
+          +field('Review Body', 'body', null)
+          +field('Rating', 'rating', null, 'number')
+          div
+              button(id= 'post-review') Save Review
+              button(id='cancel') Cancel
