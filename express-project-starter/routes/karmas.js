@@ -18,15 +18,10 @@ router.get('/', csrfProtection, async(req, res) => {
     // if (req.session.auth) {
     //     loggedInUser = req.session.auth.userId;
     // };
-    if (!karmas) {
-        res.send('You have arrived on the karma page!');
-    }
-    else {
     res.render('karmas', {
         karmas,
         csrfToken: req.csrfToken(),
      });
-    }
 });
 
 const karmaValidators = [
@@ -39,24 +34,24 @@ const karmaValidators = [
 
 //=====Create a Karma====//
 router.post('/', csrfProtection, karmaValidators, asyncHandler(async(req, res, next) => {
-    console.log('!!!!!!!!');
     const { title } = req.body;
 
     const validatorErrors = validationResult(req);
     if (validatorErrors.isEmpty()) {
         const karma = await db.Karma.create({
             title,
+            userId: 1,
         });
-        res.status(201).json({ karma });
+        await karma.save();
+        res.json({message: 'Success'});
     } else {
         const errors = validatorErrors.array().map(error => error.msg);
-        console.log(csrfToken);
         res.render('karmas', {
             csrfToken: req.csrfToken(),
             errors,
             data: req.body});
     };
-}))
+}));
 
 
 //====Update a Karma Name====//

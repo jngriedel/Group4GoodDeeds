@@ -1,20 +1,21 @@
 extends layout.pug
 
 block content
-    h1= csrfToken
     h2 Karmas
     form(action="/karmas" method="post")
-        input(type="hidden" name=_csrf value=csrfToken)
-        input(type="text" name=karmaName value=karmaName id="title")
-        button(type="submit" class="add-karma") Add Karma
-    table
-        thead
-            tr
-                th title
-        tbody
-            each karma in karmas
+        input(type="hidden" name="_csrf" value=csrfToken)
+        input(type="text" name="title" value=title id="title")
+        button(class="add-karma") Add Karma
+    if karmas
+        table
+            thead
                 tr
-                    td= karma.title
-                    //- td: img(src=)
+                    th title
+            tbody
+                    each karma in karmas
+                        tr
+                            td= karma.title
+                            //- td &#128512
+
     div
-        button I'm done
+        a(href='/') I'm done
