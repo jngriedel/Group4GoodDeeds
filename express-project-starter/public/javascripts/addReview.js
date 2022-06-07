@@ -66,11 +66,23 @@ document.addEventListener("DOMContentLoaded", (event)=>{
                 opinionContainer.removeChild(formBox)
                 main.className = ""
             } else {
-                form.appendChild(data.errors)
+                const oldErrors = document.getElementById('error-list')
+                if (oldErrors) {
+                    oldErrors.remove()
+                }
+                const errorList = document.createElement('ul')
+                errorList.id = 'error-list'
+                for (let error in data.errors){
+                    const li = document.createElement('li')
+                    li.innerText = data.errors[error];
+                    errorList.appendChild(li);
+                }
+                form.appendChild(errorList)
             }
         })
 
         cancel.addEventListener('click', async (event2)=> {
+            event2.preventDefault();
             form.id = 'pop-up-form2'
             opinionContainer.removeChild(formBox)
             main.className = ""

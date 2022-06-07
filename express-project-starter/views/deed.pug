@@ -37,9 +37,9 @@ block content
       form(action=`/deeds/${deed.id}` method='post')
           input(type='hidden' name='_csrf' value=csrfToken)
           input(type='hidden' id='deedHolder' value=deed.id)
-          +field('Title', 'title')
-          +field('Review Body', 'body')
-          +field('Rating', 'rating', rating, 'number')
+          +field('Title', 'title', null)
+          +field('Review Body', 'body', null)
+          +field('Rating', 'rating', null, 'number')
           div
               button(id= 'post-review') Save Review
               button(id='cancel') Cancel
