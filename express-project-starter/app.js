@@ -9,6 +9,7 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const deedsRouter = require('./routes/deeds');
+const karmasRouter = require('./routes/karmas');
 const { sessionSecret } = require('./config');
 const { restoreUser } = require('./auth');
 
@@ -22,11 +23,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser(sessionSecret));
-app.use(express.static(path.join(__dirname, 'public')));
-
-// set up session middleware
 const store = new SequelizeStore({ db: sequelize });
-
 app.use(
   session({
     secret: sessionSecret,
@@ -35,15 +32,20 @@ app.use(
     saveUninitialized: false,
     resave: false,
   })
-);
+  );
+  app.use(restoreUser);
+app.use(express.static(path.join(__dirname, 'public')));
+
+// set up session middleware
+
 
 // create Session table if it doesn't already exist
 store.sync();
 
-app.use(restoreUser);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/deeds', deedsRouter);
+app.use('/karmas', karmasRouter);
 
 
 // catch 404 and forward to error handler

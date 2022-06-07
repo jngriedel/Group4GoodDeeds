@@ -12,14 +12,21 @@ const router = express.Router();
 
 
 //=======Read a Karma=====//
-router.get('/karmas', csrfProtection, requireAuth, async(req, res) => {
+router.get('/', csrfProtection, async(req, res) => {
     const karmas = await db.Karma.findAll();
-    let loggedInUser;
-    if (req.session.auth) {
-        loggedInUser = req.session.auth.userId;
-    };
-
-    res.render('karmas', { karmas, loggedInUser });
+    // let loggedInUser;
+    // if (req.session.auth) {
+    //     loggedInUser = req.session.auth.userId;
+    // };
+    if (!karmas) {
+        res.send('You have arrived on the karma page!');
+    }
+    else {
+    res.render('karmas', {
+        karmas,
+        csrfToken: req.csrfToken(),
+     });
+    }
 });
 
 const karmaValidators = [
@@ -31,11 +38,11 @@ const karmaValidators = [
 ];
 
 //=====Create a Karma====//
-router.post('/karmas', csrfProtection, requireAuth, karmaValidators, asyncHandler(async(req, res, next) => {
+router.post('/', csrfProtection, karmaValidators, asyncHandler(async(req, res, next) => {
+    console.log('!!!!!!!!');
     const { title } = req.body;
 
     const validatorErrors = validationResult(req);
-
     if (validatorErrors.isEmpty()) {
         const karma = await db.Karma.create({
             title,
@@ -43,7 +50,8 @@ router.post('/karmas', csrfProtection, requireAuth, karmaValidators, asyncHandle
         res.status(201).json({ karma });
     } else {
         const errors = validatorErrors.array().map(error => error.msg);
-        res.render('karma-add', {
+        console.log(csrfToken);
+        res.render('karmas', {
             csrfToken: req.csrfToken(),
             errors,
             data: req.body});
@@ -52,7 +60,7 @@ router.post('/karmas', csrfProtection, requireAuth, karmaValidators, asyncHandle
 
 
 //====Update a Karma Name====//
-router.put('/karmas/:karmaId(\\d+)', csrfProtection, requireAuth, async(req, res) => {
+router.put('/karmas/:karmaId(\\d+)', csrfProtection, async(req, res) => {
     const karma = await db.Karma.findByPk(req.params.id);
     karma.title = req.body.title;
     await karma.save();
@@ -60,8 +68,11 @@ router.put('/karmas/:karmaId(\\d+)', csrfProtection, requireAuth, async(req, res
 });
 
 //====Delete a Karma=====//
-router.delete('/karmas/:karmaId(\\d+)', csrfProtection, requireAuth, asyncHandler(async(req, res, next) => {
+router.delete('/karmas/:karmaId(\\d+)', csrfProtection, asyncHandler(async(req, res, next) => {
     const karma = await db.Karma.findByPk(req.params.id);
     await karma.destroy();
     res.json({message: 'Success!'});
 }));
+
+
+module.exports = router;
