@@ -18,17 +18,17 @@ var router = express.Router();
 router.get('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
     const deedId = req.params.id
     const deed = await db.Deed.findByPk(deedId, {
-        include: [Review, Status, User]
+        include: [db.Review, db.Status]
     })
-    const reviews = await db.Review.findAll(where{
+    const reviews = await db.Review.findAll({where: {
       deedId
-    })
-    res.send('deed',  {
+    }})
+    res.render('deed',  {
       title: `Deed #${deedId}`,
       deed,
       reviews,
       csrfToken: req.csrfToken()
-    });
+    })
 }));
 
 
