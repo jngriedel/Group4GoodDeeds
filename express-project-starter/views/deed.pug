@@ -3,6 +3,7 @@ extends layout.pug
 include includes/utils
 
 block content
+  div(id='main')
     script(src="/javascripts/addReview.js" type="module")
     div
       p= deed.name
@@ -11,7 +12,7 @@ block content
     div
       p= deed.rating
 
-    div(id='opinion')
+    div
       p What do you Think?
       button(id=`add-review`) Write a Review
     div(id='review-container')
@@ -30,3 +31,4 @@ block content
                 td= review.body
                 td= review.rating
                 td #{review.User.firstName} #{review.User.lastName}
+  div(id='opinion')
