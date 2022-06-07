@@ -13,7 +13,11 @@ const router = express.Router();
 
 //=======Read a Karma=====//
 router.get('/', csrfProtection, async(req, res) => {
-    const karmas = await db.Karma.findAll();
+    const karmas = await db.Karma.findAll({
+        order: [[
+            "id", "DESC"
+        ]]
+    });
     // let loggedInUser;
     // if (req.session.auth) {
     //     loggedInUser = req.session.auth.userId;
@@ -33,21 +37,21 @@ const karmaValidators = [
 ];
 
 //=====Create a Karma====//
-router.post('/', csrfProtection, karmaValidators, asyncHandler(async(req, res, next) => {
+router.post('/', karmaValidators, asyncHandler(async(req, res, next) => {
     const { title } = req.body;
-
+    console.log(title)
     const validatorErrors = validationResult(req);
     if (validatorErrors.isEmpty()) {
         const karma = await db.Karma.create({
             title,
             userId: 1,
         });
+        console.log(karma)
         await karma.save();
-        res.json({message: 'Success'});
+        res.json({message: 'Success!', karma});
     } else {
         const errors = validatorErrors.array().map(error => error.msg);
         res.render('karmas', {
-            csrfToken: req.csrfToken(),
             errors,
             data: req.body});
     };

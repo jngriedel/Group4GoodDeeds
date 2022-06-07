@@ -1,20 +1,32 @@
 extends layout.pug
 
 block content
+    script(src="/javascripts/karma-add.js" type="module")
+
     h2 Karmas
     form(action="/karmas" method="post")
         input(type="hidden" name="_csrf" value=csrfToken)
+        input(type="hidden" id='karmaId' value=id)
         input(type="text" name="title" value=title id="title")
         button(class="add-karma") Add Karma
     if karmas
-        table
+        table(id="table")
             thead
                 tr
                     th title
+                    th
             tbody
                     each karma in karmas
                         tr
-                            td= karma.title
+                            td=karma.title
+                            td: button(class="rename") Rename
+
+                        //- form(class='hidden' id=`edit-form-${post.id}`)
+                        //- label Title:
+                        //- input(type="text" name="title" value=post.title id=`${post.id}-edit-title`)
+                        //- label Content:
+                        //- input(type="text" name="content" value=post.content id=`${post.id}-edit-content`)
+                        //- button(class="edit-submit" id=`edit-submit-${post.id}`) Submit Edit
                             //- td &#128512
 
     div
