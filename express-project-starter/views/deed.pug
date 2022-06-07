@@ -16,7 +16,7 @@ block content
       p What do you Think?
       button(id=`add-review`) Write a Review
     div(id='review-container')
-        table
+        table(id='reviewTable')
           thead
             tr
               th Title
@@ -32,13 +32,14 @@ block content
                 td= review.rating
                 td #{review.User.firstName} #{review.User.lastName}
   div(id='opinion')
-  div(id='pop-up-form')
-    +validationErrorSummary(errors)
-    form(action=`/deeds/${deed.id}` method='post')
-        input(type='hidden' name='_csrf' value=csrfToken)
-        +field('Title', 'title', email)
-        +field('Review Body', 'body',  )
-        +field('Rating', 'rating', number, 'number')
-        div
-            button(type='submit') Save Review
-            button(id='cancel') Cancel
+    div(id='pop-up-form')
+      +validationErrorSummary(errors)
+      form(action=`/deeds/${deed.id}` method='post')
+          input(type='hidden' name='_csrf' value=csrfToken)
+          input(type='hidden' id='deedHolder' value=deed.id)
+          +field('Title', 'title')
+          +field('Review Body', 'body')
+          +field('Rating', 'rating', rating, 'number')
+          div
+              button(id= 'post-review') Save Review
+              button(id='cancel') Cancel

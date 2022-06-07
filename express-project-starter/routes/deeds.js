@@ -17,12 +17,16 @@ var router = express.Router();
 //========Get Deed Page=========
 router.get('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
     const deedId = req.params.id
+
     const deed = await db.Deed.findByPk(deedId, {
         include: [db.Review, db.Status]
     })
     const reviews = await db.Review.findAll({where: {
       deedId
-    }, include: db.User})
+    }, include: db.User,
+    order: [
+      ['id', 'DESC'],
+  ]})
 
 
     if (!deed) {
@@ -49,17 +53,14 @@ const reviewValidators = [
 ]
 
 //==========Post Review on Deed Page============
-
-router.post('/:id(\\d+)', csrfProtection, reviewValidators, asyncHandler(async(req, res) => {
+//took out csurf for now
+router.post('/:id(\\d+)', reviewValidators, asyncHandler(async(req, res) => {
     const deedId = req.params.id
-    const deed = await db.Deed.findByPk(deedId)
-    const reviews = await db.Review.findAll({where: {
-      deedId
-    }, include: db.User})
+    console.log('you made it')
 
     const {title, body, rating} = req.body
     const validatorErrors = validationResult(req);
-
+    console.log("this works")
     if (validatorErrors.isEmpty()) {
     const newReview = await db.Review.create({
       title,
@@ -68,20 +69,19 @@ router.post('/:id(\\d+)', csrfProtection, reviewValidators, asyncHandler(async(r
       deedId,
       userId: 1
     })
+    const newId = newReview.id
+    const review = await db.Review.findByPk(newId, {
+      include: db.User
+    })
 
-    res.json({message: "test"})
+    res.json({message: "Success!", review})
   }
 
 
   else {
     const errors = validatorErrors.array().map(error => error.msg);
-    console.log(errors);
-    res.render(`deed.pug`, {
-        csrfToken: req.csrfToken(),
-        errors,
-        deed,
-        reviews,
-        data: req.body});
+    // console.log(errors);
+    res.json({errors})
 };
 
 }));
