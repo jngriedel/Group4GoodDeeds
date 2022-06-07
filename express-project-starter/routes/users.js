@@ -1,6 +1,5 @@
 //====External Modules====
 var express = require('express');
-const { db } = require('../config');
 const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 
