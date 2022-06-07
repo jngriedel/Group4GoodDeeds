@@ -26,7 +26,7 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
 
 
     if (!deed) {
-      res.status(404)                   
+      res.status(404)
       return  res.send("Error 404 Deed not Found!")
     }
     res.render('deed',  {
@@ -44,13 +44,15 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
 router.post('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
     const deedId = req.params.id
     const {title, body, rating} = req.body
+    const newReview = await db.Review.create({
+      title,
+      body,
+      rating,
+      deedId,
+      userId: 1
+    })
 
-
-    res.send('deed',  {
-      title: `Deed #${deedId}`,
-      deed,
-      csrfToken: req.csrfToken()
-    });
+    return
 }));
 
 

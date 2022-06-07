@@ -32,3 +32,13 @@ block content
                 td= review.rating
                 td #{review.User.firstName} #{review.User.lastName}
   div(id='opinion')
+  div(id='pop-up-form')
+    +validationErrorSummary(errors)
+    form(action=`/deeds/${deed.id}` method='post')
+        input(type='hidden' name='_csrf' value=csrfToken)
+        +field('Title', 'title', email)
+        +field('Review Body', 'body',  )
+        +field('Rating', 'rating', number, 'number')
+        div
+            button(type='submit') Save Review
+            a(href=`/deeds/${deed.id}`) Cancel
