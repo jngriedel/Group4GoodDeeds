@@ -37,13 +37,30 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
     })
 }));
 
-
+const reviewValidators = [
+  check('title')
+    .exists({checkFalsy: true})
+    .withMessage('Review must have a Title')
+    .isLength({max: 50})
+    .withMessage("Title must be 50 characters or fewer"),
+  check('rating')
+    .exists({checkFalsy: true})
+    .withMessage('Review must have a Rating')
+]
 
 //==========Post Review on Deed Page============
 
-router.post('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
+router.post('/:id(\\d+)', csrfProtection, reviewValidators, asyncHandler(async(req, res) => {
     const deedId = req.params.id
+    const deed = await db.Deed.findByPk(deedId)
+    const reviews = await db.Review.findAll({where: {
+      deedId
+    }, include: db.User})
+
     const {title, body, rating} = req.body
+    const validatorErrors = validationResult(req);
+
+    if (validatorErrors.isEmpty()) {
     const newReview = await db.Review.create({
       title,
       body,
@@ -52,7 +69,21 @@ router.post('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
       userId: 1
     })
 
-    return
+    res.json({message: "test"})
+  }
+
+
+  else {
+    const errors = validatorErrors.array().map(error => error.msg);
+    console.log(errors);
+    res.render(`deed.pug`, {
+        csrfToken: req.csrfToken(),
+        errors,
+        deed,
+        reviews,
+        data: req.body});
+};
+
 }));
 
 
