@@ -15,7 +15,7 @@ const app = express();
 
 // view engine setup
 app.set('view engine', 'pug');
-app.use(restoreUser);
+
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -38,7 +38,7 @@ app.use(
 
 // create Session table if it doesn't already exist
 store.sync();
-
+app.use(restoreUser);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
