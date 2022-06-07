@@ -34,13 +34,13 @@ const karmaValidators = [
 
 //=====Create a Karma====//
 router.post('/', csrfProtection, karmaValidators, asyncHandler(async(req, res, next) => {
-    const { title } = req.body;
+    const { title, userId } = req.body;
 
     const validatorErrors = validationResult(req);
     if (validatorErrors.isEmpty()) {
         const karma = await db.Karma.create({
             title,
-            userId: 1,
+            userId
         });
         await karma.save();
         res.json({message: 'Success'});

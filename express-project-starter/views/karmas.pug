@@ -1,9 +1,11 @@
 extends layout.pug
 
 block content
+    script(src="/javascripts/karma-add.js" type="module")
     h2 Karmas
     form(action="/karmas" method="post")
         input(type="hidden" name="_csrf" value=csrfToken)
+        input(type="hidden" id="karmaHolder" value=karma.id)
         input(type="text" name="title" value=title id="title")
         button(class="add-karma") Add Karma
     if karmas
