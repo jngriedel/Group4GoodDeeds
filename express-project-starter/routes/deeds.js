@@ -19,10 +19,14 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
     const deedId = req.params.id
     const deed = await db.Deed.findByPk(deedId, {
         include: [Review, Status, User]
-    })  //need to include others?
+    })
+    const reviews = await db.Review.findAll(where{
+      deedId
+    })
     res.send('deed',  {
       title: `Deed #${deedId}`,
       deed,
+      reviews,
       csrfToken: req.csrfToken()
     });
 }));
@@ -35,7 +39,7 @@ router.post('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
     const deedId = req.params.id
     const {title, body, rating} = req.body
 
-    
+
     res.send('deed',  {
       title: `Deed #${deedId}`,
       deed,
