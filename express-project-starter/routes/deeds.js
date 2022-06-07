@@ -22,7 +22,7 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
     })
     const reviews = await db.Review.findAll({where: {
       deedId
-    }})
+    }, include: db.User})
     res.render('deed',  {
       title: `Deed #${deedId}`,
       deed,

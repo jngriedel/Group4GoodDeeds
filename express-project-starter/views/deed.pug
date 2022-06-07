@@ -3,10 +3,30 @@ extends layout.pug
 include includes/utils
 
 block content
+    script(src="/javascripts/addReview.js" type="module")
     div
       p= deed.name
     div
       p= deed.description
     div
       p= deed.rating
-    
+
+    div
+      p What do you Think?
+      button(id=`add-review`) Write a Review
+    div(id='review-container')
+        table
+          thead
+            tr
+              th Title
+              th Review
+              th Deed Rating
+              th User
+
+          tbody
+            each review in reviews
+              tr
+                td= review.title
+                td= review.body
+                td= review.rating
+                td #{review.User.firstName} #{review.User.lastName}
