@@ -7,9 +7,12 @@ const loginUser = (req, res, user) => {
     // req.session.save(function (){res.redirect('/')})
   };
 
-const logoutUser = (req, res) => {
+  const logoutUser = (req, res) => {
     delete req.session.auth;
-};
+    res.clearCookie("_csrf");
+    res.clearCookie("deed-app.sid", { path: "/" });
+  };
+
 
 //========User Athentication============
 

@@ -61,14 +61,7 @@ const userValidators = [
   })
 ];
 
-const loginValidators = [
-  check('email')
-    .exists({ checkFalsy: true })
-    .withMessage('Please provide a value for Email Address'),
-  check('password')
-    .exists({ checkFalsy: true })
-    .withMessage('Please provide a value for Password'),
-];
+
 
 
 //========Get Sign-Up Page=========
@@ -126,41 +119,63 @@ router.get('/log-in', csrfProtection, (req, res) =>  {
 
 
 //==============Create New User===========
+
+
+const loginValidators = [
+  check('email')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for Email Address'),
+  check('password')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for Password'),
+];
+
+
+
+
 router.post('/log-in', csrfProtection, loginValidators, asyncHandler(async(req, res, next) => {
-  const { email, password } = req.body;
 
-  let errors = [];
+    const { email, password } = req.body;
+    const user = await db.User.findOne({ where: { email } });
 
-  const validatorErrors = validationResult(req);
+    let errors = [];
 
-  if (validatorErrors.isEmpty()) {
-    const user = await db.User.findOne({
-      where: {
-        email
-      },
-    });
+    const validatorErrors = validationResult(req);
 
-    if (user !== null) {
-      const passwordMatch = await bcrypt.compare(password, user.password.toString());
 
-      if (passwordMatch) {
-        loginUser(req, res, user);
-        res.redirect('/');
-        // req.session.save(( ) => res.redirect('/'))
+
+
+      if (user) {
+        if (await bcrypt.compare(password, user.password.toString())) {
+          loginUser(req, res, user);
+          res.redirect("/");
+        }
+
+    } else {
+      if (email || password) {
+      errors.push('Log-in failed with the provided email or password.');
       }
+      validatorErrors.array().map((error) => errors.push(error.msg));
+      res.render('user-log-in', {
+              title: 'Log In',
+              email,
+              errors,
+              csrfToken: req.csrfToken(),
+            });
     }
-    errors.push('Log-in failed with the provided email and password.');
-  } else {
-    errors = validatorErrors.array().map((error) => error.msg);
-  }
-
-  res.render('user-log-in', {
-    title: 'Log In',
-    email,
-    errors,
-    csrfToken: req.csrfToken(),
-  });
 }));
+
+
+
+
+
+
+
+
+
+
+
+
 
 //======Demo User=====
 router.post('/demo-user', csrfProtection,  asyncHandler(async(req, res, next) => {
