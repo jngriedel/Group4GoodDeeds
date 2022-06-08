@@ -39,15 +39,15 @@ const karmaValidators = [
 //=====Create a Karma====//
 router.post('/', karmaValidators, asyncHandler(async(req, res, next) => {
     const { title } = req.body;
-    console.log(title)
+
     const validatorErrors = validationResult(req);
     if (validatorErrors.isEmpty()) {
         const karma = await db.Karma.create({
             title,
             userId: 1,
         });
-        console.log(karma)
         await karma.save();
+        console.log(karma)
         res.json({message: 'Success!', karma});
     } else {
         const errors = validatorErrors.array().map(error => error.msg);
@@ -59,18 +59,23 @@ router.post('/', karmaValidators, asyncHandler(async(req, res, next) => {
 
 
 //====Update a Karma Name====//
-router.put('/karmas/:karmaId(\\d+)', csrfProtection, async(req, res) => {
-    const karma = await db.Karma.findByPk(req.params.id);
+router.put('/:id(\\d+)', async(req, res) => {
+    const karmaId = req.params.id;
+    const karma = await db.Karma.findByPk(karmaId);
+    console.log(karma)
     karma.title = req.body.title;
     await karma.save();
-    res.json({message: "Success!"}, karma);
+    console.log(karma.title)
+    res.json({karma});
 });
 
 //====Delete a Karma=====//
-router.delete('/karmas/:karmaId(\\d+)', csrfProtection, asyncHandler(async(req, res, next) => {
-    const karma = await db.Karma.findByPk(req.params.id);
+router.delete('/:id(\\d+)', asyncHandler(async(req, res, next) => {
+    const karmaId = req.params.id;
+    const karma = await db.Karma.findByPk(karmaId);
     await karma.destroy();
-    res.json({message: 'Success!'});
+    console.log("!!!!!!")
+    res.json({karmaId});
 }));
 
 

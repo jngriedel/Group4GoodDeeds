@@ -2,32 +2,37 @@ extends layout.pug
 
 block content
     script(src="/javascripts/karma-add.js" type="module")
-
+    script(src="/javascripts/karma-edit.js" type="module")
+    script(src="/javascripts/karma-delete.js" type="module")
     h2 Karmas
     form(action="/karmas" method="post")
         input(type="hidden" name="_csrf" value=csrfToken)
-        input(type="hidden" id='karmaId' value=id)
-        input(type="text" name="title" value=title id="title")
+        //- input(type="hidden" id=karmaId value=id)
+        input(type="text" name="title" value=title placeholder="Add a Karma..." id="title" required)
         button(class="add-karma") Add Karma
-    if karmas
-        table(id="table")
-            thead
-                tr
-                    th title
-                    th
-            tbody
-                    each karma in karmas
-                        tr
-                            td=karma.title
-                            td: button(class="rename") Rename
+    div
+        if karmas
+            table(id="table")
+                thead
+                    tr
+                        th title
+                        th
+                        th
+                tbody
+                        each karma in karmas
 
-                        //- form(class='hidden' id=`edit-form-${post.id}`)
-                        //- label Title:
-                        //- input(type="text" name="title" value=post.title id=`${post.id}-edit-title`)
-                        //- label Content:
-                        //- input(type="text" name="content" value=post.content id=`${post.id}-edit-content`)
-                        //- button(class="edit-submit" id=`edit-submit-${post.id}`) Submit Edit
-                            //- td &#128512
+                            tr(class=`karma-${karma.id}`)
+                                //- td(id=`karmaId-${karma.id}`)= karma.id
+                                td(id="karmaTitle")= karma.title
+                                td: button(class="rename" value=karma.id) Rename
+                                td: button(class="delete-btn" value=karma.id) Delete
+                            tr(class=`karma-${karma.id}`)
+                                td
+                                    form(action=`/karmas/${karma.id}` method='post' class='hidden' id=`edit-form-${karma.id}`)
+                                        input(type="text" name="title" value=title id=`${karma.id}-edit-title`)
+                                        button(id=`edit-submit-${karma.id}`) Save
+                                        a(href="/" class="cancel-btns" id=`cancel-${karma.id}`) Cancel
+
 
     div
         a(href='/') I'm done
