@@ -17,10 +17,19 @@ block content
                     th Rating
                     th Review
                     th Date added
+                    th Edit Review
+                    th Delete Review
             tbody
                 each review in reviews
                     tr
                         td= review.Deed.name
                         td= review.Deed.rating
                         td= review.rating
+                        td= review.body
                         td= review.createdAt
+                        td
+                          form(action=`/reviews/${review.id}` method='post')
+                            button(type='submit') Edit
+                        td
+                          form(action=`/reviews/${review.id}` method='post')
+                            button(type='submit') Delete
