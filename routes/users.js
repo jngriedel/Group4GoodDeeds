@@ -141,10 +141,7 @@ router.post('/log-in', csrfProtection, loginValidators, asyncHandler(async(req, 
     let errors = [];
 
     const validatorErrors = validationResult(req);
-
-
-
-
+    
       if (user) {
         if (await bcrypt.compare(password, user.password.toString())) {
           loginUser(req, res, user);
