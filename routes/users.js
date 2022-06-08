@@ -164,19 +164,19 @@ router.post('/log-in', csrfProtection, loginValidators, asyncHandler(async(req, 
 
 //======Demo User=====
 router.post('/demo-user', csrfProtection,  asyncHandler(async(req, res, next) => {
-  const { email, password } = req.body;
+  const { email_demo, password_demo } = req.body;
 
 
 
 
     const user = await db.User.findOne({
       where: {
-        email
+        email: email_demo
       },
     });
 
 
-      const passwordMatch = await bcrypt.compare(password, user.password.toString());
+      const passwordMatch = await bcrypt.compare(password_demo, user.password.toString());
 
       if (passwordMatch) {
         loginUser(req, res, user);

@@ -72,7 +72,7 @@ router.post('/:id(\\d+)', reviewValidators, requireAuth, asyncHandler(async(req,
 
     const {title, body, rating} = req.body
     const validatorErrors = validationResult(req);
-    
+
 
     if (validatorErrors.isEmpty()) {
     const newReview = await db.Review.create({
