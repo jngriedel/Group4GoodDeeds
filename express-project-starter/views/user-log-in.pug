@@ -9,14 +9,15 @@ block content
         input(type='hidden' name='_csrf' value=csrfToken)
         +field('Email Address', 'email', email)
         +field('Password', 'password', password, 'password')
+
         div
             button(type='submit') Log-in
             a(href='/') Cancel
-        div() Don't have an account?
-            p: a(href='/users/sign-up') Sign-Up
-        div() or
-            form(action='/users/log-in' method='post')
+    div() Don't have an account?
+        p: a(href='/users/sign-up') Sign-Up
+    div() or
+        form(action='/users/log-in' method='post')
             input(type='hidden' name='_csrf' value=csrfToken)
-            input(type='hidden' name='email-demo' value=mrgood)
-            +field('Password', 'password', password, 'password')
-            p: button(id='demo-user') Demo User
+            input(type='hidden' name='email' value='mrgoodguy@gmail.com')
+            input(type='hidden' name= 'password' value='Test1!')
+            p: button(type='submit') Demo User
