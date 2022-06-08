@@ -1,13 +1,12 @@
 const addKarma = document.querySelector('.add-karma');
-const karmaId = document.getElementById('karmaId');
 
 window.addEventListener('DOMContentLoaded', async(e) => {
 
     addKarma.addEventListener('click', async(e) => {
         e.preventDefault();
-        console.log(e.target.id)
+
         const title = document.getElementById('title').value;
-        // const res = await
+
         const res = await fetch(`/karmas`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -15,20 +14,27 @@ window.addEventListener('DOMContentLoaded', async(e) => {
                 title
             })
         })
-        // console.log(res);
 
         const data = await res.json()
+        // console.log(karmaId);
             if (data.message === 'Success!') {
-                console.log(data)
-                const titleEle = document.getElementById("table")
                 const inputField = document.getElementById("title");
-                const row = table.insertRow(1);
-                const cell1 = row.insertCell(0);
-                const cell2 = row.insertCell(1);
+                // const editForm = document.getElementById(`edit-form-${karmaId}`);
+                // console.log(editForm)
+                const row1 = table.insertRow(1);
+                const row2 = table.insertRow(2);
+                const cell1 = row1.insertCell(0);
+                const cell2 = row1.insertCell(1);
+                const cell3 = row1.insertCell(2);
+                const cell4 = row2.insertCell(0);
                 cell1.innerHTML = data.karma.title;
-                cell2.innerHTML = "<button class='rename'>Rename</button>"
+                cell2.innerHTML = '<button class="rename" value=karma.id>Rename</button>';
+                cell3.innerHTML = '<button class="delete-btn" value=karma.id>Delete</button>';
+                cell4.innerHTML += '<input type="text" name="title" id=`${karmaId}-edit-title`></input>'
+                cell4.innerHTML += '<button id=`edit-submit-${karmaId}`>Save</button>';
+                cell4.innerHTML += '<a class="cancel-btns" href="/">Cancel</a>';
+                // row2.innerHTML = editForm;
                 inputField.value = null;
-
             }
     })
 });

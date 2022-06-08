@@ -7,7 +7,7 @@ block content
     h2 Karmas
     form(action="/karmas" method="post")
         input(type="hidden" name="_csrf" value=csrfToken)
-        input(type="hidden" id=karmaId value=id)
+        //- input(type="hidden" id=karmaId value=id)
         input(type="text" name="title" value=title placeholder="Add a Karma..." id="title" required)
         button(class="add-karma") Add Karma
     div
@@ -22,16 +22,16 @@ block content
                         each karma in karmas
 
                             tr(class=`karma-${karma.id}`)
-                                td(id=`karmaId-${karma.id}`)= karma.id
+                                //- td(id=`karmaId-${karma.id}`)= karma.id
                                 td(id="karmaTitle")= karma.title
-                                td: button(class="rename") Rename
+                                td: button(class="rename" value=karma.id) Rename
                                 td: button(class="delete-btn" value=karma.id) Delete
                             tr(class=`karma-${karma.id}`)
                                 td
                                     form(action=`/karmas/${karma.id}` method='post' class='hidden' id=`edit-form-${karma.id}`)
                                         input(type="text" name="title" value=title id=`${karma.id}-edit-title`)
                                         button(id=`edit-submit-${karma.id}`) Save
-                                        a(href="/") Cancel
+                                        a(href="/" class="cancel-btns" id=`cancel-${karma.id}`) Cancel
 
 
     div

@@ -60,12 +60,13 @@ router.post('/', karmaValidators, asyncHandler(async(req, res, next) => {
 
 //====Update a Karma Name====//
 router.put('/:id(\\d+)', async(req, res) => {
-    console.log('hi')
-    const karma = await db.Karma.findByPk(req.params.id);
+    const karmaId = req.params.id;
+    const karma = await db.Karma.findByPk(karmaId);
     console.log(karma)
     karma.title = req.body.title;
     await karma.save();
-    res.json({message: "Success!"});
+    console.log(karma.title)
+    res.json({karma});
 });
 
 //====Delete a Karma=====//
