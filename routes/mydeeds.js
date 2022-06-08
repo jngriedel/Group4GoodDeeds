@@ -24,4 +24,5 @@ router.get('/', requireAuth, async(req, res) => {
     res.render('mydeeds', { karmas, reviews });
 } )
 
+
 module.exports = router;
