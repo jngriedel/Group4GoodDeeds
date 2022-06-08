@@ -5,4 +5,14 @@ html
         title Good Deeds - #{title}
         link(rel="stylesheet", href="/stylesheets/index.css")
   body
+    header
+      div(class="nav-bar")
+        img(src="../goodreadslogo.png")
+        div(class="nav-btns")
+        a(href="/" class="home") Home
+        a(href="" class="mydeeds") MyDeeds
+          //- div(class="rightalignbtns")
+        a(href="" class="demo") Demo Log-In
+        a(href="/users/log-in" class="log-in") Log In
+        a(href="/users/sign-up" class="sign-up") Sign Up
     block content
