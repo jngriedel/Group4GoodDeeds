@@ -150,10 +150,11 @@ router.post('/log-in', csrfProtection, loginValidators, asyncHandler(async(req, 
           loginUser(req, res, user);
           res.redirect("/");
         }
-          //generate error
-          errors.push('Log-in failed with the provided email and password.');
 
     } else {
+      if (email || password) {
+      errors.push('Log-in failed with the provided email or password.');
+      }
       validatorErrors.array().map((error) => errors.push(error.msg));
       res.render('user-log-in', {
               title: 'Log In',
