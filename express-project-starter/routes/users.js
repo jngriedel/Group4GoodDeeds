@@ -134,7 +134,7 @@ router.post('/log-in', csrfProtection, loginValidators, asyncHandler(async(req, 
   const validatorErrors = validationResult(req);
 
   if (validatorErrors.isEmpty()) {
-    const user = await db.User.findOnde({
+    const user = await db.User.findOne({
       where: {
         email
       },

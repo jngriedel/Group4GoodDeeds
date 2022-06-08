@@ -1,14 +1,17 @@
 h1 {
     color: #555555;
 }
+.form-box-hidden {
+    visibility: hidden;
 
+ }
 
 .form-box {
    width:400px;
    height: 400px;
    border: black solid 1px;
    border-radius: 5px;
-   position: absolute;
+   position: fixed;
    top: 100px;
    left: 400px;
    background: white;
@@ -39,20 +42,54 @@ h1 {
     }
   }
 .blur {
-
     -webkit-filter: blur(8px);
         filter: blur(8px);
         transition: 500ms;
         opacity: 1;
-
-
 }
 
 
-#pop-up-form {
-    visibility: hidden;
+/* Star Stuff*/
+.hide {
+    display: none;
 }
 
-#pop-up-form2{
-    z-index: 0;
+.clear {
+    float: none;
+    clear: both;
+}
+
+.rating {
+    width: 90px;
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    text-align: center;
+    position: relative;
+}
+
+.rating > label {
+    float: right;
+    display: inline;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    width: 1.1em;
+    cursor: pointer;
+    color: #000;
+}
+
+.rating > label:hover,
+.rating > label:hover ~ label,
+.rating > input.radio-btn:checked ~ label {
+    color: transparent;
+}
+
+.rating > label:hover:before,
+.rating > label:hover ~ label:before,
+.rating > input.radio-btn:checked ~ label:before,
+.rating > input.radio-btn:checked ~ label:before {
+    content: "\2605";
+    position: absolute;
+    left: 0;
+    color: #FFD700;
 }
