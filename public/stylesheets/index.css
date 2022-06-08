@@ -130,3 +130,10 @@ h1 {
     color: #FFD700;
 
 }
+
+
+#logo{
+  height: 40px;
+  width: 180px;
+  padding: 5px;
+}

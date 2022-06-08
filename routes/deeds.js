@@ -27,6 +27,11 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
     order: [
       ['id', 'DESC'],
   ]})
+  //404 not found
+  if (!deed) {
+    res.status(404)
+    return  res.send("Error 404 Deed not Found!")
+  }
   //calculate average rating
   let sum = 0;
   for (let index = 0; index < reviews.length; index++) {
@@ -37,11 +42,8 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
   await deed.update({
     rating: avgRating
   })
-//404 not found
-    if (!deed) {
-      res.status(404)
-      return  res.send("Error 404 Deed not Found!")
-    }
+
+
     res.render('deed',  {
       title: `Deed #${deedId}`,
       deed,
