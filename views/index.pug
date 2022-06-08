@@ -12,5 +12,6 @@ block content
     .all-deeds-container
         each deed in deeds
             div(id=`deed-container-${deed.id}`).single-deed-container
-                a(href=`/deeds/${deed.id}` id=`${deed.id}-name`)= deed.name
+                a(href=`/deeds/${deed.id}` id=`${deed.id}-name`)
+                  h2= deed.name
                 p(id=`${deed.id}-content`)= deed.description

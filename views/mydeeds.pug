@@ -1,0 +1,26 @@
+extends layout.pug
+
+block content
+
+    div
+    a(href="/karmas") edit
+    ul
+        if karmas
+        each karma in karmas
+            li= karma.title
+
+        table
+            thead
+                tr
+                    th Deed
+                    th Average Rating
+                    th Rating
+                    th Review
+                    th Date added
+            tbody
+                each review in reviews
+                    tr
+                        td= review.Deed.name
+                        td= review.Deed.rating
+                        td= review.rating
+                        td= review.createdAt
