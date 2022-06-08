@@ -4,23 +4,28 @@ html
       block head
         title Good Deeds - #{title}
         link(rel="stylesheet", href="/stylesheets/index.css")
+        meta(charset="UTF-8")
   body
-
-    header
-      div(class="nav-bar")
-        a(href="/")
-          img(id='logo' src="/images/gooddeedslogo.png" href='/')
-        div(class="nav-btns")
-        a(href="/" class="home") Home
-        a(href="" class="mydeeds") MyDeeds
-          //- div(class="rightalignbtns")
-        if locals.authenticated
-          span Welcome #{user.firstName}!
-          form(action='/users/log-out' method='post')
-            button(type='submit') Logout
-        else
-          a(href="/users/log-in" class="log-in") Log In
-          a(href="/users/sign-up" class="sign-up") Sign Up
+    div(class="site-header")
+      header
+        div(class="siteHeader__topImageContainer")
+          //- a(class="siteHeader__topImageLink" href="http://localhost:8081/deeds") Celebrate GoodDeeds Pride Month of the Year!
+            //- img(alt="GoodDeeds Pride Celebration 2022" class="siteHeader__topFullImage")
+        //- div(class=)
+        div(class="nav-bar")
+          a(href="/")
+            img(id='logo' src="/images/gooddeedslogo.png" href='/')
+          div(class="nav-btns")
+          a(href="/" class="home") Home
+          a(href="" class="mydeeds") MyDeeds
+            //- div(class="rightalignbtns")
+          if locals.authenticated
+            span Welcome #{user.firstName}!
+            form(action='/users/log-out' method='post')
+              button(type='submit') Logout
+          else
+            a(href="/users/log-in" class="log-in") Log In
+            a(href="/users/sign-up" class="sign-up") Sign Up
 
 
     block content
