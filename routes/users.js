@@ -181,8 +181,6 @@ router.post('/demo-user', csrfProtection,  asyncHandler(async(req, res, next) =>
       if (passwordMatch) {
         loginUser(req, res, user);
         req.session.save(( ) => res.redirect('/'))
-
-        // req.session.save(( ) => res.redirect('/'))
       }
 
 

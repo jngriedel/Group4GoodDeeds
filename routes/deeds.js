@@ -66,12 +66,13 @@ const reviewValidators = [
 
 //==========Post Review on Deed Page============
 
-router.post('/:id(\\d+)', reviewValidators, asyncHandler(async(req, res) => {
+router.post('/:id(\\d+)', reviewValidators, requireAuth, asyncHandler(async(req, res) => {
     const deedId = req.params.id
 
 
     const {title, body, rating} = req.body
     const validatorErrors = validationResult(req);
+    
 
     if (validatorErrors.isEmpty()) {
     const newReview = await db.Review.create({
@@ -79,7 +80,7 @@ router.post('/:id(\\d+)', reviewValidators, asyncHandler(async(req, res) => {
       body,
       rating,
       deedId,
-      userId: 1
+      userId: res.locals.user.id
     })
     const newId = newReview.id
     const review = await db.Review.findByPk(newId, {
