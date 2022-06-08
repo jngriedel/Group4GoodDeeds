@@ -27,6 +27,11 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
     order: [
       ['id', 'DESC'],
   ]})
+  //404 not found
+  if (!deed) {
+    res.status(404)
+    return  res.send("Error 404 Deed not Found!")
+  }
   //calculate average rating
   let sum = 0;
   for (let index = 0; index < reviews.length; index++) {
@@ -37,11 +42,8 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
   await deed.update({
     rating: avgRating
   })
-//404 not found
-    if (!deed) {
-      res.status(404)
-      return  res.send("Error 404 Deed not Found!")
-    }
+
+
     res.render('deed',  {
       title: `Deed #${deedId}`,
       deed,
@@ -64,12 +66,13 @@ const reviewValidators = [
 
 //==========Post Review on Deed Page============
 
-router.post('/:id(\\d+)', reviewValidators, asyncHandler(async(req, res) => {
+router.post('/:id(\\d+)', reviewValidators, requireAuth, asyncHandler(async(req, res) => {
     const deedId = req.params.id
 
 
     const {title, body, rating} = req.body
     const validatorErrors = validationResult(req);
+
 
     if (validatorErrors.isEmpty()) {
     const newReview = await db.Review.create({
@@ -77,7 +80,7 @@ router.post('/:id(\\d+)', reviewValidators, asyncHandler(async(req, res) => {
       body,
       rating,
       deedId,
-      userId: 1
+      userId: res.locals.user.id
     })
     const newId = newReview.id
     const review = await db.Review.findByPk(newId, {

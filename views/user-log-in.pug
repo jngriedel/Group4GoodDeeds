@@ -16,8 +16,8 @@ block content
     div() Don't have an account?
         p: a(href='/users/sign-up') Sign-Up
     div() or
-        form(action='/users/log-in' method='post')
+        form(action='/users/demo-user' method='post')
             input(type='hidden' name='_csrf' value=csrfToken)
-            input(type='hidden' name='email' value='mrgoodguy@gmail.com')
-            input(type='hidden' name= 'password' value='Test1!')
+            input(type='hidden' name='email_demo' value='mrgoodguy@gmail.com')
+            input(type='hidden' name= 'password_demo' value='Test1!')
             p: button(type='submit') Demo User

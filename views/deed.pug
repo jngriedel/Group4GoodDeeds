@@ -15,7 +15,11 @@ block content
 
     div
       p What do you Think?
-      button(id=`add-review`) Write a Review
+      if locals.authenticated
+        button(id=`add-review`) Write a Review
+      else
+        a(href='/users/log-in')
+            button() Write a Review
     div(id='review-container')
         table(id='reviewTable')
           thead

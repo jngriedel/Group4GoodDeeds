@@ -146,6 +146,7 @@ router.post('/log-in', csrfProtection, loginValidators, asyncHandler(async(req, 
       if (passwordMatch) {
         loginUser(req, res, user);
         res.redirect('/');
+        // req.session.save(( ) => res.redirect('/'))
       }
     }
     errors.push('Log-in failed with the provided email and password.');
@@ -161,11 +162,38 @@ router.post('/log-in', csrfProtection, loginValidators, asyncHandler(async(req, 
   });
 }));
 
+//======Demo User=====
+router.post('/demo-user', csrfProtection,  asyncHandler(async(req, res, next) => {
+  const { email_demo, password_demo } = req.body;
+
+
+
+
+    const user = await db.User.findOne({
+      where: {
+        email: email_demo
+      },
+    });
+
+
+      const passwordMatch = await bcrypt.compare(password_demo, user.password.toString());
+
+      if (passwordMatch) {
+        loginUser(req, res, user);
+        req.session.save(( ) => res.redirect('/'))
+      }
+
+
+
+
+
+}));
+
 //======Log-out=========
 
 router.post('/log-out', (req, res) => {
   logoutUser(req, res);
-  res.redirect('/');
+  req.session.save(( ) => res.redirect('/'))
 });
 
 module.exports = router;
