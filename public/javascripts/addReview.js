@@ -25,13 +25,15 @@ const formBox = document.querySelector('.form-box-hidden')
 document.addEventListener("DOMContentLoaded", (event)=>{
 
 
-
+    if(addReview){  ///does not log error if user is not logged in
     addReview.addEventListener('click', async (event)=> {
         event.preventDefault()
+
+
         formBox.className = 'form-box'
         main.className = 'blur'
     })
-
+    }
     postReview.addEventListener('click', async (event1) =>{
         event1.stopPropagation()
         event1.preventDefault();
