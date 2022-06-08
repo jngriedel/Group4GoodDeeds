@@ -61,14 +61,7 @@ const userValidators = [
   })
 ];
 
-const loginValidators = [
-  check('email')
-    .exists({ checkFalsy: true })
-    .withMessage('Please provide a value for Email Address'),
-  check('password')
-    .exists({ checkFalsy: true })
-    .withMessage('Please provide a value for Password'),
-];
+
 
 
 //========Get Sign-Up Page=========
@@ -126,45 +119,16 @@ router.get('/log-in', csrfProtection, (req, res) =>  {
 
 
 //==============Create New User===========
-// router.post('/log-in', csrfProtection, loginValidators, asyncHandler(async(req, res, next) => {
-//   const { email, password } = req.body;
-
-//   let errors = [];
-
-//   const validatorErrors = validationResult(req);
-
-//   if (validatorErrors.isEmpty()) {
-//     const user = await db.User.findOne({
-//       where: {
-//         email
-//       },
-//     });
-
-//     if (user !== null) {
-//       const passwordMatch = await bcrypt.compare(password, user.password.toString());
-
-//       if (passwordMatch) {
-//         loginUser(req, res, user);
-//         res.redirect('/');
-//         // req.session.save(( ) => res.redirect('/'))
-//       }
-//     }
-//     errors.push('Log-in failed with the provided email and password.');
-//   } else {
-//     errors = validatorErrors.array().map((error) => error.msg);
-
-//   }
-// // res.render('user-log-in', {
-//     //   title: 'Log In',
-//     //   email,
-//     //   errors,
-//     //   csrfToken: req.csrfToken(),
-//     // });
-
-// }));
 
 
-
+const loginValidators = [
+  check('email')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for Email Address'),
+  check('password')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for Password'),
+];
 
 
 
@@ -177,7 +141,9 @@ router.post('/log-in', csrfProtection, loginValidators, asyncHandler(async(req, 
     let errors = [];
 
     const validatorErrors = validationResult(req);
-    if (validatorErrors.isEmpty()) {
+
+
+
 
       if (user) {
         if (await bcrypt.compare(password, user.password.toString())) {
@@ -186,17 +152,17 @@ router.post('/log-in', csrfProtection, loginValidators, asyncHandler(async(req, 
         }
           //generate error
           errors.push('Log-in failed with the provided email and password.');
-      }
+
     } else {
-      // errors = validatorErrors.array().map((error) => error.msg);
-      // res.render('user-log-in', {
-      //         title: 'Log In',
-      //         email,
-      //         errors,
-      //         csrfToken: req.csrfToken(),
-      //       });
+      validatorErrors.array().map((error) => errors.push(error.msg));
+      res.render('user-log-in', {
+              title: 'Log In',
+              email,
+              errors,
+              csrfToken: req.csrfToken(),
+            });
     }
-    }));
+}));
 
 
 
