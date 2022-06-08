@@ -23,7 +23,18 @@ document.addEventListener("DOMContentLoaded", (event)=>{
         event1.preventDefault();
         const title = document.getElementById('title').value
         const body = document.getElementById('body').value
-        const rating = document.getElementById('rating').value
+        //checkstars
+        const star1 = document.getElementById("star1").checked
+        const star2 = document.getElementById("star2").checked
+        const star3 = document.getElementById("star3").checked
+        const star4 = document.getElementById("star4").checked
+        const star5 = document.getElementById("star5").checked
+        let rating;
+        if (star1) rating = 1;
+        if (star2) rating = 2;
+        if (star3) rating = 3;
+        if (star4) rating = 4;
+        if (star5) rating = 5;
 
 
         const res = await fetch(`/deeds/${deedId}`, {
@@ -40,10 +51,15 @@ document.addEventListener("DOMContentLoaded", (event)=>{
         if (data.message === 'Success!') {
             const titleIn = document.getElementById('title')
             const bodyIn = document.getElementById('body')
-            const ratingIn = document.getElementById('rating')
+
+            document.getElementById("star1").checked = false
+            document.getElementById("star2").checked = false
+            document.getElementById("star3").checked = false
+            document.getElementById("star4").checked = false
+            document.getElementById("star5").checked = false
             titleIn.value = null
             bodyIn.value = null
-            ratingIn.value = null
+
 
 
 
@@ -87,6 +103,16 @@ document.addEventListener("DOMContentLoaded", (event)=>{
     cancel.addEventListener('click', async (event2)=> {
         event2.stopPropagation()
         event2.preventDefault();
+        const titleIn = document.getElementById('title')
+        const bodyIn = document.getElementById('body')
+
+        document.getElementById("star1").checked = false
+        document.getElementById("star2").checked = false
+        document.getElementById("star3").checked = false
+        document.getElementById("star4").checked = false
+        document.getElementById("star5").checked = false
+        titleIn.value = null
+        bodyIn.value = null
         formBox.className = 'form-box-hidden'
         main.className = ""
 
