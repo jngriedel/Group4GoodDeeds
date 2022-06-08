@@ -42,12 +42,10 @@ h1 {
     }
   }
 .blur {
-
     -webkit-filter: blur(8px);
         filter: blur(8px);
         transition: 500ms;
         opacity: 1;
-
 }
 
 

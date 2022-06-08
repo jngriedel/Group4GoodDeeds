@@ -3,6 +3,7 @@ extends layout.pug
 include includes/utils
 
 block content
+    script(src="/javascripts/demoUser.js" type="module")
     +validationErrorSummary(errors)
     form(action='/users/log-in' method='post')
         input(type='hidden' name='_csrf' value=csrfToken)
@@ -14,4 +15,8 @@ block content
         div() Don't have an account?
             p: a(href='/users/sign-up') Sign-Up
         div() or
-            p: a(href='/users/sign-up') Demo User
+            form(action='/users/log-in' method='post')
+            input(type='hidden' name='_csrf' value=csrfToken)
+            input(type='hidden' name='email-demo' value=mrgood)
+            +field('Password', 'password', password, 'password')
+            p: button(id='demo-user') Demo User
