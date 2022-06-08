@@ -14,6 +14,9 @@ const router = express.Router();
 //=======Read Users Karmas=====//
 router.get('/', csrfProtection, requireAuth, async(req, res) => {
     const karmas = await db.Karma.findAll({
+        where:{
+            userId: res.locals.user.id
+        },
         order: [[
             "id", "DESC"
         ]]
@@ -44,7 +47,7 @@ router.post('/', karmaValidators, asyncHandler(async(req, res, next) => {
     if (validatorErrors.isEmpty()) {
         const karma = await db.Karma.create({
             title,
-            userId: 1,
+            userId: res.locals.user.id,
         });
         await karma.save();
         console.log(karma)

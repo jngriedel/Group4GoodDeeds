@@ -30,9 +30,11 @@ window.addEventListener('DOMContentLoaded', async(e) => {
                 cell1.innerHTML = data.karma.title;
                 cell2.innerHTML = '<button class="rename" value=karma.id>Rename</button>';
                 cell3.innerHTML = '<button class="delete-btn" value=karma.id>Delete</button>';
-                cell4.innerHTML += '<input type="text" name="title" id=`${karmaId}-edit-title`></input>'
-                cell4.innerHTML += '<button id=`edit-submit-${karmaId}`>Save</button>';
-                cell4.innerHTML += '<a class="cancel-btns" href="/">Cancel</a>';
+                cell4.innerHTML = '<form class="hidden" action=`/karmas/${karmaId}` method="post" id=`edit-form-${karmaId}`><input type="text" name="title" id=`${karmaId}-edit-title`><button id=`edit-submit-${karmaId}`>Save</button><a class="cancel-btns" href="/" id=`cancel-${karmaId}`>Cancel</a></form>'
+                // cell4.innerHTML += '<form class="" action=`/karmas/${karmaId}` method="post" id=`edit-form-${karmaId}`>'
+                // cell4.innerHTML += '<input type="text" name="title" id=`${karmaId}-edit-title`></input>'
+                // cell4.innerHTML += '<button id=`edit-submit-${karmaId}`>Save</button>';
+                // cell4.innerHTML += '<a class="cancel-btns" href="/">Cancel</a></form>';
                 // row2.innerHTML = editForm;
                 inputField.value = null;
             }
