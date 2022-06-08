@@ -27,8 +27,17 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
     order: [
       ['id', 'DESC'],
   ]})
-
-
+  //calculate average rating
+  let sum = 0;
+  for (let index = 0; index < reviews.length; index++) {
+    const el = reviews[index];
+    sum += Number(el.dataValues.rating)
+  }
+  const avgRating = Math.round(sum/reviews.length * 100) / 100  //round the number to 2 decimals
+  await deed.update({
+    rating: avgRating
+  })
+//404 not found
     if (!deed) {
       res.status(404)
       return  res.send("Error 404 Deed not Found!")
@@ -37,6 +46,7 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
       title: `Deed #${deedId}`,
       deed,
       reviews,
+      avgRating,
       csrfToken: req.csrfToken()
     })
 }));
@@ -53,14 +63,14 @@ const reviewValidators = [
 ]
 
 //==========Post Review on Deed Page============
-//took out csurf for now
+
 router.post('/:id(\\d+)', reviewValidators, asyncHandler(async(req, res) => {
     const deedId = req.params.id
-    console.log('you made it')
+
 
     const {title, body, rating} = req.body
     const validatorErrors = validationResult(req);
-    console.log("this works")
+
     if (validatorErrors.isEmpty()) {
     const newReview = await db.Review.create({
       title,
@@ -74,13 +84,14 @@ router.post('/:id(\\d+)', reviewValidators, asyncHandler(async(req, res) => {
       include: db.User
     })
 
+
+
     res.json({message: "Success!", review})
   }
 
 
   else {
     const errors = validatorErrors.array().map(error => error.msg);
-    // console.log(errors);
     res.json({errors})
 };
 
