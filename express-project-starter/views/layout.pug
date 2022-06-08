@@ -5,4 +5,21 @@ html
         title Good Deeds - #{title}
         link(rel="stylesheet", href="/stylesheets/index.css")
   body
+    nav()
+        a( href='/') Good Deeds
+        //- button(type='button' data-toggle='collapse' data-target='#navbarText' aria-controls='navbarText' aria-expanded='false' aria-label='Toggle navigation')
+        //-   span(class='navbar-toggler-icon')
+        div(class='collapse navbar-collapse' id='navbarText')
+          ul()
+            //- Empty menu keeps the content that follows the
+            //- unordered list correctly positioned on the
+            //- right side of the navbar.
+          if locals.authenticated
+            span() Welcome #{user.firstName}!
+            form( action='/users/log-out' method='post')
+              button( type='submit') Logout
+          else
+            span()
+              a( href='/users/log-in') Login
+              a(href='/users/sign-up') Sign-Up
     block content

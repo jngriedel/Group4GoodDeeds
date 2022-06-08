@@ -1,3 +1,17 @@
+//Make stars
+// const table = document.getElementById("reviewTable");
+
+//     for (let i = 0; i <table.rows.length; i++) {
+//         const reviewRating = document.getElementById(`review-rating${i}`)
+//         console.log(reviewRating)
+//         if (reviewRating.innerHTML == 1) reviewRating.innerHTML = '☆'
+//         if (reviewRating.innerHTML == 2) reviewRating.innerHTML = '☆☆'
+//         if (reviewRating.innerHTML == 3) reviewRating.innerHTML = '☆☆☆'
+//         if (reviewRating.innerHTML == 4) reviewRating.innerHTML = '☆☆☆☆'
+//         if (reviewRating.innerHTML == 5) reviewRating.innerHTML = '☆☆☆☆☆'
+
+//     }
+
 
 
 const addReview = document.querySelector('#add-review')

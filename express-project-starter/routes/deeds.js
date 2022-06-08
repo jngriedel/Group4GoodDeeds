@@ -34,8 +34,10 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
     sum += Number(el.dataValues.rating)
   }
   const avgRating = Math.round(sum/reviews.length * 100) / 100  //round the number to 2 decimals
-
-
+  await deed.update({
+    rating: avgRating
+  })
+//404 not found
     if (!deed) {
       res.status(404)
       return  res.send("Error 404 Deed not Found!")

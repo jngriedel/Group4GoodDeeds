@@ -10,7 +10,8 @@ block content
     div
       p= deed.description
     div
-      p= avgRating
+      p Average Rating
+      p= deed.rating
 
     div
       p What do you Think?
@@ -29,7 +30,7 @@ block content
               tr
                 td= review.title
                 td= review.body
-                td= review.rating
+                td(id=`review-rating${review.id}`)= review.rating
                 td #{review.User.firstName} #{review.User.lastName}
   div(class='form-box-hidden')
     div(id='opinion')
