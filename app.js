@@ -10,6 +10,7 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const deedsRouter = require('./routes/deeds');
 const karmasRouter = require('./routes/karmas');
+const myDeedsRouter = require('./routes/mydeeds');
 const { sessionSecret } = require('./config');
 const { restoreUser } = require('./auth');
 
@@ -46,6 +47,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/deeds', deedsRouter);
 app.use('/karmas', karmasRouter);
+app.use('/mydeeds', myDeedsRouter);
 
 
 // catch 404 and forward to error handler
