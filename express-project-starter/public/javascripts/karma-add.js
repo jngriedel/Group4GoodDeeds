@@ -21,12 +21,13 @@ window.addEventListener('DOMContentLoaded', async(e) => {
             if (data.message === 'Success!') {
                 console.log(data)
                 const titleEle = document.getElementById("table")
+                const inputField = document.getElementById("title");
                 const row = table.insertRow(1);
                 const cell1 = row.insertCell(0);
                 const cell2 = row.insertCell(1);
                 cell1.innerHTML = data.karma.title;
                 cell2.innerHTML = "<button class='rename'>Rename</button>"
-
+                inputField.value = null;
 
             }
     })
