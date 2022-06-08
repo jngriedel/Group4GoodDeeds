@@ -27,6 +27,13 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
     order: [
       ['id', 'DESC'],
   ]})
+  //calculate average rating
+  let sum = 0;
+  for (let index = 0; index < reviews.length; index++) {
+    const el = reviews[index];
+    sum += Number(el.dataValues.rating)
+  }
+  const avgRating = Math.round(sum/reviews.length * 100) / 100  //round the number to 2 decimals
 
 
     if (!deed) {
@@ -37,6 +44,7 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
       title: `Deed #${deedId}`,
       deed,
       reviews,
+      avgRating,
       csrfToken: req.csrfToken()
     })
 }));
@@ -73,6 +81,8 @@ router.post('/:id(\\d+)', reviewValidators, asyncHandler(async(req, res) => {
     const review = await db.Review.findByPk(newId, {
       include: db.User
     })
+
+
 
     res.json({message: "Success!", review})
   }

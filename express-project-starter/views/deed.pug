@@ -10,7 +10,7 @@ block content
     div
       p= deed.description
     div
-      p= deed.rating
+      p= avgRating
 
     div
       p What do you Think?
@@ -52,7 +52,6 @@ block content
               label(for="star2") ☆
               input(id="star1" name="star" type="radio" value="1" class="radio-btn hide")
               label(for="star1") ☆
-            //- +field('Rating', 'rating', null, 'number')
             div
                 button(id= 'post-review') Save Review
                 button(id='cancel') Cancel
