@@ -11,8 +11,8 @@ const { requireAuth } = require('../auth');
 const router = express.Router();
 
 
-//=======Read a Karma=====//
-router.get('/', csrfProtection, async(req, res) => {
+//=======Read Users Karmas=====//
+router.get('/', csrfProtection, requireAuth, async(req, res) => {
     const karmas = await db.Karma.findAll({
         order: [[
             "id", "DESC"

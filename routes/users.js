@@ -126,41 +126,89 @@ router.get('/log-in', csrfProtection, (req, res) =>  {
 
 
 //==============Create New User===========
+// router.post('/log-in', csrfProtection, loginValidators, asyncHandler(async(req, res, next) => {
+//   const { email, password } = req.body;
+
+//   let errors = [];
+
+//   const validatorErrors = validationResult(req);
+
+//   if (validatorErrors.isEmpty()) {
+//     const user = await db.User.findOne({
+//       where: {
+//         email
+//       },
+//     });
+
+//     if (user !== null) {
+//       const passwordMatch = await bcrypt.compare(password, user.password.toString());
+
+//       if (passwordMatch) {
+//         loginUser(req, res, user);
+//         res.redirect('/');
+//         // req.session.save(( ) => res.redirect('/'))
+//       }
+//     }
+//     errors.push('Log-in failed with the provided email and password.');
+//   } else {
+//     errors = validatorErrors.array().map((error) => error.msg);
+
+//   }
+// // res.render('user-log-in', {
+//     //   title: 'Log In',
+//     //   email,
+//     //   errors,
+//     //   csrfToken: req.csrfToken(),
+//     // });
+
+// }));
+
+
+
+
+
+
+
 router.post('/log-in', csrfProtection, loginValidators, asyncHandler(async(req, res, next) => {
-  const { email, password } = req.body;
 
-  let errors = [];
+    const { email, password } = req.body;
+    const user = await db.User.findOne({ where: { email } });
 
-  const validatorErrors = validationResult(req);
+    let errors = [];
 
-  if (validatorErrors.isEmpty()) {
-    const user = await db.User.findOne({
-      where: {
-        email
-      },
-    });
+    const validatorErrors = validationResult(req);
+    if (validatorErrors.isEmpty()) {
 
-    if (user !== null) {
-      const passwordMatch = await bcrypt.compare(password, user.password.toString());
-
-      if (passwordMatch) {
-        loginUser(req, res, user);
-        res.redirect('/');
-        // req.session.save(( ) => res.redirect('/'))
+      if (user) {
+        if (await bcrypt.compare(password, user.password.toString())) {
+          loginUser(req, res, user);
+          res.redirect("/");
+        }
+          //generate error
+          errors.push('Log-in failed with the provided email and password.');
       }
+    } else {
+      // errors = validatorErrors.array().map((error) => error.msg);
+      // res.render('user-log-in', {
+      //         title: 'Log In',
+      //         email,
+      //         errors,
+      //         csrfToken: req.csrfToken(),
+      //       });
     }
-    errors.push('Log-in failed with the provided email and password.');
-  } else {
-    errors = validatorErrors.array().map((error) => error.msg);
-  }
+    }));
 
-  res.render('user-log-in', {
-    title: 'Log In',
-    email,
-    errors,
-    csrfToken: req.csrfToken(),
-  });
-}));
+
+
+
+
+
+
+
+
+
+
+
 
 //======Demo User=====
 router.post('/demo-user', csrfProtection,  asyncHandler(async(req, res, next) => {
