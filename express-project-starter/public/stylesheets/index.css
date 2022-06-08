@@ -1,7 +1,10 @@
 h1 {
     color: #555555;
 }
+.form-box-hidden {
+    visibility: hidden;
 
+ }
 
 .form-box {
    width:400px;
@@ -46,13 +49,4 @@ h1 {
         opacity: 1;
 
 
-}
-
-
-#pop-up-form {
-    visibility: hidden;
-}
-
-#pop-up-form2{
-    z-index: 0;
 }

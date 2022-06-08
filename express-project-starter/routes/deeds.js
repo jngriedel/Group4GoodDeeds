@@ -53,14 +53,14 @@ const reviewValidators = [
 ]
 
 //==========Post Review on Deed Page============
-//took out csurf for now
+
 router.post('/:id(\\d+)', reviewValidators, asyncHandler(async(req, res) => {
     const deedId = req.params.id
-    console.log('you made it')
+
 
     const {title, body, rating} = req.body
     const validatorErrors = validationResult(req);
-    console.log("this works")
+
     if (validatorErrors.isEmpty()) {
     const newReview = await db.Review.create({
       title,
@@ -80,7 +80,6 @@ router.post('/:id(\\d+)', reviewValidators, asyncHandler(async(req, res) => {
 
   else {
     const errors = validatorErrors.array().map(error => error.msg);
-    // console.log(errors);
     res.json({errors})
 };
 

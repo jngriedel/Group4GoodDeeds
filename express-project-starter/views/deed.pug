@@ -31,15 +31,16 @@ block content
                 td= review.body
                 td= review.rating
                 td #{review.User.firstName} #{review.User.lastName}
-  div(id='opinion')
-    div(id='pop-up-form')
-      +validationErrorSummary(errors)
-      form(action=`/deeds/${deed.id}` method='post')
-          input(type='hidden' name='_csrf' value=csrfToken)
-          input(type='hidden' id='deedHolder' value=deed.id)
-          +field('Title', 'title', null)
-          +field('Review Body', 'body', null)
-          +field('Rating', 'rating', null, 'number')
-          div
-              button(id= 'post-review') Save Review
-              button(id='cancel') Cancel
+  div(class='form-box-hidden')
+    div(id='opinion')
+      div(id='pop-up-form')
+        +validationErrorSummary(errors)
+        form(action=`/deeds/${deed.id}` method='post')
+            input(type='hidden' name='_csrf' value=csrfToken)
+            input(type='hidden' id='deedHolder' value=deed.id)
+            +field('Title', 'title', null)
+            +field('Review Body', 'body', null)
+            +field('Rating', 'rating', null, 'number')
+            div
+                button(id= 'post-review') Save Review
+                button(id='cancel') Cancel
