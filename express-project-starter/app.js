@@ -33,15 +33,15 @@ app.use(
     resave: false,
   })
   );
-  app.use(restoreUser);
-app.use(express.static(path.join(__dirname, 'public')));
+  app.use(express.static(path.join(__dirname, 'public')));
 
-// set up session middleware
+  // set up session middleware
 
 
-// create Session table if it doesn't already exist
-store.sync();
+  // create Session table if it doesn't already exist
+  store.sync();
 
+app.use(restoreUser);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/deeds', deedsRouter);

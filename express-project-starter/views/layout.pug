@@ -13,9 +13,13 @@ html
         a(href="/" class="home") Home
         a(href="" class="mydeeds") MyDeeds
           //- div(class="rightalignbtns")
-        a(href="" class="demo") Demo Log-In
-        a(href="/users/log-in" class="log-in") Log In
-        a(href="/users/sign-up" class="sign-up") Sign Up
+        if locals.authenticated
+          span Welcome #{user.firstName}!
+          form(action='/users/log-out' method='post')
+            button(type='submit') Logout
+        else
+          a(href="/users/log-in" class="log-in") Log In
+          a(href="/users/sign-up" class="sign-up") Sign Up
 
 
     block content
