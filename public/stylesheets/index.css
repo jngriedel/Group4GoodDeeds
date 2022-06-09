@@ -4,7 +4,10 @@ h1 {
 
 .form-box-hidden {
   visibility: hidden;
-
+}
+.review-hidden {
+  visibility: hidden;
+  position: absolute;
 }
 
 .form-box {
