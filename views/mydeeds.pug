@@ -3,7 +3,6 @@ extends layout.pug
 include includes/utils
 
 block content
-
     script(src="/javascripts/editReview.js" type="module")
     div(id='main')
         a(href="/karmas") edit
@@ -36,6 +35,13 @@ block content
                         td(id=`reviewRatingC${review.id}`)
                           span= review.rating
                         td(id=`reviewKarmas${review.id}`)
+
+                          each link in links
+                                each connection in link
+                                  -if (connection.deedId === review.Deed.id)
+                                    each karma in karmas
+                                     -if (connection.karmaId === karma.id)
+                                       li= karma.title
                           a(id=`edit-karmas-${review.id}` href='#') [edit]
                           if karmas
                            div(id=`karma-radio-bttns-${review.id}` class='hidden-karma-buttons')
