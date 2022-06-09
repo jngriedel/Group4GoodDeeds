@@ -17,7 +17,7 @@
 
 
 const myReviews = document.getElementsByClassName('review-hidden')
-
+const main = document.getElementById('main')
 
 document.addEventListener("DOMContentLoaded", (event)=>{
 
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", (event)=>{
                 break;
             }
             form.className = 'form-box'
-            //blur background
+            main.className = 'blur'
 
         })
         const saveButt = document.getElementById(`save-edit-${reviewId}`)
@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", (event)=>{
 
 
                 ratingHolder.value = data.review.rating
-                
+
 
                 reviewBodyCell.innerText = data.review.body;
                 reviewRatingCell.innerHTML = `<span>${data.review.rating}</span>`
@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", (event)=>{
 
                 form.className = 'review-hidden'
 
-                // main.className = ""
+                main.className=''
             } else {
                 const oldErrors = document.getElementById('error-list')
                 if (oldErrors) {
@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", (event)=>{
             event2.preventDefault();
 
             form.className = 'review-hidden'
-            // main.className = ""
+            main.className = ""
 
         })
     }

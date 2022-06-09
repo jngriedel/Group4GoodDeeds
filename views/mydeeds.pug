@@ -5,42 +5,44 @@ include includes/utils
 block content
 
     script(src="/javascripts/editReview.js" type="module")
-    div
-    a(href="/karmas") edit
-    ul
-        if karmas
-        each karma in karmas
-            li= karma.title
+    div(id='main')
+        a(href="/karmas") edit
+        ul
+            if karmas
+                each karma in karmas
+                    li= karma.title
 
-    table
-        thead
-            tr
-                th Deed
-                th Title
-                th Average Rating
-                th Rating
-                th Review
-                th Date Last Updated
-                th Edit Review
-                th Delete Review
-        tbody
-            each review, index in reviews
+        table
+            thead
                 tr
-                    td(id=`reviewNameC${review.id}`)= review.Deed.name
-                    td(id=`reviewTitleC${review.id}`)= review.title
-                    td(id=`reviewAvgC${review.id}`)= review.Deed.rating
-                    td(id=`reviewRatingC${review.id}`)
-                      span= review.rating
-                    td(id=`reviewBodyC${review.id}`)= review.body
-                    td(id=`reviewDateC${review.id}`)= review.createdAt
-                    td
-                        button(id=`edit-button-${review.id}`) Edit
+                    th Deed
+                    th Title
+                    th Average Rating
+                    th Rating
+                    th Review
+                    th Date Last Updated
+                    th Edit Review
+                    th Delete Review
+            tbody
+                each review, index in reviews
+                    tr
+                        td(id=`reviewNameC${review.id}`)= review.Deed.name
+                        td(id=`reviewTitleC${review.id}`)= review.title
+                        td(id=`reviewAvgC${review.id}`)= review.Deed.rating
+                        td(id=`reviewRatingC${review.id}`)
+                        span= review.rating
+                        td(id=`reviewBodyC${review.id}`)= review.body
+                        td(id=`reviewDateC${review.id}`)= review.createdAt
+                        td
+                            button(id=`edit-button-${review.id}`) Edit
 
-                    td
-                        form(action=`/reviews/${review.id}` method='post')
-                            button(type='submit') Delete
+                        td
+                            form(action=`/reviews/${review.id}` method='post')
+                                button(type='submit') Delete
 
-                div(id=`form-box-${review.id}` class=`review-hidden`)
+
+    each review, index in reviews
+      div(id=`form-box-${review.id}` class=`review-hidden`)
                         div()
                             div()
                             +validationErrorSummary(errors)
