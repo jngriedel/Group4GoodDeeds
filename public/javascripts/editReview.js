@@ -153,6 +153,8 @@ document.addEventListener("DOMContentLoaded", (event)=>{
                 karmaRadios.className='hidden-karma-buttons'
             } else {
             karmaRadios.className= 'karma-buttons'
+
+
             }
         })
         const karmaRadioClose = document.getElementById(`close-${reviewId}`)
@@ -181,7 +183,7 @@ document.addEventListener("DOMContentLoaded", (event)=>{
 
                     const data = await res.json()
                     if (data.message === 'Success!') {
-                        console.log('yay')
+                            
                     }
 
                 }
@@ -193,11 +195,11 @@ document.addEventListener("DOMContentLoaded", (event)=>{
 
                     const data = await res.json()
                     if (data.message === 'Success!') {
-                        console.log('deleted')
+
                     }
                 }
             })
-        
+
 
          }
 

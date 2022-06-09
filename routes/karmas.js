@@ -50,7 +50,7 @@ router.post('/', karmaValidators, asyncHandler(async(req, res, next) => {
             userId: res.locals.user.id,
         });
         await karma.save();
-        console.log(karma)
+
         res.json({message: 'Success!', karma});
     } else {
         const errors = validatorErrors.array().map(error => error.msg);
@@ -65,19 +65,29 @@ router.post('/', karmaValidators, asyncHandler(async(req, res, next) => {
 router.put('/:id(\\d+)', async(req, res) => {
     const karmaId = req.params.id;
     const karma = await db.Karma.findByPk(karmaId);
-    console.log(karma)
+
     karma.title = req.body.title;
     await karma.save();
-    console.log(karma.title)
+
     res.json({karma});
 });
 
 //====Delete a Karma=====//
 router.delete('/:id(\\d+)', asyncHandler(async(req, res, next) => {
     const karmaId = req.params.id;
+    await db.KarmasToDeed.destroy({where:{
+
+            karmaId,
+        }})
+    // const links = await db.KarmasToDeed.findAll({where:{
+
+    //     karmaId,
+    // }})
+    // console.log(links)
+    // await links.destroy();
     const karma = await db.Karma.findByPk(karmaId);
     await karma.destroy();
-    console.log("!!!!!!")
+
     res.json({karmaId});
 }));
 
