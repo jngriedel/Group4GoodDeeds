@@ -152,6 +152,8 @@ h1 {
 
 .hidden-karma-buttons {
 visibility: hidden;
+position: absolute;
+z-index: 100000;
 }
 
 .karma-buttons {

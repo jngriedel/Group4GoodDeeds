@@ -23,7 +23,7 @@ block content
                     th Rating
                     th Karmas
                     th Review
-                    th Date Last Updated
+                    th Date Created
                     th Edit Review
                     th Delete Review
             tbody
@@ -41,11 +41,12 @@ block content
                            div(id=`karma-radio-bttns-${review.id}` class='hidden-karma-buttons')
                             a(id=`close-${review.id}` class='close-karma-radio' href='#') close
                             br
-                            each karma in karmas
-                              input(type='checkbox' name=`${karma.title}`)
+                            each karma, index in karmas
+                              input(type='checkbox' name=`${karma.title}` id=`${karma.id}-${review.Deed.id}` class=`checkbox-${review.id}`)
                               lable(for=`${karma.title}`)= karma.title
+                              br
                         td(id=`reviewBodyC${review.id}`)= review.body
-                        td(id=`reviewDateC${review.id}`)= review.createdAt
+                        td(id=`reviewDateC${review.id}`)= dates[index]
                         td
                             button(id=`edit-button-${review.id}`) Edit
 

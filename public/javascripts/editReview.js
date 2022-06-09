@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", (event)=>{
                 const reviewTitleCell = document.getElementById(`reviewTitleC${reviewId}`)
                 let reviewRatingCell = document.getElementById(`reviewRatingC${reviewId}`)
                 const reviewBodyCell = document.getElementById(`reviewBodyC${reviewId}`)
-                const reviewDateCell = document.getElementById(`reviewDateC${reviewId}`)
+                // const reviewDateCell = document.getElementById(`reviewDateC${reviewId}`)
                 const ratingHolder = document.getElementById(`ratingHolder${reviewId}`)
 
 
@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", (event)=>{
                 reviewBodyCell.innerText = data.review.body;
                 reviewRatingCell.innerHTML = `<span>${data.review.rating}</span>`
                 reviewTitleCell.innerText = data.review.title;
-                reviewDateCell.innerText = data.review.createdAt
+                // reviewDateCell.innerText = data.review.createdAt
 
 
 
@@ -149,17 +149,39 @@ document.addEventListener("DOMContentLoaded", (event)=>{
         const karmaRadios = document.getElementById(`karma-radio-bttns-${reviewId}`)
         const karmaEditButton = document.getElementById(`edit-karmas-${reviewId}`)
         karmaEditButton.addEventListener('click', async (event3)=> {
+            if(karmaRadios.className === 'karma-buttons'){
+                karmaRadios.className='hidden-karma-buttons'
+            } else {
             karmaRadios.className= 'karma-buttons'
+            }
         })
         const karmaRadioClose = document.getElementById(`close-${reviewId}`)
         karmaRadioClose.addEventListener('click', async (event4)=> {
             karmaRadios.className= 'hidden-karma-buttons'
         })
 
-        //grab each radio button
+        //grab each checkbox
+        const checkboxes = document.getElementsByClassName(`checkbox-${reviewId}`)
+
+        //when you grab a checkbox it should be linked to the review, and know what karma and deed it's for
+         for (let i = 0; i < checkboxes.length; i++) {
+             const checkbox = checkboxes[i];
 
 
+            const karmaId = checkbox.id.split('-')[0]
+            const deedId = checkbox.id.split('-')[1]
+            checkbox.addEventListener('change', async (event5)=> {
+                
+            })
+        // checkbox.addEventListener('change', async (event5)=> {
+        //     if (this.checked) {
+        //       console.log("Checkbox is checked..");
+        //     } else {
+        //       console.log("Checkbox is not checked..");
+        //     }
+        //   });
 
+         }
 
     }
 

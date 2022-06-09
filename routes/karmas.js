@@ -12,7 +12,7 @@ const router = express.Router();
 
 
 //=======Read Users Karmas=====//
-router.get('/', csrfProtection, requireAuth, async(req, res) => {
+router.get('/', csrfProtection, requireAuth, asyncHandler( async(req, res) => {
     const karmas = await db.Karma.findAll({
         where:{
             userId: res.locals.user.id
@@ -29,7 +29,7 @@ router.get('/', csrfProtection, requireAuth, async(req, res) => {
         karmas,
         csrfToken: req.csrfToken(),
      });
-});
+}));
 
 const karmaValidators = [
     check('title')
