@@ -21,6 +21,7 @@ block content
                     th Title
                     th Average Rating
                     th Rating
+                    th Karmas
                     th Review
                     th Date Last Updated
                     th Edit Review
@@ -28,11 +29,21 @@ block content
             tbody
                 each review, index in reviews
                     tr
-                        td(id=`reviewNameC${review.id}`)= review.Deed.name
+                        td(id=`reviewNameC${review.id}`)
+                          a(href=`/deeds/${review.Deed.id}`)= review.Deed.name
                         td(id=`reviewTitleC${review.id}`)= review.title
                         td(id=`reviewAvgC${review.id}`)= review.Deed.rating
                         td(id=`reviewRatingC${review.id}`)
                           span= review.rating
+                        td(id=`reviewKarmas${review.id}`)
+                          a(id=`edit-karmas-${review.id}` href='#') [edit]
+                          if karmas
+                           div(id=`karma-radio-bttns-${review.id}` class='hidden-karma-buttons')
+                            a(id=`close-${review.id}` class='close-karma-radio' href='#') close
+                            br
+                            each karma in karmas
+                              input(type='checkbox' name=`${karma.title}`)
+                              lable(for=`${karma.title}`)= karma.title
                         td(id=`reviewBodyC${review.id}`)= review.body
                         td(id=`reviewDateC${review.id}`)= review.createdAt
                         td

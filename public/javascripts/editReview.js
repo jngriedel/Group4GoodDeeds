@@ -144,6 +144,23 @@ document.addEventListener("DOMContentLoaded", (event)=>{
             main.className = ""
 
         })
+
+
+        const karmaRadios = document.getElementById(`karma-radio-bttns-${reviewId}`)
+        const karmaEditButton = document.getElementById(`edit-karmas-${reviewId}`)
+        karmaEditButton.addEventListener('click', async (event3)=> {
+            karmaRadios.className= 'karma-buttons'
+        })
+        const karmaRadioClose = document.getElementById(`close-${reviewId}`)
+        karmaRadioClose.addEventListener('click', async (event4)=> {
+            karmaRadios.className= 'hidden-karma-buttons'
+        })
+
+        //grab each radio button
+
+
+
+
     }
 
 
