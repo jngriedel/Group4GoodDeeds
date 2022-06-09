@@ -9,7 +9,7 @@ block content
         input(type="hidden" name="_csrf" value=csrfToken)
         //- input(type="hidden" id=karmaId value=id)
         input(type="text" name="title" value=title placeholder="Add a Karma..." id="title" required)
-        button(class="add-karma") Add Karma
+        button(class="add-karma done-add") Add Karma
     div
         if karmas
             table(id="table")
@@ -22,7 +22,6 @@ block content
                         each karma in karmas
 
                             tr(class=`karma-${karma.id}`)
-                                //- td(id=`karmaId-${karma.id}`)= karma.id
                                 td(id="karmaTitle")= karma.title
                                 td: button(class="rename" value=karma.id) Rename
                                 td: button(class="delete-btn" value=karma.id) Delete
@@ -35,4 +34,5 @@ block content
 
 
     div
-        a(href='/mydeeds') I'm done
+        a(href='/mydeeds' )
+          button(class='done-add') I'm done

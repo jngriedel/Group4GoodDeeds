@@ -313,3 +313,27 @@ z-index: 100000;
  border-radius: 5px;
   }
 
+
+  .done-add {
+    border-radius: 3px;
+    border: 1px solid #D6D0C4;
+    font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    background-color: #F4F1EA;
+    line-height: 1;
+    padding: 8px 12px;
+  }
+
+
+  .done-add:hover {
+    color: #333333;
+  background-color: #ede6d6;
+  text-decoration: none;
+  }
+
+  .done-add:active{
+    background-color: #D6D0C4;
+  }
