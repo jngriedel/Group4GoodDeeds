@@ -3,21 +3,26 @@ extends layout.pug
 include includes/utils
 
 block content
-    script(src="/javascripts/demoUser.js" type="module")
-    +validationErrorSummary(errors)
-    form(action='/users/log-in' method='post')
-        input(type='hidden' name='_csrf' value=csrfToken)
-        +field('Email Address', 'email')
-        +field('Password', 'password', null, 'password')
-
-        div
-            button(type='submit') Log-in
-            a(href='/') Cancel
-    div() Don't have an account?
-        p: a(href='/users/sign-up') Sign-Up
-    div() or
-        form(action='/users/demo-user' method='post')
+    div(class="sign-in-main")
+        img(id='sign-up-logo' src="/images/gooddeedslogo.png" href='/')
+        script(src="/javascripts/demoUser.js" type="module")
+        h1 Sign In
+        +validationErrorSummary(errors)
+        form(action='/users/log-in' method='post')
             input(type='hidden' name='_csrf' value=csrfToken)
-            input(type='hidden' name='email_demo' value='mrgoodguy@gmail.com')
-            input(type='hidden' name= 'password_demo' value='Test1!')
-            p: button(type='submit') Demo User
+            div(class='login-inputs')
+              +field('Email Address', 'email')
+            div(class='login-inputs')
+              +field('Password', 'password', null, 'password')
+
+            div(class='loginbtnwcancel')
+                button(type='submit' class='login-btn') Log-in
+                a(href='/') Cancel
+        div(class='loginAndAfter') Don't have an account?
+            a(href='/users/sign-up') Sign-Up
+        div(class='loginAndAfter')
+            form(action='/users/demo-user' method='post')
+                input(type='hidden' name='_csrf' value=csrfToken)
+                input(type='hidden' name='email_demo' value='mrgoodguy@gmail.com')
+                input(type='hidden' name= 'password_demo' value='Test1!')
+                p: button(type='submit') Demo User
