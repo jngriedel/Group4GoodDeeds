@@ -7,10 +7,12 @@ block content
     script(src="/javascripts/editReview.js" type="module")
     div(id='main')
         a(href="/karmas") edit
-        ul
+        div(id='karma-list')
+          h3 Karmas
+          ul
             if karmas
-                each karma in karmas
-                    li= karma.title
+            each karma in karmas
+              li= karma.title
 
         table
             thead
@@ -30,7 +32,7 @@ block content
                         td(id=`reviewTitleC${review.id}`)= review.title
                         td(id=`reviewAvgC${review.id}`)= review.Deed.rating
                         td(id=`reviewRatingC${review.id}`)
-                        span= review.rating
+                          span= review.rating
                         td(id=`reviewBodyC${review.id}`)= review.body
                         td(id=`reviewDateC${review.id}`)= review.createdAt
                         td
