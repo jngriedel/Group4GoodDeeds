@@ -79,12 +79,7 @@ router.delete('/:id(\\d+)', asyncHandler(async(req, res, next) => {
 
             karmaId,
         }})
-    // const links = await db.KarmasToDeed.findAll({where:{
-
-    //     karmaId,
-    // }})
-    // console.log(links)
-    // await links.destroy();
+   
     const karma = await db.Karma.findByPk(karmaId);
     await karma.destroy();
 

@@ -41,13 +41,13 @@ block content
                                   -if (connection.deedId === review.Deed.id)
                                     each karma in karmas
                                      -if (connection.karmaId === karma.id)
-                                       li= karma.title
+                                       li(class=`listKarma${review.id}`)= karma.title
                           a(id=`edit-karmas-${review.id}` href='#') [edit]
                           if karmas
                            div(id=`karma-radio-bttns-${review.id}` class='hidden-karma-buttons')
                             a(id=`close-${review.id}` class='close-karma-radio' href='#') close
                             br
-                            each karma, index in karmas
+                            each karma in karmas
                               input(type='checkbox' name=`${karma.title}` id=`${karma.id}-${review.Deed.id}` class=`checkbox-${review.id}`)
                               lable(for=`${karma.title}`)= karma.title
                               br

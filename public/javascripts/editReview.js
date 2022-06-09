@@ -162,6 +162,7 @@ document.addEventListener("DOMContentLoaded", (event)=>{
             karmaRadios.className= 'hidden-karma-buttons'
         })
 
+
         //grab each checkbox
         const checkboxes = document.getElementsByClassName(`checkbox-${reviewId}`)
 
@@ -183,7 +184,7 @@ document.addEventListener("DOMContentLoaded", (event)=>{
 
                     const data = await res.json()
                     if (data.message === 'Success!') {
-                            
+
                     }
 
                 }
@@ -203,10 +204,25 @@ document.addEventListener("DOMContentLoaded", (event)=>{
 
          }
 
+         ///=======PERSIST CHECKBOX STATUS===========
+         //grab all of the karmas that made it in the list
+         const karmaList = document.getElementsByClassName(`listKarma${reviewId}`)
+
+         //grab all the checkboxes for this review
+         const checkboxR = document.getElementsByClassName(`checkbox-${reviewId}`)
+
+         //compare names of checkboxes to karma names. if match, set box check to true
+         for (let i = 0; i < checkboxR.length; i++) {
+             const box = checkboxR[i];
+             for (let j = 0; j < karmaList.length; j++) {
+                 const li = karmaList[j];
+                 if (box && li){
+                     if (box.name === li.innerText) box.checked = true
+                 }
+             }
+
+         }
     }
-
-
-
 
 
 
