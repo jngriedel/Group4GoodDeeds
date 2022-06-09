@@ -1,35 +1,71 @@
 extends layout.pug
 
+include includes/utils
+
 block content
 
-    div
-    a(href="/karmas") edit
-    ul
-        if karmas
-        each karma in karmas
-            li= karma.title
+    script(src="/javascripts/editReview.js" type="module")
+    div(id='main')
+        a(href="/karmas") edit
+        div(id='karma-list')
+          h3 Karmas
+          ul
+            if karmas
+            each karma in karmas
+              li= karma.title
 
         table
             thead
                 tr
                     th Deed
+                    th Title
                     th Average Rating
                     th Rating
                     th Review
-                    th Date added
+                    th Date Last Updated
                     th Edit Review
                     th Delete Review
             tbody
-                each review in reviews
+                each review, index in reviews
                     tr
-                        td= review.Deed.name
-                        td= review.Deed.rating
-                        td= review.rating
-                        td= review.body
-                        td= review.createdAt
+                        td(id=`reviewNameC${review.id}`)= review.Deed.name
+                        td(id=`reviewTitleC${review.id}`)= review.title
+                        td(id=`reviewAvgC${review.id}`)= review.Deed.rating
+                        td(id=`reviewRatingC${review.id}`)
+                          span= review.rating
+                        td(id=`reviewBodyC${review.id}`)= review.body
+                        td(id=`reviewDateC${review.id}`)= review.createdAt
                         td
-                          form(action=`/reviews/${review.id}` method='post')
-                            button(type='submit') Edit
+                            button(id=`edit-button-${review.id}`) Edit
+
                         td
-                          form(action=`/reviews/${review.id}` method='post')
-                            button(type='submit') Delete
+                            form(action=`/reviews/${review.id}` method='post')
+                                button(type='submit') Delete
+
+
+    each review, index in reviews
+      div(id=`form-box-${review.id}` class=`review-hidden`)
+                        div()
+                            div()
+                            +validationErrorSummary(errors)
+                            form(action=`/reviews/${review.id}` method='patch')
+                            input(type='hidden' name='_csrf' value=csrfToken)
+                            input(type='hidden' id=`reviewHolder${index}` value=review.id)
+                            input(type='hidden' id=`ratingHolder${review.id}` value=review.rating)
+                            +field('Title', `title-${review.id}`, review.title)
+                            +field('Review Body', `body-${review.id}`, review.body)
+                            label(for="star-container") Rating
+                            div(class ="rating" id="star-container")
+                                input(id=`star5${review.id}` name="star" type="radio" value="5" class="radio-btn hide")
+                                label(for=`star5${review.id}`) ☆
+                                input(id=`star4${review.id}` name="star" type="radio" value="4" class="radio-btn hide")
+                                label(for=`star4${review.id}`) ☆
+                                input(id=`star3${review.id}` name="star" type="radio" value="3" class="radio-btn hide")
+                                label(for=`star3${review.id}`) ☆
+                                input(id=`star2${review.id}` name="star" type="radio" value="2" class="radio-btn hide")
+                                label(for=`star2${review.id}`) ☆
+                                input(id=`star1${review.id}` name="star" type="radio" value="1" class="radio-btn hide")
+                                label(for=`star1${review.id}`) ☆
+                            div
+                                button(id= `save-edit-${review.id}`) Save Review
+                                button(id=`cancel-edit-${review.id}`) Cancel
