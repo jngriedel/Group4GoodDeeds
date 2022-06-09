@@ -1,7 +1,10 @@
 extends layout.pug
 
+include includes/utils
+
 block content
 
+    script(src="/javascripts/editReview.js" type="module")
     div
     a(href="/karmas") edit
     ul
@@ -9,27 +12,52 @@ block content
         each karma in karmas
             li= karma.title
 
-        table
-            thead
+    table
+        thead
+            tr
+                th Deed
+                th Average Rating
+                th Rating
+                th Review
+                th Date added
+                th Edit Review
+                th Delete Review
+        tbody
+            each review in reviews
                 tr
-                    th Deed
-                    th Average Rating
-                    th Rating
-                    th Review
-                    th Date added
-                    th Edit Review
-                    th Delete Review
-            tbody
-                each review in reviews
-                    tr
-                        td= review.Deed.name
-                        td= review.Deed.rating
-                        td= review.rating
-                        td= review.body
-                        td= review.createdAt
-                        td
-                          form(action=`/reviews/${review.id}` method='post')
-                            button(type='submit') Edit
-                        td
-                          form(action=`/reviews/${review.id}` method='post')
+                    td= review.Deed.name
+                    td= review.Deed.rating
+                    td= review.rating
+                    td= review.body
+                    td= review.createdAt
+                    td
+                        button(id=`edit-button-${review.id}`) Edit
+
+                    td
+                        form(action=`/reviews/${review.id}` method='post')
                             button(type='submit') Delete
+
+                //- div(id=`form-box-${review.id}` class=`review-hidden`)
+                //-         div()
+                //-             div()
+                //-             +validationErrorSummary(errors)
+                //-             form(action=`/reviews/${review.id}` method='patch')
+                //-             input(type='hidden' name='_csrf' value=csrfToken)
+                //-             //- input(type='hidden' id='deedHolder' value=deed.id)
+                //-             +field('Title', 'title', review.title)
+                //-             +field('Review Body', 'body', review.body)
+                //-             label(for="star-container") Rating
+                //-             div(class ="rating" id="star-container")
+                //-                 input(id="star5" name="star" type="radio" value="5" class="radio-btn hide")
+                //-                 label(for="star5") ☆
+                //-                 input(id="star4" name="star" type="radio" value="4" class="radio-btn hide")
+                //-                 label(for="star4") ☆
+                //-                 input(id="star3" name="star" type="radio" value="3" class="radio-btn hide")
+                //-                 label(for="star3") ☆
+                //-                 input(id="star2" name="star" type="radio" value="2" class="radio-btn hide")
+                //-                 label(for="star2") ☆
+                //-                 input(id="star1" name="star" type="radio" value="1" class="radio-btn hide")
+                //-                 label(for="star1") ☆
+                //-             div
+                //-                 button(id= 'post-review') Save Review
+                //-                 button(id='cancel') Cancel

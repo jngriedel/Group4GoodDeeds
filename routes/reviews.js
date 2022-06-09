@@ -3,11 +3,13 @@ const router = express.Router();
 const { csrfProtection, asyncHandler } = require('./utils');
 const db  = require('../db/models');
 
-router.post('/:id(\\d+)', async(req, res) => {
-    const reviewId = req.params.id;
+router.patch('/:id(\\d+)', async(req, res) => {
+    const {title, body, rating} = req.body
+    const reviewId = req.params.id
     const review = await db.Review.findByPk(reviewId)
-    review.title = req.body.title;
-    review.body = req.body.body;
+    review.title = title
+    review.body = body
+    review.rating = rating
     await review.save();
     res.redirect('/mydeeds');
 })
