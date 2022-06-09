@@ -170,16 +170,34 @@ document.addEventListener("DOMContentLoaded", (event)=>{
 
             const karmaId = checkbox.id.split('-')[0]
             const deedId = checkbox.id.split('-')[1]
-            checkbox.addEventListener('change', async (event5)=> {
-                
+            checkbox.addEventListener('click', async (event5)=> {
+
+                //fetch route
+                if (checkbox.checked){
+                    const res = await fetch(`/karmastodeeds/${karmaId}/${deedId}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                    })
+
+                    const data = await res.json()
+                    if (data.message === 'Success!') {
+                        console.log('yay')
+                    }
+
+                }
+                if (!checkbox.checked) {
+                    const res = await fetch(`/karmastodeeds/${karmaId}/${deedId}/delete`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                    })
+
+                    const data = await res.json()
+                    if (data.message === 'Success!') {
+                        console.log('deleted')
+                    }
+                }
             })
-        // checkbox.addEventListener('change', async (event5)=> {
-        //     if (this.checked) {
-        //       console.log("Checkbox is checked..");
-        //     } else {
-        //       console.log("Checkbox is not checked..");
-        //     }
-        //   });
+        
 
          }
 

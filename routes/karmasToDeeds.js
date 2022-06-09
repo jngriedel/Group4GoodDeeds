@@ -21,11 +21,25 @@ const newLink = await db.KarmasToDeed.create({
     karmaId,
     deedId,
 })
-
+res.json({message: "Success!"})
 
 }))
 
+router.post('/:karmaId(\\d+)/:deedId(\\d+)/delete', requireAuth, asyncHandler(async (req,res)=> {
+    const karmaId = req.params.karmaId
+    const deedId = req.params.deedId
 
+    const link = await db.KarmasToDeed.findOne({
+        where: {
+
+        karmaId,
+        deedId,
+        }
+    })
+    await link.destroy()
+    res.json({message: "Success!"})
+
+}))
 
 
 
