@@ -1,31 +1,31 @@
 extends layout.pug
 
 block content
+  div(id='karmas-main')
     script(src="/javascripts/karma-add.js" type="module")
     script(src="/javascripts/karma-edit.js" type="module")
     script(src="/javascripts/karma-delete.js" type="module")
     h2 Karmas
-    form(action="/karmas" method="post")
+    form(action="/karmas" method="post" id='add-karma-form')
         input(type="hidden" name="_csrf" value=csrfToken)
-        //- input(type="hidden" id=karmaId value=id)
         input(type="text" name="title" value=title placeholder="Add a Karma..." id="title" required)
         button(class="add-karma done-add") Add Karma
     div
         if karmas
             table(id="table")
                 thead
-                    tr
-                        th title
+                    tr(class='karma-table-row')
+                        th Karma Name
                         th
                         th
                 tbody
                         each karma in karmas
 
-                            tr(class=`karma-${karma.id}`)
+                            tr(class=`karma-${karma.id} karma-table-row`)
                                 td(id="karmaTitle")= karma.title
-                                td: button(class="rename" value=karma.id) Rename
-                                td: button(class="delete-btn" value=karma.id) Delete
-                            tr(class=`karma-${karma.id}`)
+                                td: button(class="rename done-add" value=karma.id) Rename
+                                td: button(class="delete-btn done-add" value=karma.id) Delete
+                            tr(class=`karma-${karma.id} karma-table-row`)
                                 td
                                     form(action=`/karmas/${karma.id}` method='post' class='hidden' id=`edit-form-${karma.id}`)
                                         input(type="text" name="title" value=title id=`${karma.id}-edit-title`)

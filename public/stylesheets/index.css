@@ -337,3 +337,37 @@ z-index: 100000;
   .done-add:active{
     background-color: #D6D0C4;
   }
+
+  .cancel-btns {
+    color: #181818;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-decoration: none;
+    cursor: pointer;
+    outline: none;
+    line-height: 1;
+    text-transform: capitalize;
+    font-size: 13px;
+    padding: 8px 12px;
+    border: 0;
+    background: none;
+    font-weight: normal;}
+
+  .karma-table-row {
+    border-bottom: 1px solid #ff0000;
+    font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+    padding: 5px;
+
+  }
+
+  #karmas-main {
+    display: flex;
+    font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #add-karma-form {
+    background-color: #eeeeee;
+    padding: 10px;
+    /* max-width: 625px; */
+  }
