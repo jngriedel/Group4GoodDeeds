@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", (event)=>{
             if (star4.checked) rating = 4;
             if (star5.checked) rating = 5;
 
-            
+
             const res = await fetch(`/reviews/${reviewId}/edit`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -91,12 +91,14 @@ document.addEventListener("DOMContentLoaded", (event)=>{
             const data = await res.json()
             if (data.message === 'Success!') {
 
-                // const reviewNameCell = document.getElementById(`reviewNameC${reviewId}`)
+                const reviewTitleCell = document.getElementById(`reviewTitleC${reviewId}`)
                 const reviewRatingCell = document.getElementById(`reviewRatingC${reviewId}`)
                 const reviewBodyCell = document.getElementById(`reviewBodyC${reviewId}`)
                 reviewBodyCell.innerText = data.review.body;
                 reviewRatingCell.innnerText = data.review.rating;
-                // reviewNameCell.innerText = data.review.name;
+                reviewTitleCell.innerText = data.review.title;
+                console.log(reviewBodyCell, reviewRatingCell, reviewTitleCell)
+                console.log(data.review.rating, data.review.title, data.review.body)
 
 
 

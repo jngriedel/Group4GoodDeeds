@@ -16,6 +16,7 @@ block content
         thead
             tr
                 th Deed
+                th Title
                 th Average Rating
                 th Rating
                 th Review
@@ -26,6 +27,7 @@ block content
             each review, index in reviews
                 tr
                     td(id=`reviewNameC${review.id}`)= review.Deed.name
+                    td(id=`reviewTitleC${review.id}`)= review.title
                     td(id=`reviewAvgC${review.id}`)= review.Deed.rating
                     td(id=`reviewRatingC${review.id}`)= review.rating
                     td(id=`reviewBodyC${review.id}`)= review.body
@@ -47,7 +49,6 @@ block content
                             input(type='hidden' id=`ratingHolder${review.id}` value=review.rating)
                             +field('Title', `title-${review.id}`, review.title)
                             +field('Review Body', `body-${review.id}`, review.body)
-                            input(type='text', value=review.body id=`title-${review.id}`)
                             label(for="star-container") Rating
                             div(class ="rating" id="star-container")
                                 input(id=`star5${review.id}` name="star" type="radio" value="5" class="radio-btn hide")
