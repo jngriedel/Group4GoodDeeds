@@ -210,6 +210,222 @@ h1 {
 }
 
 
+/*   homepage     */
+h1 {
+  display: block;
+  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+  color: #382110;
+  font-weight: bold;
+  font-size: 36px;
+  padding-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 8px;
+}
+
+.gd-home-title-welcome p {
+  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+  font-size: 20px;
+  padding-left: 25px;
+  margin-top: 8px;
+}
+
+.gd-mainContentContainer {
+
+  display: block
+}
+
+main {
+  display: grid;
+  grid-template-columns: fit-content(25%) fit-content(50%) fit-content(25%);
+  grid-gap: 10px;
+  /* box-sizing: border-box; */
+  /* width: 100%; */
+  justify-content: center;
+  margin: 0 35px;
+}
+
+.homeSecondaryColumn {
+  margin: 0;
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
+  color: black
+}
+
+a:hover,
+a:visited:hover {
+  color: rgb(87, 61, 14);
+}
+
+.single-deed-container {
+  border-bottom: solid 1px #D8D8D8;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+}
+
+.single-deed-container .homeDeedName {
+  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+  font-size: 20px;
+}
+
+.homeDeedContent {
+  display: -webkit-box;
+  text-align: justify;
+  font-size: 14px;
+  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+  padding-right: 8px;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+
+.single-deed-container {
+  height: 110px;
+  line-height: 20px;
+}
+
+.gd-home-post-container {
+  border-bottom: solid 1px #D8D8D8;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+}
+
+.homeColumnTitle {
+  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+  text-align: left;
+  color: #333333;
+  font-size: 14px;
+  line-height: 1.15;
+  margin: 12px 0;
+  font-weight: bold;
+}
+
+.news-on-good-deeds-title {
+  display: block;
+  font-family: "Merriweather", "Georgia", serif;
+  font-weight: bold;
+  font-size: 14px;
+  margin: 16px 0;
+}
+
+a.news-on-good-deeds-title {
+  color: #00635D;
+}
+
+.news-images {
+  width: 300px;
+  height: 180px;
+  border-radius: 8px;
+}
+
+p.definition-good-deed-day {
+  font-size: 14px;
+  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+  text-align: left;
+  padding-right: 8px;
+  margin: 14px 0;
+  font-weight: bolder;
+
+}
+
+.good-deed-day-logo {
+  width: 300px;
+  height: 180px;
+
+}
+
+.fun-fact-good-deed-day {
+  font-size: 14px;
+  margin: 15px 0 10px 0;
+  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+  text-align: left;
+  padding-right: 8px;
+}
+
+.fun-fact-list {
+  padding: 0 0 0 15px;
+  margin: 8px 0;
+}
+
+.fun-fact-list-item {
+  color: black;
+  font-size: 13px;
+  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+  text-align: left;
+  padding-right: 8px;
+}
+
+.scientific-facts-list {
+  padding: 0 0 0 15px;
+  margin: 8px 0;
+}
+
+.scientific-fact-list-item {
+  color: black;
+  font-size: 13px;
+  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+  text-align: left;
+  padding-right: 8px;
+  line-height: 1.5;
+}
+
+.top-deeds-to-do {
+  color: black;
+  font-size: 13px;
+  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+  text-align: left;
+  padding-right: 8px;
+  line-height: 1.15;
+  font-weight: bold;
+
+}
+
+.deeds-of-the-year {
+  width: 300px;
+  height: 180px;
+  border-radius: 8px;
+}
+
+
+.footer {
+  display: flex;
+  justify-content: space-around;
+}
+
+.footer-links {
+  flex: 1;
+  color: black;
+  font-size: 14px;
+  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+  margin-bottom: 5px;
+}
+
+.github,
+.linkedin {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-links-list {
+  margin-top: 5px;
+  padding: 0 0 0 10px;
+  font-size: 11px;
+  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+  line-height: 1.15;
+
+}
+
+.footer-copyright {
+  text-align: center;
+  color: grey;
+  font-size: 10px;
+  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+}
+
+
 /* sign up page css */
 .sign-up-main {
   display: flex;
@@ -312,4 +528,5 @@ z-index: 100000;
  border-bottom-width: 2px;
  border-radius: 5px;
   }
+
 

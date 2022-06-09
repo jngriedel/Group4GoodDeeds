@@ -7,7 +7,7 @@ const { Deed } = require('../db/models');
 router.get('/',  async(req, res, next) => {
   const deeds = await Deed.findAll();
 
-  res.render('index', { title: 'Good Deeds Home', deeds });
+  res.render('homepage', { title: 'Good Deeds Home', deeds });
 
 });
 
