@@ -25,11 +25,11 @@ block content
         tbody
             each review, index in reviews
                 tr
-                    td= review.Deed.name
-                    td= review.Deed.rating
-                    td= review.rating
-                    td= review.body
-                    td= review.createdAt
+                    td(id=`reviewNameC${review.id}`)= review.Deed.name
+                    td(id=`reviewAvgC${review.id}`)= review.Deed.rating
+                    td(id=`reviewRatingC${review.id}`)= review.rating
+                    td(id=`reviewBodyC${review.id}`)= review.body
+                    td()= review.createdAt
                     td
                         button(id=`edit-button-${review.id}`) Edit
 
@@ -45,8 +45,8 @@ block content
                             input(type='hidden' name='_csrf' value=csrfToken)
                             input(type='hidden' id=`reviewHolder${index}` value=review.id)
                             input(type='hidden' id=`ratingHolder${review.id}` value=review.rating)
-                            +field('Title', 'title', review.title)
-                            +field('Review Body', 'body', review.body)
+                            +field('Title', `title-${review.id}`, review.title)
+                            +field('Review Body', `body-${review.id}`, review.body)
                             input(type='text', value=review.body id=`title-${review.id}`)
                             label(for="star-container") Rating
                             div(class ="rating" id="star-container")
