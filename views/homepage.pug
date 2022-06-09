@@ -1,0 +1,52 @@
+extends layout.pug
+
+block content
+  div(class="gd-home-title")
+    h1= title
+  div(class="gd-home-title-welcome")
+    p &#128522 Welcome to Good Deeds!
+  div(class="gd-mainContentContainer")
+    main
+      div(class="homePrimaryColumn")
+        section(class="gd-home-post-container")
+          section
+            h3(class="homeColumnTitle") TRENDING GOOD DEEDS
+        section(class="gd-home-post-container")
+          section
+            h3(class="homeColumnTitle") WHAT IS GOOD DEED DAY?
+            div
+              p(class="definition-good-deed-day") It is an international day of volunteering.
+              img(class="good-deed-day-logo" src="https://www.govt.lc/media.govt.lc/www/pressroom/news/good-deeds-day.jpg" alt="good deed day logo")
+            div
+              h5(class="fun-fact-good-deed-day") Fun Facts About Good Deed Day...
+              ul(class="fun-fact-list")
+                li(class="fun-fact-list-item") International Good Deed Day was on April 3, 2022
+                li(class="fun-fact-list-item") Good Deeds Day was first initiated in Israel in 2007
+
+
+      div(class="homeSecondaryColumn")
+        h3(class="homeColumnTitle") GOOD DEEDS
+        include index.pug
+      div(class="homeTertiaryColumn")
+        section(class="gd-home-post-container")
+          section(class="gd-home-post-1")
+            article
+              h3(class="homeColumnTitle") NEWS & INTERVIEWS
+              div(class="news-on-good-deeds")
+                a(class="news-on-good-deeds-title" href="https://www.fox5ny.com/news/random-acts-of-kindness-day-2022-heartwarming-stories-to-inspire-good-deeds" target="_blank") Random Acts of Kindness Day 2022: Heartwarming stories to inspire good deeds
+                a(href="https://www.fox5ny.com/news/random-acts-of-kindness-day-2022-heartwarming-stories-to-inspire-good-deeds" target="_blank")
+                  img(class="news-images" id="kindness-day-img" src="https://images.foxtv.com/static.fox5ny.com/www.fox5ny.com/content/uploads/2022/02/932/524/acts-of-kindness-file-getty.jpg?ve=1&tl=1" alt="couple on a hill with heart-shaped balloon")
+        section(class="gd-home-post-container")
+          section(class="gd-home-post-2")
+            article
+              div(class="news-on-good-deeds")
+                a(class="news-on-good-deeds-title" href="https://nypost.com/2022/05/20/texas-man-gives-away-300-cans-of-baby-formula-amid-shortage/" target="_blank") Texas man gives away cans of baby formula amid crippling shortage
+                a(href="Texas man gives away 300 cans of baby formula amid crippling shortage" target="_blank")
+                  img(class="news-images" id="baby-formula" src="https://nypost.com/wp-content/uploads/sites/2/2022/05/formula-shelves-9999.jpg" alt="texas man holding can of baby formula")
+        section(class="gd-home-post-container")
+          section(class="gd-home-post-3")
+            article
+              div(class="news-on-good-deeds")
+                a(class="news-on-good-deeds-title" href="https://nypost.com/2022/03/04/wallet-with-4000-lost-in-nyc-incredibly-returned-to-owner/" target="_blank") Wallet with $4000 lost in Times Square incredibly returned to owener
+                a(href="https://nypost.com/2022/03/04/wallet-with-4000-lost-in-nyc-incredibly-returned-to-owner/" target="_blank")
+                  img(class="news-images" id="lost-wallet" src="https://nypost.com/wp-content/uploads/sites/2/2022/03/wallet-lost-comp.jpg?quality=75&strip=all&w=1488", alt="wallet with cash in it returned to owner")
