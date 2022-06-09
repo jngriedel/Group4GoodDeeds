@@ -1,6 +1,8 @@
 //Make stars
 // const table = document.getElementById("reviewTable");
 
+
+
 //     for (let i = 0; i <table.rows.length; i++) {
 //         const reviewRating = document.getElementById(`review-rating${i}`)
 //         console.log(reviewRating)
@@ -15,17 +17,69 @@
 
 
 const myReviews = document.getElementsByClassName('review-hidden')
-console.log(myReviews)
+
 
 document.addEventListener("DOMContentLoaded", (event)=>{
 
 
+    for (let i = 0; i < myReviews.length; i++) {
+        const form = myReviews[i];
+        const reviewId = document.getElementById(`reviewHolder${i}`).value
 
-    // addReview.addEventListener('click', async (event)=> {
-    //     event.preventDefault()
-    //     formBox.className = 'form-box'
-    //     main.className = 'blur'
-    // })
+        const editButt = document.getElementById(`edit-button-${reviewId}`)
+
+        editButt.addEventListener('click', async (event)=> {
+            event.preventDefault()
+            ///make sure stars are filled
+            const starRating = document.getElementById(`ratingHolder${reviewId}`).value
+            const star1 = document.getElementById(`star1${reviewId}`)
+            const star2 = document.getElementById(`star2${reviewId}`)
+            const star3 = document.getElementById(`star3${reviewId}`)
+            const star4 = document.getElementById(`star4${reviewId}`)
+            const star5 = document.getElementById(`star5${reviewId}`)
+            switch (starRating){
+                case "1":
+                star1.checked = true
+                break;
+
+                case "2":
+                star2.checked = true
+                break;
+
+                case "3":
+                star3.checked = true
+                break;
+
+                case "4":
+                star4.checked = true
+                break;
+
+                case "5":
+                star5.checked = true
+                break;
+            }
+            form.className = 'form-box'
+            //blur background
+
+        })
+        const saveButt = document.getElementById(`save-edit-${reviewId}`)
+
+
+
+
+
+
+        const cancelButt = document.getElementById(`cancel-edit-${reviewId}`)
+        cancelButt.addEventListener('click', async (event2)=> {
+            event2.stopPropagation()
+            event2.preventDefault();
+
+            form.className = 'review-hidden'
+            // main.className = ""
+
+        })
+    }
+
 
     // postReview.addEventListener('click', async (event1) =>{
     //     event1.stopPropagation()
@@ -109,22 +163,6 @@ document.addEventListener("DOMContentLoaded", (event)=>{
     //     }
     // })
 
-    // cancel.addEventListener('click', async (event2)=> {
-    //     event2.stopPropagation()
-    //     event2.preventDefault();
-    //     const titleIn = document.getElementById('title')
-    //     const bodyIn = document.getElementById('body')
 
-    //     document.getElementById("star1").checked = false
-    //     document.getElementById("star2").checked = false
-    //     document.getElementById("star3").checked = false
-    //     document.getElementById("star4").checked = false
-    //     document.getElementById("star5").checked = false
-    //     titleIn.value = null
-    //     bodyIn.value = null
-    //     formBox.className = 'form-box-hidden'
-    //     main.className = ""
-
-    // })
 
 })
