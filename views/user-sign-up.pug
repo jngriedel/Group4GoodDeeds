@@ -3,16 +3,24 @@ extends layout.pug
 include includes/utils
 
 block content
+  div(class="sign-up-main")
+    img(id='sign-up-logo' src="/images/gooddeedslogo.png" href='/')
+    h1 Create Account
     +validationErrorSummary(errors)
-    form(action='/users/sign-up' method='post')
+    form(action='/users/sign-up' method='post' class='signup-form')
         input(type='hidden' name='_csrf' value=csrfToken)
-        +field('First Name', 'firstName', user.firstName)
-        +field('Last Name', 'lastName', user.lastName)
-        +field('Email Address', 'email', user.email)
-        +field('Password', 'password', user.password, 'password')
-        +field('Confirm Password', 'confirmPassword', '', 'password')
+        div(class="signup-inputs")
+          +field('First Name', 'firstName', user.firstName)
+        div(class="signup-inputs")
+          +field('Last Name', 'lastName', user.lastName)
+        div(class="signup-inputs")
+          +field('Email Address', 'email', user.email)
+        div(class="signup-inputs")
+          +field('Password', 'password', user.password, 'password')
+        div(class="signup-inputs")
+          +field('Confirm Password', 'confirmPassword', '', 'password')
+        div(class="signup-inputs")
+            button(type='submit' class='signup-btn') Create Account
+        a(href='/') Cancel
         div
-            button(type='submit') Sign-Up
-            a(href='/') Cancel
-        div
-            p: a(href='/users/log-in') Already have an account?
+            p: a(href='/users/log-in') Already have an account? Sign-In

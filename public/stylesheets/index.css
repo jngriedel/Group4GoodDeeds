@@ -5,6 +5,7 @@ h1 {
 .form-box-hidden {
   visibility: hidden;
 }
+
 .review-hidden {
   visibility: hidden;
   position: absolute;
@@ -74,30 +75,84 @@ h1 {
 
 
 .nav-bar {
+  margin-top: -10px;
+  margin-left: -10px;
+  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: large;
+  width: 102%;
+  color: #382110;
+  text-decoration: none;
   background-color: #F4F1EA;
-  height: 80px;
-  width: 100%;
+  height: 50px;
 }
 
 .nav-btns {
   text-align: center;
   padding: 10px;
+
 }
 
 .rightalignbtns {
   text-align: right;
 }
 
-.log-in {
-  padding-left: 60px;
+.log-in-nav-btn {
+  color: #382110;
+  margin-left: 200px;
+  margin-right: -120px;
+  padding: 15px;
+  text-decoration: none;
 }
 
-.sign-up {
-  padding-right: 80px;
+.sign-up-nav-btn {
+  margin-right: 40px;
+  padding: 15px;
+  color: #382110;
+  text-decoration: none;
+}
+
+.home-nav-btn {
+  margin-right: 60px;
+  color: #382110;
+  padding: 15px;
+  text-decoration: none;
+}
+
+.mydeeds-nav-btn {
+  color: #382110;
+  padding: 15px;
+  text-decoration: none;
+}
+
+.log-in-nav-btn:hover {
+  background-color: #382110;
+  color: white;
+  text-decoration: none;
+}
+
+.sign-up-nav-btn:hover {
+  background-color: #382110;
+  color: white;
+  text-decoration: none;
+}
+
+.home-nav-btn:hover {
+  background-color: #382110;
+  color: white;
+  text-decoration: none;
+}
+
+.mydeeds-nav-btn:hover {
+  background-color: #382110;
+  color: white;
+  text-decoration: none;
+}
+
+.log-out-nav-btn {
+  margin-right: 60px;
 }
 
 .rating {
@@ -138,13 +193,101 @@ h1 {
 
 
 #logo {
-  height: 40px;
+  margin-left: 30px;
+  height: 35px;
+  width: 180px;
+  padding: 5px;
+}
+
+#sign-up-logo {
+  height: 35px;
   width: 180px;
   padding: 5px;
 }
 
 .hidden {
   display: none;
+}
+
+
+/* sign up page css */
+.sign-up-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+}
+
+.form-group {
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-btn {
+  display: flex;
+  align-items: center;
+  border-radius: 30px;
+  font-size: 100%;
+  height: 50px;
+  width: 175px;
+  padding: 30px;
+  text-align: center;
+  background-color: #382110;
+  color: #F4F1EA;
+
+}
+
+.form-control {
+  border-radius: 30px;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signup-inputs {
+  padding: 10px;
+}
+
+/* log in page css */
+.sign-in-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+}
+
+.login-inputs {
+  padding: 10px;
+}
+
+.login-btn {
+  display: flex;
+  align-items: center;
+  border-radius: 30px;
+  font-size: 100%;
+  height: 50px;
+  width: 175px;
+  padding: 27px;
+  text-align: center;
+  background-color: #382110;
+  color: #F4F1EA;
+}
+
+.loginbtnwcancel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.loginAndAfter {
+  display: flex;
 }
 
 
@@ -169,3 +312,4 @@ z-index: 100000;
  border-bottom-width: 2px;
  border-radius: 5px;
   }
+
