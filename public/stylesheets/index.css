@@ -5,6 +5,7 @@ h1 {
 .form-box-hidden {
   visibility: hidden;
 }
+
 .review-hidden {
   visibility: hidden;
   position: absolute;
@@ -78,27 +79,73 @@ h1 {
   justify-content: space-between;
   align-items: center;
   font-size: large;
+  width: 100%;
+  color: #382110;
+  text-decoration: none;
   background-color: #F4F1EA;
   height: 80px;
-  width: 100%;
 }
 
 .nav-btns {
   text-align: center;
   padding: 10px;
+
 }
 
 .rightalignbtns {
   text-align: right;
 }
 
-.log-in {
-  padding-left: 60px;
+.log-in-nav-btn {
+  color: #382110;
+  margin-left: 150px;
+  padding: 30px;
+  text-decoration: none;
 }
 
-.sign-up {
-  padding-right: 80px;
+.sign-up-nav-btn {
+  margin-right: 60px;
+  padding: 30px;
+  color: #382110;
+  text-decoration: none;
 }
+
+.home-nav-btn {
+  color: #382110;
+  padding: 30px;
+  text-decoration: none;
+}
+
+.mydeeds-nav-btn {
+  color: #382110;
+  padding: 30px;
+  text-decoration: none;
+}
+
+.log-in-nav-btn:hover {
+  background-color: #382110;
+  color: white;
+  text-decoration: none;
+}
+
+.sign-up-nav-btn:hover {
+  background-color: #382110;
+  color: white;
+  text-decoration: none;
+}
+
+.home-nav-btn:hover {
+  background-color: #382110;
+  color: white;
+  text-decoration: none;
+}
+
+.mydeeds-nav-btn:hover {
+  background-color: #382110;
+  color: white;
+  text-decoration: none;
+}
+
 
 .rating {
   width: 90px;
