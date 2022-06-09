@@ -27,7 +27,8 @@ document.addEventListener("DOMContentLoaded", (event)=>{
         const reviewId = document.getElementById(`reviewHolder${i}`).value
 
         const editButt = document.getElementById(`edit-button-${reviewId}`)
-        const starRating = document.getElementById(`ratingHolder${reviewId}`).value
+
+
         const star1 = document.getElementById(`star1${reviewId}`)
         const star2 = document.getElementById(`star2${reviewId}`)
         const star3 = document.getElementById(`star3${reviewId}`)
@@ -36,7 +37,7 @@ document.addEventListener("DOMContentLoaded", (event)=>{
         editButt.addEventListener('click', async (event)=> {
             event.preventDefault()
             ///make sure stars are filled
-
+            const starRating = document.getElementById(`ratingHolder${reviewId}`).value
             switch (starRating){
                 case "1":
                 star1.checked = true
@@ -92,13 +93,20 @@ document.addEventListener("DOMContentLoaded", (event)=>{
             if (data.message === 'Success!') {
 
                 const reviewTitleCell = document.getElementById(`reviewTitleC${reviewId}`)
-                const reviewRatingCell = document.getElementById(`reviewRatingC${reviewId}`)
+                let reviewRatingCell = document.getElementById(`reviewRatingC${reviewId}`)
                 const reviewBodyCell = document.getElementById(`reviewBodyC${reviewId}`)
+                const reviewDateCell = document.getElementById(`reviewDateC${reviewId}`)
+                const ratingHolder = document.getElementById(`ratingHolder${reviewId}`)
+
+
+                ratingHolder.value = data.review.rating
+                
+
                 reviewBodyCell.innerText = data.review.body;
-                reviewRatingCell.innnerText = data.review.rating;
+                reviewRatingCell.innerHTML = `<span>${data.review.rating}</span>`
                 reviewTitleCell.innerText = data.review.title;
-                console.log(reviewBodyCell, reviewRatingCell, reviewTitleCell)
-                console.log(data.review.rating, data.review.title, data.review.body)
+                reviewDateCell.innerText = data.review.createdAt
+
 
 
 

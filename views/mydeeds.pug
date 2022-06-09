@@ -20,7 +20,7 @@ block content
                 th Average Rating
                 th Rating
                 th Review
-                th Date added
+                th Date Last Updated
                 th Edit Review
                 th Delete Review
         tbody
@@ -29,9 +29,10 @@ block content
                     td(id=`reviewNameC${review.id}`)= review.Deed.name
                     td(id=`reviewTitleC${review.id}`)= review.title
                     td(id=`reviewAvgC${review.id}`)= review.Deed.rating
-                    td(id=`reviewRatingC${review.id}`)= review.rating
+                    td(id=`reviewRatingC${review.id}`)
+                      span= review.rating
                     td(id=`reviewBodyC${review.id}`)= review.body
-                    td()= review.createdAt
+                    td(id=`reviewDateC${review.id}`)= review.createdAt
                     td
                         button(id=`edit-button-${review.id}`) Edit
 
