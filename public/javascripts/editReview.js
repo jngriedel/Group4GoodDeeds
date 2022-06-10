@@ -167,11 +167,11 @@ document.addEventListener("DOMContentLoaded", (event)=>{
             karmaRadios.className= 'hidden-karma-buttons'
         })
         //click off the radio box to close them
-        karmaRadios.addEventListener('focusout', (e)=> {
-            e.stopPropagation()
-            karmaRadios.className= 'hidden-karma-buttons'
+        // karmaRadios.addEventListener('focusout', (e)=> {
+        //     e.stopPropagation()
+        //     karmaRadios.className= 'hidden-karma-buttons'
 
-        })
+        // })
 
         //grab each checkbox
         const checkboxes = document.getElementsByClassName(`checkbox-${reviewId}`)
@@ -227,7 +227,7 @@ document.addEventListener("DOMContentLoaded", (event)=>{
              for (let j = 0; j < karmaList.length; j++) {
                  const li = karmaList[j];
                  if (box && li){
-                     if (box.name === li.innerText) box.checked = true
+                     if (`${box.name},` === li.innerText) box.checked = true
                  }
              }
 
