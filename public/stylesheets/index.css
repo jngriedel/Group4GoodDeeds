@@ -154,6 +154,11 @@ h1 {
 
 .log-out-nav-btn {
   margin-right: 60px;
+  background-color: #382110;
+  color: white;
+  cursor: pointer;
+  height: 30px;
+
 }
 
 .rating {
@@ -596,6 +601,7 @@ tr.single-review td {
   text-align: center;
   background-color: #382110;
   color: #F4F1EA;
+  cursor: pointer;
 
 }
 
@@ -637,6 +643,7 @@ tr.single-review td {
   text-align: center;
   background-color: #382110;
   color: #F4F1EA;
+  cursor: pointer;
 }
 
 .loginbtnwcancel {
