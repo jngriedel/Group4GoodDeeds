@@ -393,7 +393,7 @@ p.definition-good-deed-day {
 .footer {
   display: flex;
   justify-content: space-around;
-  
+
 
 }
 
@@ -512,96 +512,150 @@ p.definition-good-deed-day {
 /* adding deeds to karmas */
 
 .hidden-karma-buttons {
-visibility: hidden;
-position: absolute;
-z-index: 100000;
+  visibility: hidden;
+  position: absolute;
+  z-index: 100000;
 }
 
 .karma-buttons {
- position: absolute;
- z-index: 100000;
- background-color: white;
- box-shadow: 0 1px 2px rgb(0 0 0 / 15%);
- width: 150px;
- padding: 5px;
- font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
- border-color: #ccc;
- border-right-width: 2px;
- border-bottom-width: 2px;
- border-radius: 5px;
-  }
+  position: absolute;
+  z-index: 100000;
+  background-color: white;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 15%);
+  width: 150px;
+  padding: 5px;
+  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+  border-color: #ccc;
+  border-right-width: 2px;
+  border-bottom-width: 2px;
+  border-radius: 5px;
+}
 
 
-  .done-add {
-    border-radius: 3px;
-    border: 1px solid #D6D0C4;
-    font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
-    font-size: 14px;
-    cursor: pointer;
-    display: inline-block;
-    text-decoration: none;
-    background-color: #F4F1EA;
-    line-height: 1;
-    padding: 8px 12px;
+/* mydeeds css work */
+#main-mydeeds {
+  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+  display: grid;
+  grid-template-areas: "a b c"
+}
 
-  }
+#karma-list {
+  grid-area: a;
+  border-bottom: solid 1px #D8D8D8;
+  ;
+}
+
+.mydeedstable {
+  grid-area: b;
+  text-align: center;
+}
+
+#mydeedstitle {
+  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+  text-align: center;
+}
+
+.mydeedsTableHeadersAndData {
+  border-bottom: solid 1px #D8D8D8;
+  ;
+  padding: 7px;
+}
+
+.mydeedsactualtable {
+  border-collapse: collapse;
+}
+
+.mydeedstableheader {
+  background-color: #382110;
+  color: #F4F1EA;
+}
+
+.mydeeds-karmalist-items {
+  padding: 5px;
+}
+
+.mydeeds-karmalist {
+  padding: 3px;
+}
+
+#mydeeds-karmalist-intable {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+}
+
+.done-add {
+  border-radius: 3px;
+  border: 1px solid #D6D0C4;
+  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  background-color: #F4F1EA;
+  line-height: 1;
+  padding: 8px 12px;
+
+}
 
 
-  .done-add:hover {
-    color: #333333;
+.done-add:hover {
+  color: #333333;
   background-color: #ede6d6;
   text-decoration: none;
-  }
+}
 
-  .done-add:active{
-    background-color: #D6D0C4;
-  }
+.done-add:active {
+  background-color: #D6D0C4;
+}
 
-  .cancel-btns {
-    color: #181818;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    text-decoration: none;
-    cursor: pointer;
-    outline: none;
-    line-height: 1;
-    text-transform: capitalize;
-    font-size: 13px;
-    padding: 8px 12px;
-    border: 0;
-    background: none;
+.cancel-btns {
+  color: #181818;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-decoration: none;
+  cursor: pointer;
+  outline: none;
+  line-height: 1;
+  text-transform: capitalize;
+  font-size: 13px;
+  padding: 8px 12px;
+  border: 0;
+  background: none;
 
-    font-weight: normal;}
+  font-weight: normal;
+}
 
-  .karma-table-row  {
-    border-bottom: 1px solid #d7d7d7;
-    font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
-    padding: 5px;
+.karma-table-row {
+  border-bottom: 1px solid #d7d7d7;
+  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+  padding: 5px;
 
-  }
+}
 
-  #karmas-main {
-    display: flex;
-    font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
-    flex-direction: column;
-    align-items: center;
-  }
+#karmas-main {
+  display: flex;
+  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+  flex-direction: column;
+  align-items: center;
+}
 
-  #add-karma-form {
-    background-color: #eeeeee;
-    padding: 10px;
+#add-karma-form {
+  background-color: #eeeeee;
+  padding: 10px;
 
-    width: 620px;
-    height: 30px;
-    max-width: 625px;
-    display: flex;
-    justify-content: space-between;
-  }
-  .karma-input{
-    width: 580px;
-    padding: 5px;
-    margin: 3px
-  }
+  width: 620px;
+  height: 30px;
+  max-width: 625px;
+  display: flex;
+  justify-content: space-between;
+}
 
-  a > h2:hover {
-    text-decoration: underline;
-  }
+.karma-input {
+  width: 580px;
+  padding: 5px;
+  margin: 3px
+}
+
+a>h2:hover {
+  text-decoration: underline;
+}
