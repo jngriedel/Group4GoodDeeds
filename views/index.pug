@@ -3,11 +3,12 @@ append head
   link(rel="stylesheet" href="/stylesheets/index.css")
   //- add page specific js
   script(src="/javascripts/index.js" type="module" defer)
+  //- script(src="/javascripts/deed-front.js" type="module")
 
 block content
     .all-deeds-container
         each deed in deeds
             div(id=`deed-container-${deed.id}`).single-deed-container
-                a(href=`/deeds/${deed.id}` id=`${deed.id}-name`)
+                a(href=`/deeds/${deed.id}` id=`${deed.id}-name` class="homeDeedNames")
                   h2(class="homeDeedName")= deed.name
                 p(class="homeDeedContent" id=`${deed.id}-content`)= deed.description
