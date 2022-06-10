@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", (event)=>{
 
         formBox.className = 'form-box'
         main.className = 'blur'
+        
     })
     }
     postReview.addEventListener('click', async (event1) =>{
