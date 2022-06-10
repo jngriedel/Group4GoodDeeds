@@ -40,11 +40,24 @@ const karmaValidators = [
 ];
 
 //=====Create a Karma====//
-router.post('/', karmaValidators, asyncHandler(async(req, res, next) => {
+router.post('/', karmaValidators, requireAuth, asyncHandler(async(req, res, next) => {
     const { title } = req.body;
 
     const validatorErrors = validationResult(req);
+
+
+
     if (validatorErrors.isEmpty()) {
+        //check if duplicate
+        const dupe = await db.Karma.findOne({
+            where: {
+                title,
+                userId: res.locals.user.id,
+            }
+        })
+
+        if(dupe) res.json({message: 'Dupe'})
+        else {
         const karma = await db.Karma.create({
             title,
             userId: res.locals.user.id,
@@ -52,34 +65,59 @@ router.post('/', karmaValidators, asyncHandler(async(req, res, next) => {
         await karma.save();
 
         res.json({message: 'Success!', karma});
+    }
     } else {
         const errors = validatorErrors.array().map(error => error.msg);
-        res.render('karmas', {
-            errors,
-            data: req.body});
+
+        res.json({errors})
+
     };
 }));
 
 
 //====Update a Karma Name====//
-router.put('/:id(\\d+)', async(req, res) => {
+router.put('/:id(\\d+)', karmaValidators, requireAuth, async(req, res) => {
     const karmaId = req.params.id;
     const karma = await db.Karma.findByPk(karmaId);
-
+    const oldTitle = req.body.oldTitle;
     karma.title = req.body.title;
-    await karma.save();
+    const title = karma.title
+    const validatorErrors = validationResult(req);
 
-    res.json({karma});
+    if(validatorErrors.isEmpty()){
+
+        await karma.save();
+        const list = await db.Karma.findAll({
+            where: {
+                title,
+                userId: res.locals.user.id,
+            }
+        })
+
+        if (list.length === 1) {
+        res.json({message: 'Success!', karma});
+        } else if (list.length > 1) {
+            karma.title = oldTitle;
+            karma.save();
+            res.json({message: 'Dupe'});
+        }
+    }
+    else {
+        const errors = validatorErrors.array().map(error => error.msg);
+
+        res.json({errors})
+
+    };
 });
 
 //====Delete a Karma=====//
-router.delete('/:id(\\d+)', asyncHandler(async(req, res, next) => {
+router.delete('/:id(\\d+)', requireAuth, asyncHandler(async(req, res, next) => {
     const karmaId = req.params.id;
     await db.KarmasToDeed.destroy({where:{
 
             karmaId,
         }})
-   
+
     const karma = await db.Karma.findByPk(karmaId);
     await karma.destroy();
 

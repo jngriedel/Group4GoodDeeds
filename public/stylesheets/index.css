@@ -393,6 +393,8 @@ p.definition-good-deed-day {
 .footer {
   display: flex;
   justify-content: space-around;
+
+
 }
 
 .footer-links {
@@ -578,4 +580,80 @@ p.definition-good-deed-day {
   display: flex;
   flex-direction: column;
   padding: 5px;
+}
+
+.done-add {
+  border-radius: 3px;
+  border: 1px solid #D6D0C4;
+  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  background-color: #F4F1EA;
+  line-height: 1;
+  padding: 8px 12px;
+
+}
+
+
+.done-add:hover {
+  color: #333333;
+  background-color: #ede6d6;
+  text-decoration: none;
+}
+
+.done-add:active {
+  background-color: #D6D0C4;
+}
+
+.cancel-btns {
+  color: #181818;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-decoration: none;
+  cursor: pointer;
+  outline: none;
+  line-height: 1;
+  text-transform: capitalize;
+  font-size: 13px;
+  padding: 8px 12px;
+  border: 0;
+  background: none;
+
+  font-weight: normal;
+}
+
+.karma-table-row {
+  border-bottom: 1px solid #d7d7d7;
+  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+  padding: 5px;
+
+}
+
+#karmas-main {
+  display: flex;
+  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+  flex-direction: column;
+  align-items: center;
+}
+
+#add-karma-form {
+  background-color: #eeeeee;
+  padding: 10px;
+
+  width: 620px;
+  height: 30px;
+  max-width: 625px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.karma-input {
+  width: 580px;
+  padding: 5px;
+  margin: 3px
+}
+
+a>h2:hover {
+  text-decoration: underline;
 }
