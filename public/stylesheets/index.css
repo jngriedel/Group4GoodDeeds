@@ -154,6 +154,10 @@ h1 {
 
 .log-out-nav-btn {
   margin-right: 60px;
+  background-color: #382110;
+  color: white;
+  cursor: pointer;
+  height: 30px;
 
 }
 
