@@ -4,44 +4,46 @@ include includes/utils
 
 block content
     script(src="/javascripts/editReview.js" type="module")
-    div(id='main')
+    h1(id='mydeedstitle') My Deeds
+    div(id='main-mydeeds')
+      div(id='karma-list')
+        h3 Karmas
         a(href="/karmas") edit
         div(id='karma-list')
-          h3 Karmas
-          ul
-            if karmas
-            each karma in karmas
-              li= karma.title
-
-        table
-            thead
+        ul
+          if karmas
+          each karma in karmas
+            li(class='mydeeds-karmalist')= karma.title
+      div(class="mydeedstable")
+        table(class="mydeedsactualtable")
+            thead(class='mydeedstableheader')
                 tr
-                    th Deed
-                    th Title
-                    th Average Rating
-                    th Rating
-                    th Karmas
-                    th Review
-                    th Date Created
-                    th Edit Review
-                    th Delete Review
+                    th(class='mydeedsTableHeadersAndData') Deed
+                    th(class='mydeedsTableHeadersAndData') Title
+                    th(class='mydeedsTableHeadersAndData') Average Rating
+                    th(class='mydeedsTableHeadersAndData') Rating
+                    th(class='mydeedsTableHeadersAndData') Karmas
+                    th(class='mydeedsTableHeadersAndData') Review
+                    th(class='mydeedsTableHeadersAndData') Date Created
+                    th(class='mydeedsTableHeadersAndData') Edit Review
+                    th(class='mydeedsTableHeadersAndData') Delete Review
             tbody
                 each review, index in reviews
                     tr
-                        td(id=`reviewNameC${review.id}`)
+                        td(id=`reviewNameC${review.id}` class='mydeedsTableHeadersAndData')
                           a(href=`/deeds/${review.Deed.id}`)= review.Deed.name
-                        td(id=`reviewTitleC${review.id}`)= review.title
-                        td(id=`reviewAvgC${review.id}`)= review.Deed.rating
-                        td(id=`reviewRatingC${review.id}`)
+                        td(id=`reviewTitleC${review.id}` class='mydeedsTableHeadersAndData')= review.title
+                        td(id=`reviewAvgC${review.id}` class='mydeedsTableHeadersAndData')= review.Deed.rating
+                        td(id=`reviewRatingC${review.id}` class='mydeedsTableHeadersAndData')
                           span= review.rating
-                        td(id=`reviewKarmas${review.id}`)
+                        td(id=`reviewKarmas${review.id}` class='mydeedsTableHeadersAndData')
 
                           each link in links
                                 each connection in link
                                   -if (connection.deedId === review.Deed.id)
                                     each karma in karmas
                                      -if (connection.karmaId === karma.id)
-                                       li(class=`listKarma${review.id}`)= karma.title
+                                       li(class=`listKarma${review.id}` id='mydeeds-karmalist-intable')= karma.title
                           a(id=`edit-karmas-${review.id}` href='#') [edit]
                           if karmas
                            div(id=`karma-radio-bttns-${review.id}` class='hidden-karma-buttons')
@@ -51,12 +53,12 @@ block content
                               input(type='checkbox' name=`${karma.title}` id=`${karma.id}-${review.Deed.id}` class=`checkbox-${review.id}`)
                               lable(for=`${karma.title}`)= karma.title
                               br
-                        td(id=`reviewBodyC${review.id}`)= review.body
-                        td(id=`reviewDateC${review.id}`)= dates[index]
-                        td
+                        td(id=`reviewBodyC${review.id}` class='mydeedsTableHeadersAndData')= review.body
+                        td(id=`reviewDateC${review.id}` class='mydeedsTableHeadersAndData')= dates[index]
+                        td(class='mydeedsTableHeadersAndData')
                             button(id=`edit-button-${review.id}`) Edit
 
-                        td
+                        td(class='mydeedsTableHeadersAndData')
                             form(action=`/reviews/${review.id}` method='post')
                                 button(type='submit') Delete
 

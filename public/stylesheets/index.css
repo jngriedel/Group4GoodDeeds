@@ -510,23 +510,67 @@ p.definition-good-deed-day {
 /* adding deeds to karmas */
 
 .hidden-karma-buttons {
-visibility: hidden;
-position: absolute;
-z-index: 100000;
+  visibility: hidden;
+  position: absolute;
+  z-index: 100000;
 }
 
 .karma-buttons {
- position: absolute;
- z-index: 100000;
- background-color: white;
- box-shadow: 0 1px 2px rgb(0 0 0 / 15%);
- width: 150px;
- padding: 5px;
- font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
- border-color: #ccc;
- border-right-width: 2px;
- border-bottom-width: 2px;
- border-radius: 5px;
-  }
+  position: absolute;
+  z-index: 100000;
+  background-color: white;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 15%);
+  width: 150px;
+  padding: 5px;
+  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+  border-color: #ccc;
+  border-right-width: 2px;
+  border-bottom-width: 2px;
+  border-radius: 5px;
+}
 
 
+/* mydeeds css work */
+#main-mydeeds {
+  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+  display: grid;
+  grid-template-areas: "a b c"
+}
+
+#karma-list {
+  grid-area: a;
+}
+
+.mydeedstable {
+  grid-area: b;
+  text-align: center;
+}
+
+#mydeedstitle {
+  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+  text-align: center;
+}
+
+.mydeedsTableHeadersAndData {
+  border: 1px solid black;
+  padding: 7px;
+}
+
+.mydeedsactualtable {
+  border-collapse: collapse;
+}
+
+.mydeedstableheader {
+  background-color: #382110;
+  color: #F4F1EA;
+}
+
+.mydeeds-karmalist {
+  padding: 3px;
+}
+
+#mydeeds-karmalist-intable {
+  display: flex;
+  flex-direction: column;
+  padding: 3px;
+}
