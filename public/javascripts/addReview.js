@@ -22,6 +22,11 @@ const cancel = document.querySelector('#cancel')
 const postReview = document.querySelector('#post-review')
 const deedId = document.querySelector('#deedHolder').value
 const formBox = document.querySelector('.form-box-hidden')
+
+const navBar = document.getElementsByClassName('nav-bar')
+const footer = document.getElementsByClassName('footer')
+
+
 document.addEventListener("DOMContentLoaded", (event)=>{
 
 
@@ -32,7 +37,9 @@ document.addEventListener("DOMContentLoaded", (event)=>{
 
         formBox.className = 'form-box'
         main.className = 'blur'
-        
+        navBar[0].classList.add('blur')
+            footer[0].classList.add('blur')
+
     })
     }
     postReview.addEventListener('click', async (event1) =>{
@@ -101,6 +108,8 @@ document.addEventListener("DOMContentLoaded", (event)=>{
             formBox.className = 'form-box-hidden'
             // opinionContainer.removeChild(formBox)
             main.className = ""
+            navBar[0].classList.remove('blur')
+                footer[0].classList.remove('blur')
         } else if (data.message === "Dupe") {
             alert('You have already posted a Review for this deed!')
         }
@@ -135,6 +144,8 @@ document.addEventListener("DOMContentLoaded", (event)=>{
         bodyIn.value = null
         formBox.className = 'form-box-hidden'
         main.className = ""
+        navBar[0].classList.remove('blur')
+                footer[0].classList.remove('blur')
 
     })
 
