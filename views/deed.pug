@@ -4,7 +4,7 @@ include includes/utils
 
 block content
   script(src="/javascripts/deed-front.js" type="module")
-  div(class="mainContentContainer")
+  div(class="mainContentContainer" id='main')
     script(src="/javascripts/addReview.js" type="module")
     div(class="leftContainer")
       div(class="topContainer")
@@ -73,27 +73,27 @@ block content
 
 
 
-      div(class='form-box-hidden')
-        div(id='opinion')
-          div(id='pop-up-form')
-            +validationErrorSummary(errors)
-            form(action=`/deeds/${deed.id}` method='post')
-                input(type='hidden' name='_csrf' value=csrfToken)
-                input(type='hidden' id='deedHolder' value=deed.id)
-                +field('Title', 'title', null)
-                +field('Review Body', 'body', null)
-                label(for="star-container") Rating
-                div(class ="rating" id="star-container")
-                  input(id="star5" name="star" type="radio" value="5" class="radio-btn hide")
-                  label(for="star5") ☆
-                  input(id="star4" name="star" type="radio" value="4" class="radio-btn hide")
-                  label(for="star4") ☆
-                  input(id="star3" name="star" type="radio" value="3" class="radio-btn hide")
-                  label(for="star3") ☆
-                  input(id="star2" name="star" type="radio" value="2" class="radio-btn hide")
-                  label(for="star2") ☆
-                  input(id="star1" name="star" type="radio" value="1" class="radio-btn hide")
-                  label(for="star1") ☆
-                div
-                    button(id= 'post-review') Save Review
-                    button(id='cancel') Cancel
+  div(class='form-box-hidden')
+    div(id='opinion')
+      div(id='pop-up-form')
+        +validationErrorSummary(errors)
+        form(action=`/deeds/${deed.id}` method='post')
+            input(type='hidden' name='_csrf' value=csrfToken)
+            input(type='hidden' id='deedHolder' value=deed.id)
+            +field('Title', 'title', null)
+            +field('Review Body', 'body', null)
+            label(for="star-container") Rating
+            div(class ="rating" id="star-container")
+              input(id="star5" name="star" type="radio" value="5" class="radio-btn hide")
+              label(for="star5") ☆
+              input(id="star4" name="star" type="radio" value="4" class="radio-btn hide")
+              label(for="star4") ☆
+              input(id="star3" name="star" type="radio" value="3" class="radio-btn hide")
+              label(for="star3") ☆
+              input(id="star2" name="star" type="radio" value="2" class="radio-btn hide")
+              label(for="star2") ☆
+              input(id="star1" name="star" type="radio" value="1" class="radio-btn hide")
+              label(for="star1") ☆
+            div
+                button(id= 'post-review') Save Review
+                button(id='cancel') Cancel

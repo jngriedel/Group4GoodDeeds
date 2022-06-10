@@ -36,9 +36,9 @@ document.addEventListener("DOMContentLoaded", (event)=>{
 
 
         formBox.className = 'form-box'
-        main.className = 'blur'
+        main.classList.add('blur')
         navBar[0].classList.add('blur')
-            footer[0].classList.add('blur')
+        footer[0].classList.add('blur')
 
     })
     }
@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", (event)=>{
 
             formBox.className = 'form-box-hidden'
             // opinionContainer.removeChild(formBox)
-            main.className = ""
+            main.classList.remove('blur')
             navBar[0].classList.remove('blur')
                 footer[0].classList.remove('blur')
         } else if (data.message === "Dupe") {
@@ -143,7 +143,7 @@ document.addEventListener("DOMContentLoaded", (event)=>{
         titleIn.value = null
         bodyIn.value = null
         formBox.className = 'form-box-hidden'
-        main.className = ""
+        main.classList.remove('blur')
         navBar[0].classList.remove('blur')
                 footer[0].classList.remove('blur')
 

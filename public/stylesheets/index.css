@@ -4,6 +4,7 @@ h1 {
 
 .form-box-hidden {
   visibility: hidden;
+  position: absolute;
 }
 
 .review-hidden {
@@ -801,4 +802,3 @@ tr.single-review td {
 a>h2:hover {
   text-decoration: underline;
 }
-
