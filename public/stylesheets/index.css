@@ -288,3 +288,22 @@ h1 {
 .loginAndAfter {
   display: flex;
 }
+
+/* mydeeds css work */
+#main-mydeeds {
+  display: grid;
+  grid-template-areas: "a b c"
+}
+
+#karma-list {
+  grid-area: a;
+}
+
+.mydeedstable {
+  grid-area: b;
+  text-align: center;
+}
+
+#mydeedstitle {
+  text-align: center;
+}
