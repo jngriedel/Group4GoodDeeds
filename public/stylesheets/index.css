@@ -715,10 +715,12 @@ tr.single-review td {
 
 .mydeeds-karmalist-items {
   padding: 5px;
+  list-style: none;
 }
 
 .mydeeds-karmalist {
   padding: 3px;
+  list-style: none;
 }
 
 #mydeeds-karmalist-intable {
