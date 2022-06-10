@@ -255,8 +255,8 @@ a:visited {
   color: black
 }
 
-a:hover,
-a:visited:hover {
+a.homeDeedName:hover,
+a.homeDeedName:visited:hover {
   color: rgb(87, 61, 14);
 }
 
