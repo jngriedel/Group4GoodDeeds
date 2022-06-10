@@ -75,21 +75,31 @@ router.post('/:id(\\d+)', reviewValidators, requireAuth, asyncHandler(async(req,
 
 
     if (validatorErrors.isEmpty()) {
-    const newReview = await db.Review.create({
-      title,
-      body,
-      rating,
-      deedId,
-      userId: res.locals.user.id
-    })
-    const newId = newReview.id
-    const review = await db.Review.findByPk(newId, {
-      include: db.User
-    })
+
+      // check if review alredy exists
+      const oldRev = await db.Review.findOne({where: {
+        deedId,
+        userId: res.locals.user.id,
+      }})
+     
+      if (oldRev) res.json({message: 'Dupe'})
+      else {
+      const newReview = await db.Review.create({
+        title,
+        body,
+        rating,
+        deedId,
+        userId: res.locals.user.id
+      })
+      const newId = newReview.id
+      const review = await db.Review.findByPk(newId, {
+        include: db.User
+      })
 
 
 
-    res.json({message: "Success!", review})
+      res.json({message: "Success!", review})
+    }
   }
 
 

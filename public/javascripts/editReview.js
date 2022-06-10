@@ -17,8 +17,9 @@
 
 
 const myReviews = document.getElementsByClassName('review-hidden')
-const main = document.getElementById('main')
-
+const main = document.getElementById('main-mydeeds')
+const navBar = document.getElementsByClassName('nav-bar')
+const footer = document.getElementsByClassName('footer')
 document.addEventListener("DOMContentLoaded", (event)=>{
 
 
@@ -61,6 +62,8 @@ document.addEventListener("DOMContentLoaded", (event)=>{
             }
             form.className = 'form-box'
             main.className = 'blur'
+            navBar[0].classList.add('blur')
+            footer[0].classList.add('blur')
 
         })
         const saveButt = document.getElementById(`save-edit-${reviewId}`)
@@ -114,7 +117,8 @@ document.addEventListener("DOMContentLoaded", (event)=>{
 
 
                 form.className = 'review-hidden'
-
+                navBar[0].classList.remove('blur')
+                footer[0].classList.remove('blur')
                 main.className=''
             } else {
                 const oldErrors = document.getElementById('error-list')
@@ -142,7 +146,8 @@ document.addEventListener("DOMContentLoaded", (event)=>{
 
             form.className = 'review-hidden'
             main.className = ""
-
+            navBar[0].classList.remove('blur')
+            footer[0].classList.remove('blur')
         })
 
 
