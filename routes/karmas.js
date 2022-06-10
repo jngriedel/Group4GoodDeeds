@@ -40,7 +40,7 @@ const karmaValidators = [
 ];
 
 //=====Create a Karma====//
-router.post('/', karmaValidators, asyncHandler(async(req, res, next) => {
+router.post('/', karmaValidators, requireAuth, asyncHandler(async(req, res, next) => {
     const { title } = req.body;
 
     const validatorErrors = validationResult(req);
