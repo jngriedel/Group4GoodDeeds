@@ -48,7 +48,6 @@ for (let i = 0; i < renameBtns.length; i++) {
                 alert("Karma couldn’t be created. Karma is a duplicate.");
             }
             else {
-                console.log('hello')
                 alert("Karma couldn’t be created. Karma is either empty or more than 20 characters.");
             }
         });
