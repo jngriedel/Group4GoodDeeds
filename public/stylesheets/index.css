@@ -327,10 +327,11 @@ p.definition-good-deed-day {
   border-radius: 8px;
 }
 
-
 .footer {
+  margin-top: 30px;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 15px;
 }
 
 .footer-links {
@@ -361,4 +362,147 @@ p.definition-good-deed-day {
   color: grey;
   font-size: 10px;
   font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+}
+
+.mainContentContainer {
+  width: 100%;
+  text-align: center;
+  display: grid;
+  grid-template-columns: fit-content(70%) fit-content(20%);
+  margin: 0 50px;
+  padding: 0 25px;
+  box-sizing: border-box;
+}
+
+.topContainer {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-gap: 10px;
+  margin: 9px;
+  padding: 10px;
+}
+
+.donate-blood,
+.plant-tree,
+.charity,
+.grandma-duty,
+.trash-picking {
+  width: 200px;
+  height: 280px;
+  margin-top: 6px;
+  margin-left: 0;
+}
+
+.OneDeedName {
+  font-family: "Merriweather", "Georgia", serif;
+  font-weight: bold;
+  line-height: 1.25;
+  text-align: left;
+  font-size: 24px;
+  margin: auto 0;
+  padding-bottom: 5px;
+}
+
+.average-rating {
+  font-family: "Merriweather", "Georgia", serif;
+  line-height: 1.15;
+  text-align: left;
+  font-size: 15px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  margin: 8px 0;
+}
+
+.deedRating {
+  padding-bottom: 6px;
+  padding-left: 10px;
+  margin: 8px 0;
+  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+  font-size: 16px;
+  text-align: left;
+  font-weight: bold;
+}
+
+.deedDescription {
+  text-align: left;
+  font-family: "Merriweather", "Georgia", serif;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: bold;
+  padding-left: 10px;
+  margin-top: 10px;
+}
+
+.what-do-you-think {
+  font-family: "Merriweather", "Georgia", serif;
+  line-height: 1.15;
+  text-align: left;
+  font-size: 17px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  margin: 8px 0;
+}
+
+.write-review {
+  color: #333333;
+  margin-bottom: 12px;
+  margin-left: 10px;
+  border-radius: 3px;
+  border: 1px solid #D6D0C4;
+  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+  font-size: 14px;
+  background: #F4F1EA;
+  line-height: 1;
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.bottomContainer {
+  margin: 40px 9px;
+  padding: 10px;
+}
+
+tr.review-headers th {
+  border-bottom: solid 1.5px grey;
+  font-family: "Merriweather", "Georgia", serif;
+  font-size: 14px;
+  text-align: center;
+  background-color: #333333;
+  color: white;
+}
+
+tr.single-review td {
+  border-bottom: solid 1px #D8D8D8;
+  padding: 5px 8px;
+  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+  font-size: 12px;
+  text-align: left;
+  border-collapse: collapse;
+}
+
+.rightContainer {
+  margin: 9px;
+  padding: 10px;
+}
+
+.imgs-on-deeds-link {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 8px;
+}
+
+.more-deeds {
+  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+  text-align: left;
+  color: #333333;
+  font-size: 14px;
+  line-height: 1.15;
+  margin: 12px 0;
+  font-weight: bold;
+}
+
+.image-on-deeds {
+  width: 110px;
+  height: 150px;
 }

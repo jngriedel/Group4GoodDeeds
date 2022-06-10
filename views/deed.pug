@@ -3,60 +3,97 @@ extends layout.pug
 include includes/utils
 
 block content
-  div(id='main')
+  script(src="/javascripts/deed-front.js" type="module")
+  div(class="mainContentContainer")
     script(src="/javascripts/addReview.js" type="module")
-    div
-      p= deed.name
-    div
-      p= deed.description
-    div
-      p Average Rating
-      p= deed.rating
+    div(class="leftContainer")
+      div(class="topContainer")
+        div(class="imgColumn")
+          div(class="deedImageContainer")
 
-    div
-      p What do you Think?
-      if locals.authenticated
-        button(id=`add-review`) Write a Review
-      else
-        a(href='/users/log-in')
-            button() Write a Review
-    div(id='review-container')
-        table(id='reviewTable')
-          thead
-            tr
-              th Title
-              th Review
-              th Deed Rating
-              th User
+        div(class="myDeedInfoColumn")
+          h1(class="OneDeedName" id=`deed-name-${deed.name}`)= deed.name
+          div(class="deedRatingDiv")
+            h3(class="average-rating") Average Rating
+            p(class="deedRating")= deed.rating
+          div(class="deedDescriptionDiv")
+            p(class="deedDescription")= deed.description
+          div
+            h3(class="what-do-you-think") What do you Think?
+            if locals.authenticated
+              button(class="write-review" id=`add-review`) Write a Review
+            else
+              a(href='/users/log-in')
+                  button() Write a Review
+      div(class="bottomContainer")
+        div(class="reviewContainer" id='review-container')
+            table(id='reviewTable')
+              thead
+                tr(class="review-headers")
+                  th Title
+                  th Review
+                  th Deed Rating
+                  th User
 
-          tbody
-            each review in reviews
-              tr
-                td= review.title
-                td= review.body
-                td(id=`review-rating${review.id}`)= review.rating
-                td #{review.User.firstName} #{review.User.lastName}
-  div(class='form-box-hidden')
-    div(id='opinion')
-      div(id='pop-up-form')
-        +validationErrorSummary(errors)
-        form(action=`/deeds/${deed.id}` method='post')
-            input(type='hidden' name='_csrf' value=csrfToken)
-            input(type='hidden' id='deedHolder' value=deed.id)
-            +field('Title', 'title', null)
-            +field('Review Body', 'body', null)
-            label(for="star-container") Rating
-            div(class ="rating" id="star-container")
-              input(id="star5" name="star" type="radio" value="5" class="radio-btn hide")
-              label(for="star5") ☆
-              input(id="star4" name="star" type="radio" value="4" class="radio-btn hide")
-              label(for="star4") ☆
-              input(id="star3" name="star" type="radio" value="3" class="radio-btn hide")
-              label(for="star3") ☆
-              input(id="star2" name="star" type="radio" value="2" class="radio-btn hide")
-              label(for="star2") ☆
-              input(id="star1" name="star" type="radio" value="1" class="radio-btn hide")
-              label(for="star1") ☆
-            div
-                button(id= 'post-review') Save Review
-                button(id='cancel') Cancel
+              tbody
+                each review in reviews
+                  tr(class="single-review")
+                    td= review.title
+                    td= review.body
+                    td(id=`review-rating${review.id}`)= review.rating
+                    td #{review.User.firstName} #{review.User.lastName}
+    div(class="rightContainer")
+      h3(class="more-deeds") MORE DEEDS TO CONSIDER...
+      div(class="imgs-on-deeds-link")
+        div(class="imgs-on-deeds-left")
+          a(href="/deeds/1")
+            img(class="image-on-deeds" src="https://i2.wp.com/movingtips.wpengine.com/wp-content/uploads/2021/01/donation.jpg?fit=1200%2C800&ssl=1" alt="donation box")
+          a(href="/deeds/5")
+            img(class="image-on-deeds" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0ITTIvsc5qIdmrCtTDqOaTMjXnbyNRLmJZg&usqp=CAU" alt="children picking up trash")
+          a(href="/deeds/3")
+            img(class="image-on-deeds" src="https://ignatius.nyc/wp-content/uploads/2021/01/Document.jpg" alt="blood drive")
+        div(class="imgs-on-deeds-right")
+          a(href="/deeds/2")
+            img(class="image-on-deeds" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsQOdfIE308qOghx5R2E-d9RmRJFmtlLW6yA&usqp=CAU" alt="tree on planet")
+          a(href="/deeds/4")
+            img(class="image-on-deeds" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHNY_CWNCmfXMlNv81CPNPGMrSrf6c46Z59w&usqp=CAU" alt="grandma")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      div(class='form-box-hidden')
+        div(id='opinion')
+          div(id='pop-up-form')
+            +validationErrorSummary(errors)
+            form(action=`/deeds/${deed.id}` method='post')
+                input(type='hidden' name='_csrf' value=csrfToken)
+                input(type='hidden' id='deedHolder' value=deed.id)
+                +field('Title', 'title', null)
+                +field('Review Body', 'body', null)
+                label(for="star-container") Rating
+                div(class ="rating" id="star-container")
+                  input(id="star5" name="star" type="radio" value="5" class="radio-btn hide")
+                  label(for="star5") ☆
+                  input(id="star4" name="star" type="radio" value="4" class="radio-btn hide")
+                  label(for="star4") ☆
+                  input(id="star3" name="star" type="radio" value="3" class="radio-btn hide")
+                  label(for="star3") ☆
+                  input(id="star2" name="star" type="radio" value="2" class="radio-btn hide")
+                  label(for="star2") ☆
+                  input(id="star1" name="star" type="radio" value="1" class="radio-btn hide")
+                  label(for="star1") ☆
+                div
+                    button(id= 'post-review') Save Review
+                    button(id='cancel') Cancel
