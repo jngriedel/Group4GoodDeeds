@@ -44,7 +44,20 @@ router.post('/', karmaValidators, asyncHandler(async(req, res, next) => {
     const { title } = req.body;
 
     const validatorErrors = validationResult(req);
+
+
+
     if (validatorErrors.isEmpty()) {
+        //check if duplicate
+        const dupe = await db.Karma.findOne({
+            where: {
+                title,
+                userId: res.locals.user.id,
+            }
+        })
+
+        if(dupe) res.json({message: 'Fail'})
+        else {
         const karma = await db.Karma.create({
             title,
             userId: res.locals.user.id,
@@ -52,11 +65,12 @@ router.post('/', karmaValidators, asyncHandler(async(req, res, next) => {
         await karma.save();
 
         res.json({message: 'Success!', karma});
+    }
     } else {
         const errors = validatorErrors.array().map(error => error.msg);
-        res.render('karmas', {
-            errors,
-            data: req.body});
+
+        res.json({errors})
+
     };
 }));
 
@@ -73,13 +87,13 @@ router.put('/:id(\\d+)', async(req, res) => {
 });
 
 //====Delete a Karma=====//
-router.delete('/:id(\\d+)', asyncHandler(async(req, res, next) => {
+router.delete('/:id(\\d+)', requireAuth, asyncHandler(async(req, res, next) => {
     const karmaId = req.params.id;
     await db.KarmasToDeed.destroy({where:{
 
             karmaId,
         }})
-   
+
     const karma = await db.Karma.findByPk(karmaId);
     await karma.destroy();
 

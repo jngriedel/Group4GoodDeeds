@@ -1,5 +1,3 @@
-extends layout
-
 append head
   //- add page specific styles by appending to the head
   link(rel="stylesheet" href="/stylesheets/index.css")
@@ -7,11 +5,9 @@ append head
   script(src="/javascripts/index.js" type="module" defer)
 
 block content
-  h1= title
-  p Welcome to Good Deeds
     .all-deeds-container
         each deed in deeds
             div(id=`deed-container-${deed.id}`).single-deed-container
                 a(href=`/deeds/${deed.id}` id=`${deed.id}-name`)
-                  h2= deed.name
-                p(id=`${deed.id}-content`)= deed.description
+                  h2(class="homeDeedName")= deed.name
+                p(class="homeDeedContent" id=`${deed.id}-content`)= deed.description

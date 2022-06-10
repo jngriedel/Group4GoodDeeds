@@ -5,18 +5,18 @@ window.addEventListener('DOMContentLoaded', async(e) => {
     addKarma.addEventListener('click', async(e) => {
         e.preventDefault();
 
-        const title = document.getElementById('title').value;
+        let title = document.getElementById('title').value;
 
         const res = await fetch(`/karmas`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', },
             body: JSON.stringify({
                 title
             })
         })
 
         const data = await res.json()
-        // console.log(karmaId);
+
             if (data.message === 'Success!') {
                 const inputField = document.getElementById("title");
                 // const editForm = document.getElementById(`edit-form-${karmaId}`);
@@ -42,5 +42,10 @@ window.addEventListener('DOMContentLoaded', async(e) => {
 
 
             }
+
+            else {
+                alert("Karma couldn’t be created. Karma is either invalid or a duplicate.");
+        }
+
     });
 });
