@@ -8,8 +8,12 @@ for (let i = 0; i < renameBtns.length; i++) {
         // console.log(karmaId)
         const form = document.getElementById(`edit-form-${karmaId}`);
         // console.log(form)
+        const titleVal = document.getElementById(`karmaTitle-${karmaId}`).innerText
         if (form.classList.contains('hidden')) {
             form.classList.remove('hidden');
+            const formInput = document.getElementById(`${karmaId}-edit-title`)
+            formInput.value = titleVal
+
         }
 
         const saveBtn = document.getElementById(`edit-submit-${karmaId}`);
@@ -31,7 +35,7 @@ for (let i = 0; i < renameBtns.length; i++) {
             // console.log(data)
 
             if (data) {
-                const titleEle = document.getElementById("karmaTitle");
+                const titleEle = document.getElementById(`karmaTitle-${karmaId}`);
                 const titleEditField = document.getElementById(`${karmaId}-edit-title`);
                 titleEle.innerHTML = data.karma.title;
 
