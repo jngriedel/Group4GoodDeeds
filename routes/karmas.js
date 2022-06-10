@@ -76,14 +76,36 @@ router.post('/', karmaValidators, asyncHandler(async(req, res, next) => {
 
 
 //====Update a Karma Name====//
-router.put('/:id(\\d+)', async(req, res) => {
+router.put('/:id(\\d+)', karmaValidators, requireAuth, async(req, res) => {
     const karmaId = req.params.id;
     const karma = await db.Karma.findByPk(karmaId);
 
     karma.title = req.body.title;
-    await karma.save();
+    const title = karma.title
+    const validatorErrors = validationResult(req);
 
-    res.json({karma});
+    if(validatorErrors.isEmpty()){
+        const list = await db.Karma.findAll({
+            where: {
+                title,
+                userId: res.locals.user.id,
+            }
+        })
+        
+        if (list.length === 0) {
+        await karma.save();
+
+        res.json({message: 'Success!', karma});
+        } else {
+            res.json({message: 'Fail'});
+        }
+    }
+    else {
+        const errors = validatorErrors.array().map(error => error.msg);
+
+        res.json({errors})
+
+    };
 });
 
 //====Delete a Karma=====//

@@ -21,6 +21,7 @@ for (let i = 0; i < renameBtns.length; i++) {
             e.preventDefault();
             const title = document.getElementById(`${karmaId}-edit-title`).value;
             // console.log(title)
+
             const res = await fetch(`/karmas/${karmaId}`, {
                 method: 'PUT',
                 headers: {
@@ -34,7 +35,7 @@ for (let i = 0; i < renameBtns.length; i++) {
             const data = await res.json();
             // console.log(data)
 
-            if (data) {
+            if (data.message === 'Success!') {
                 const titleEle = document.getElementById(`karmaTitle-${karmaId}`);
                 const titleEditField = document.getElementById(`${karmaId}-edit-title`);
                 titleEle.innerHTML = data.karma.title;
@@ -42,7 +43,7 @@ for (let i = 0; i < renameBtns.length; i++) {
                 titleEditField.value = null;
                 form.classList.add('hidden')
             } else {
-                alert('Could not edit the title!');
+                alert("Karma couldn’t be created. Karma is either invalid or a duplicate.");
             }
         });
     });
