@@ -100,7 +100,10 @@ document.addEventListener("DOMContentLoaded", (event)=>{
             formBox.className = 'form-box-hidden'
             // opinionContainer.removeChild(formBox)
             main.className = ""
-        } else {
+        } else if (data.message === "Dupe") {
+            alert('You have already posted a Review for this deed!')
+        }
+        else {
             const oldErrors = document.getElementById('error-list')
             if (oldErrors) {
                 oldErrors.remove()
