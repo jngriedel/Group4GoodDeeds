@@ -539,6 +539,7 @@ p.definition-good-deed-day {
 
 #karma-list {
   grid-area: a;
+
 }
 
 .mydeedstable {
@@ -552,7 +553,7 @@ p.definition-good-deed-day {
 }
 
 .mydeedsTableHeadersAndData {
-  border: 1px solid black;
+  border-bottom: 1px solid black;
   padding: 7px;
 }
 
@@ -565,6 +566,10 @@ p.definition-good-deed-day {
   color: #F4F1EA;
 }
 
+.mydeeds-karmalist-items {
+  padding: 5px;
+}
+
 .mydeeds-karmalist {
   padding: 3px;
 }
@@ -572,5 +577,5 @@ p.definition-good-deed-day {
 #mydeeds-karmalist-intable {
   display: flex;
   flex-direction: column;
-  padding: 3px;
+  padding: 5px;
 }

@@ -8,12 +8,12 @@ block content
     div(id='main-mydeeds')
       div(id='karma-list')
         h3 Karmas
-        a(href="/karmas") edit
+        a(href="/karmas") (edit)
         div(id='karma-list')
-        ul
+        ul(class='mydeeds-karmalist')
           if karmas
           each karma in karmas
-            li(class='mydeeds-karmalist')= karma.title
+            li(class='mydeeds-karmalist-items')= karma.title
       div(class="mydeedstable")
         table(class="mydeedsactualtable")
             thead(class='mydeedstableheader')
