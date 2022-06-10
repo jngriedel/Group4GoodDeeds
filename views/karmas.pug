@@ -26,7 +26,7 @@ block content
                         each karma in karmas
 
                             tr(class=`karma-${karma.id} karma-table-row `)
-                                td(id=`karmaTitle-${karma.id}`)= karma.title
+                                td(id=`karmaTitle-${karma.id}` )= karma.title
                                 td: button(class="rename done-add" value=karma.id) Rename
                                 td: button(class="delete-btn done-add" value=karma.id) Delete
                             tr(class=`karma-${karma.id} karma-table-row `)
