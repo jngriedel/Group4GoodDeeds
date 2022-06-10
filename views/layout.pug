@@ -11,16 +11,15 @@ html
         a(href="/")
           img(id='logo' src="/images/gooddeedslogo.png" href='/')
         div(class="nav-btns")
-        a(href="/" class="home") Home
-        a(href="/mydeeds" class="mydeeds") MyDeeds
-          //- div(class="rightalignbtns")
+        a(href="/" class="home-nav-btn") Home
+        a(href="/mydeeds" class="mydeeds-nav-btn") MyDeeds
         if locals.authenticated
           span Welcome #{user.firstName}!
           form(action='/users/log-out' method='post')
-            button(type='submit') Logout
+            button(type='submit' class="log-out-nav-btn") Logout
         else
-          a(href="/users/log-in" class="log-in") Log In
-          a(href="/users/sign-up" class="sign-up") Sign Up
+          a(href="/users/log-in" class="log-in-nav-btn") Log In
+          a(href="/users/sign-up" class="sign-up-nav-btn") Sign Up
 
 
     block content
