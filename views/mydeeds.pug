@@ -43,7 +43,7 @@ block content
                                   -if (connection.deedId === review.Deed.id)
                                     each karma in karmas
                                      -if (connection.karmaId === karma.id)
-                                       li(class=`listKarma${review.id}` id='mydeeds-karmalist-intable')= karma.title
+                                       li(class=`listKarma${review.id}` id='mydeeds-karmalist-intable') #{karma.title},
                           a(id=`edit-karmas-${review.id}` href='#') [edit]
                           if karmas
                            div(id=`karma-radio-bttns-${review.id}` class='hidden-karma-buttons')

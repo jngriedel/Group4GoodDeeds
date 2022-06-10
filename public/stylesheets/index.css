@@ -811,3 +811,10 @@ tr.single-review td {
 a>h2:hover {
   text-decoration: underline;
 }
+
+
+.karma-table-border {
+  border-bottom: solid 1px #D8D8D8;
+  
+  padding: 7px;
+}
