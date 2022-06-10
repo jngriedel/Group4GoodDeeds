@@ -140,8 +140,10 @@ document.addEventListener("DOMContentLoaded", (event)=>{
 
 
         const cancelButt = document.getElementById(`cancel-edit-${reviewId}`)
+        console.log(cancelButt)
         cancelButt.addEventListener('click', async (event2)=> {
-            event2.stopPropagation()
+
+            // event2.stopPropagation()
             event2.preventDefault();
 
             form.className = 'review-hidden'
