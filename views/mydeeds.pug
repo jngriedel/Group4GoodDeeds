@@ -74,11 +74,7 @@ block content
                             input(type='hidden' id=`ratingHolder${review.id}` value=review.rating)
                             label(class="review-title" for="title") Title
                             input(class="review-title-input" type="text" name="title" id=`title-${review.id}` value=review.title)
-                            //- +field('Title', `title-${review.id}`, review.title)
-                            //- +field('Review Body', `body-${review.id}`, review.body)
-                            label(class="review-body" for="body") Review Body
-                            textarea(class="review-body-text" id=`body-${review.id}` name="body", cols="60", rows="10" value=review.body )
-                            label(for="star-container") Rating
+                            label(class="rating-label" for="star-container") Rating
                             div(class ="rating" id="star-container")
                                 input(id=`star5${review.id}` name="star" type="radio" value="5" class="radio-btn hide")
                                 label(for=`star5${review.id}`) ☆
@@ -90,6 +86,10 @@ block content
                                 label(for=`star2${review.id}`) ☆
                                 input(id=`star1${review.id}` name="star" type="radio" value="1" class="radio-btn hide")
                                 label(for=`star1${review.id}`) ☆
+                            //- +field('Title', `title-${review.id}`, review.title)
+                            //- +field('Review Body', `body-${review.id}`, review.body)
+                            label(class="review-body" for="body") Review Body
+                            textarea(class="review-body-text" id=`body-${review.id}` name="body", cols="60", rows="10" value=review.body)
                             div(class="review-save-cancel")
                                 button(class="save-review" id= `save-edit-${review.id}`) Save Review
                                 div(class="review-cancel")
