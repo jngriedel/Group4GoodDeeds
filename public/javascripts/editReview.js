@@ -166,7 +166,12 @@ document.addEventListener("DOMContentLoaded", (event)=>{
         karmaRadioClose.addEventListener('click', async (event4)=> {
             karmaRadios.className= 'hidden-karma-buttons'
         })
+        //click off the radio box to close them
+        karmaRadios.addEventListener('focusout', (e)=> {
+            e.stopPropagation()
+            karmaRadios.className= 'hidden-karma-buttons'
 
+        })
 
         //grab each checkbox
         const checkboxes = document.getElementsByClassName(`checkbox-${reviewId}`)
