@@ -167,11 +167,15 @@ document.addEventListener("DOMContentLoaded", (event)=>{
             karmaRadios.className= 'hidden-karma-buttons'
         })
         //click off the radio box to close them
-        // karmaRadios.addEventListener('focusout', (e)=> {
-        //     e.stopPropagation()
-        //     karmaRadios.className= 'hidden-karma-buttons'
+        window.addEventListener('mouseup', (event)=>{
 
-        // })
+            if (event.target != karmaRadios && event.target.parentNode != karmaRadios){
+                if (event.target != karmaEditButton && event.target.parentNode != karmaEditButton){
+                karmaRadios.className='hidden-karma-buttons'
+                
+                }
+            }
+        });
 
         //grab each checkbox
         const checkboxes = document.getElementsByClassName(`checkbox-${reviewId}`)
