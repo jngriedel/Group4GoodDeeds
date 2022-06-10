@@ -56,7 +56,7 @@ router.post('/', karmaValidators, asyncHandler(async(req, res, next) => {
             }
         })
 
-        if(dupe) res.json({message: 'Fail'})
+        if(dupe) res.json({message: 'Dupe'})
         else {
         const karma = await db.Karma.create({
             title,
@@ -79,25 +79,27 @@ router.post('/', karmaValidators, asyncHandler(async(req, res, next) => {
 router.put('/:id(\\d+)', karmaValidators, requireAuth, async(req, res) => {
     const karmaId = req.params.id;
     const karma = await db.Karma.findByPk(karmaId);
-
+    const oldTitle = req.body.oldTitle;
     karma.title = req.body.title;
     const title = karma.title
     const validatorErrors = validationResult(req);
 
     if(validatorErrors.isEmpty()){
+
+        await karma.save();
         const list = await db.Karma.findAll({
             where: {
                 title,
                 userId: res.locals.user.id,
             }
         })
-        
-        if (list.length === 0) {
-        await karma.save();
 
+        if (list.length === 1) {
         res.json({message: 'Success!', karma});
-        } else {
-            res.json({message: 'Fail'});
+        } else if (list.length > 1) {
+            karma.title = oldTitle;
+            karma.save();
+            res.json({message: 'Dupe'});
         }
     }
     else {

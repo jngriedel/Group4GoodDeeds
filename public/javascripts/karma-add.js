@@ -42,9 +42,11 @@ window.addEventListener('DOMContentLoaded', async(e) => {
 
 
             }
-
+            else if (data.message === 'Dupe') {
+                alert("Karma couldn’t be created. Karma is a duplicate.");
+            }
             else {
-                alert("Karma couldn’t be created. Karma is either invalid or a duplicate.");
+                alert("Karma couldn’t be created. Karma is either empty or more than 20 characters.");
         }
 
     });

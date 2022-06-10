@@ -19,6 +19,7 @@ for (let i = 0; i < renameBtns.length; i++) {
         const saveBtn = document.getElementById(`edit-submit-${karmaId}`);
         saveBtn.addEventListener('click', async(e) => {
             e.preventDefault();
+            const oldTitle = titleVal
             const title = document.getElementById(`${karmaId}-edit-title`).value;
             // console.log(title)
 
@@ -28,7 +29,8 @@ for (let i = 0; i < renameBtns.length; i++) {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    title
+                    title,
+                    oldTitle
                 }),
             });
 
@@ -42,8 +44,12 @@ for (let i = 0; i < renameBtns.length; i++) {
 
                 titleEditField.value = null;
                 form.classList.add('hidden')
-            } else {
-                alert("Karma couldn’t be created. Karma is either invalid or a duplicate.");
+            } else if (data.message === 'Dupe') {
+                alert("Karma couldn’t be created. Karma is a duplicate.");
+            }
+            else {
+                console.log('hello')
+                alert("Karma couldn’t be created. Karma is either empty or more than 20 characters.");
             }
         });
     });
