@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", (event)=>{
                 const reviewTitleCell = document.getElementById(`reviewTitleC${reviewId}`)
                 let reviewRatingCell = document.getElementById(`reviewRatingC${reviewId}`)
                 const reviewBodyCell = document.getElementById(`reviewBodyC${reviewId}`)
-                const reviewDateCell = document.getElementById(`reviewDateC${reviewId}`)
+                // const reviewDateCell = document.getElementById(`reviewDateC${reviewId}`)
                 const ratingHolder = document.getElementById(`ratingHolder${reviewId}`)
 
 
@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", (event)=>{
                 reviewBodyCell.innerText = data.review.body;
                 reviewRatingCell.innerHTML = `<span>${data.review.rating}</span>`
                 reviewTitleCell.innerText = data.review.title;
-                reviewDateCell.innerText = data.review.createdAt
+                // reviewDateCell.innerText = data.review.createdAt
 
 
 
@@ -144,10 +144,85 @@ document.addEventListener("DOMContentLoaded", (event)=>{
             main.className = ""
 
         })
+
+
+        const karmaRadios = document.getElementById(`karma-radio-bttns-${reviewId}`)
+        const karmaEditButton = document.getElementById(`edit-karmas-${reviewId}`)
+        karmaEditButton.addEventListener('click', async (event3)=> {
+            if(karmaRadios.className === 'karma-buttons'){
+                karmaRadios.className='hidden-karma-buttons'
+            } else {
+            karmaRadios.className= 'karma-buttons'
+
+
+            }
+        })
+        const karmaRadioClose = document.getElementById(`close-${reviewId}`)
+        karmaRadioClose.addEventListener('click', async (event4)=> {
+            karmaRadios.className= 'hidden-karma-buttons'
+        })
+
+
+        //grab each checkbox
+        const checkboxes = document.getElementsByClassName(`checkbox-${reviewId}`)
+
+        //when you grab a checkbox it should be linked to the review, and know what karma and deed it's for
+         for (let i = 0; i < checkboxes.length; i++) {
+             const checkbox = checkboxes[i];
+
+
+            const karmaId = checkbox.id.split('-')[0]
+            const deedId = checkbox.id.split('-')[1]
+            checkbox.addEventListener('click', async (event5)=> {
+
+                //fetch route
+                if (checkbox.checked){
+                    const res = await fetch(`/karmastodeeds/${karmaId}/${deedId}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                    })
+
+                    const data = await res.json()
+                    if (data.message === 'Success!') {
+
+                    }
+
+                }
+                if (!checkbox.checked) {
+                    const res = await fetch(`/karmastodeeds/${karmaId}/${deedId}/delete`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                    })
+
+                    const data = await res.json()
+                    if (data.message === 'Success!') {
+
+                    }
+                }
+            })
+
+
+         }
+
+         ///=======PERSIST CHECKBOX STATUS===========
+         //grab all of the karmas that made it in the list
+         const karmaList = document.getElementsByClassName(`listKarma${reviewId}`)
+
+         //grab all the checkboxes for this review
+         const checkboxR = document.getElementsByClassName(`checkbox-${reviewId}`)
+
+         //compare names of checkboxes to karma names. if match, set box check to true
+         for (let i = 0; i < checkboxR.length; i++) {
+             const box = checkboxR[i];
+             for (let j = 0; j < karmaList.length; j++) {
+                 const li = karmaList[j];
+                 if (box && li){
+                     if (box.name === li.innerText) box.checked = true
+                 }
+             }
+
+         }
     }
-
-
-
 
 
 

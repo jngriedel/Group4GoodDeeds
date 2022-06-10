@@ -37,6 +37,7 @@ window.addEventListener('DOMContentLoaded', async(e) => {
                 // cell4.innerHTML += '<a class="cancel-btns" href="/">Cancel</a></form>';
                 // row2.innerHTML = editForm;
                 inputField.value = null;
+                
             }
     });
 });

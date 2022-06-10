@@ -6,12 +6,15 @@ const logger = require('morgan');
 const { sequelize } = require('./db/models');
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
+//======Routers==========
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const deedsRouter = require('./routes/deeds');
 const karmasRouter = require('./routes/karmas');
 const myDeedsRouter = require('./routes/mydeeds');
 const reviewsRouter = require('./routes/reviews');
+const karmasToDeedsRouter = require('./routes/karmasToDeeds')
+
 const { sessionSecret } = require('./config');
 const { restoreUser } = require('./auth');
 
@@ -50,6 +53,7 @@ app.use('/deeds', deedsRouter);
 app.use('/karmas', karmasRouter);
 app.use('/mydeeds', myDeedsRouter);
 app.use('/reviews', reviewsRouter);
+app.use('/karmastodeeds', karmasToDeedsRouter)
 
 
 // catch 404 and forward to error handler
