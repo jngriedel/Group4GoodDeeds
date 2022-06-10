@@ -154,6 +154,7 @@ h1 {
 
 .log-out-nav-btn {
   margin-right: 60px;
+
 }
 
 .rating {
@@ -596,6 +597,7 @@ tr.single-review td {
   text-align: center;
   background-color: #382110;
   color: #F4F1EA;
+  cursor: pointer;
 
 }
 
@@ -637,6 +639,7 @@ tr.single-review td {
   text-align: center;
   background-color: #382110;
   color: #F4F1EA;
+  cursor: pointer;
 }
 
 .loginbtnwcancel {
@@ -715,10 +718,12 @@ tr.single-review td {
 
 .mydeeds-karmalist-items {
   padding: 5px;
+  list-style: none;
 }
 
 .mydeeds-karmalist {
   padding: 3px;
+  list-style: none;
 }
 
 #mydeeds-karmalist-intable {
