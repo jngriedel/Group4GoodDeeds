@@ -541,7 +541,8 @@ p.definition-good-deed-day {
 
 #karma-list {
   grid-area: a;
-
+  border-bottom: solid 1px #D8D8D8;
+  ;
 }
 
 .mydeedstable {
@@ -555,7 +556,8 @@ p.definition-good-deed-day {
 }
 
 .mydeedsTableHeadersAndData {
-  border-bottom: 1px solid black;
+  border-bottom: solid 1px #D8D8D8;
+  ;
   padding: 7px;
 }
 

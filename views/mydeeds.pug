@@ -56,11 +56,11 @@ block content
                         td(id=`reviewBodyC${review.id}` class='mydeedsTableHeadersAndData')= review.body
                         td(id=`reviewDateC${review.id}` class='mydeedsTableHeadersAndData')= dates[index]
                         td(class='mydeedsTableHeadersAndData')
-                            button(id=`edit-button-${review.id}`) Edit
+                            button(id=`edit-button-${review.id}` class=('done-add')) Edit
 
                         td(class='mydeedsTableHeadersAndData')
                             form(action=`/reviews/${review.id}` method='post')
-                                button(type='submit') Delete
+                                button(type='submit' class=('done-add')) Delete
 
 
     each review, index in reviews
