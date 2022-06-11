@@ -215,8 +215,8 @@ h1 {
 
 .rating {
   width: 90px;
-  unicode-bidi: bidi-override;
-  direction: rtl;
+  unicode-bidi: bidi-override; /*strictly in sequence based on direction */
+  direction: rtl; /*right to left*/
   text-align: center;
   position: relative;
 }
@@ -224,10 +224,8 @@ h1 {
 .rating>label {
   float: right;
   display: inline;
-  padding: 0;
-  margin: 0;
   position: relative;
-  width: 1.1em;
+  width: 1em;
   cursor: pointer;
   color: #000;
 }
@@ -235,17 +233,17 @@ h1 {
 .rating>label:hover,
 .rating>label:hover~label,
 .rating>input.radio-btn:checked~label {
-  color: transparent;
+  color: rgb(124, 83, 83);
 }
 
 .rating>label:hover:before,
 .rating>label:hover~label:before,
 .rating>input.radio-btn:checked~label:before,
 .rating>input.radio-btn:checked~label:before {
-  content: "\2605";
-  position: absolute;
   left: 0;
-  color: #FFD700;
+  color: #f5d000;
+  content: "\2605";  /* grabs the star from a library*/
+  position: absolute;
 
 }
 
@@ -848,8 +846,8 @@ tr.single-review td {
   padding: 10px;
 
   width: 620px;
-  height: 30px;
-  max-width: 625px;
+  height: 32px;
+
   display: flex;
   justify-content: space-between;
 }

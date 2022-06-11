@@ -3,6 +3,7 @@ const router = express.Router();
 const { csrfProtection, asyncHandler } = require('./utils');
 const db  = require('../db/models');
 const { check, validationResult } = require('express-validator');
+const { requireAuth } = require('../auth');
 
 const reviewValidators = [
     check('title')
@@ -15,7 +16,7 @@ const reviewValidators = [
       .withMessage('Review must have a Rating')
   ]
 
-router.post('/:id(\\d+)/edit', reviewValidators, asyncHandler( async(req, res) => {
+router.post('/:id(\\d+)/edit', reviewValidators, requireAuth, asyncHandler( async(req, res) => {
     const reviewId = req.params.id
 
 
@@ -42,7 +43,7 @@ router.post('/:id(\\d+)/edit', reviewValidators, asyncHandler( async(req, res) =
 
 }));
 
-router.post('/:id(\\d+)', asyncHandler( async(req, res) => {
+router.post('/:id(\\d+)', requireAuth, asyncHandler( async(req, res) => {
     const reviewId = req.params.id;
     const review = await db.Review.findByPk(reviewId)
     await review.destroy();
