@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", (event)=>{
             event1.preventDefault();
             const title = document.getElementById(`title-${reviewId}`).value
             const body = document.getElementById(`body-${reviewId}`).value
-            console.log(body)
+            //console.log(body)
             //checkstars
             let rating;
             if (star1.checked) rating = 1;
