@@ -176,12 +176,16 @@ h1 {
   text-decoration: none;
 }
 
-.log-in-nav-btn:hover {
+.log-in-nav-btn:hover
+ {
   background-color: #382110;
   color: white;
   text-decoration: none;
 }
-
+.log-out-nav-btn:hover{
+  color: #382110;
+  background-color: white;
+}
 .sign-up-nav-btn:hover {
   background-color: #382110;
   color: white;
@@ -863,6 +867,6 @@ a>h2:hover {
 
 .karma-table-border {
   border-bottom: solid 1px #D8D8D8;
-  
+
   padding: 7px;
 }

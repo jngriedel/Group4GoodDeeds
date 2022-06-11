@@ -1,18 +1,3 @@
-//Make stars
-// const table = document.getElementById("reviewTable");
-
-
-
-//     for (let i = 0; i <table.rows.length; i++) {
-//         const reviewRating = document.getElementById(`review-rating${i}`)
-//         console.log(reviewRating)
-//         if (reviewRating.innerHTML == 1) reviewRating.innerHTML = '☆'
-//         if (reviewRating.innerHTML == 2) reviewRating.innerHTML = '☆☆'
-//         if (reviewRating.innerHTML == 3) reviewRating.innerHTML = '☆☆☆'
-//         if (reviewRating.innerHTML == 4) reviewRating.innerHTML = '☆☆☆☆'
-//         if (reviewRating.innerHTML == 5) reviewRating.innerHTML = '☆☆☆☆☆'
-
-//     }
 
 
 
@@ -20,6 +5,7 @@ const myReviews = document.getElementsByClassName('review-hidden')
 const main = document.getElementById('main-mydeeds')
 const navBar = document.getElementsByClassName('nav-bar')
 const footer = document.getElementsByClassName('footer')
+
 document.addEventListener("DOMContentLoaded", (event)=>{
 
 
@@ -38,6 +24,8 @@ document.addEventListener("DOMContentLoaded", (event)=>{
         editButt.addEventListener('click', async (event)=> {
             event.preventDefault()
             ///make sure stars are filled
+
+
             const starRating = document.getElementById(`ratingHolder${reviewId}`).value
             switch (starRating){
                 case "1":
@@ -175,7 +163,7 @@ document.addEventListener("DOMContentLoaded", (event)=>{
             if (event.target != karmaRadios && event.target.parentNode != karmaRadios){
                 if (event.target != karmaEditButton && event.target.parentNode != karmaEditButton){
                 karmaRadios.className='hidden-karma-buttons'
-                
+
                 }
             }
         });

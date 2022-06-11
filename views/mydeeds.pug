@@ -89,7 +89,7 @@ block content
                             //- +field('Title', `title-${review.id}`, review.title)
                             //- +field('Review Body', `body-${review.id}`, review.body)
                             label(class="review-body" for="body") Review Body
-                            textarea(class="review-body-text" id=`body-${review.id}` name="body", cols="60", rows="10" value=review.body)
+                            textarea(class="review-body-text" id=`body-${review.id}` name="body", cols="60", rows="10" value=review.body) #{review.body}
                             div(class="review-save-cancel")
                                 button(class="save-review" id= `save-edit-${review.id}`) Save Review
                                 div(class="review-cancel")
