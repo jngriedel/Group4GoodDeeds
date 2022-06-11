@@ -190,6 +190,11 @@ document.addEventListener("DOMContentLoaded", (event)=>{
                     const data = await res.json()
                     if (data.message === 'Success!') {
 
+                        const karmabox = document.getElementById(`reviewKarmas${reviewId}`)
+                        const newLI = document.createElement('li')
+                        newLI.innerText = `${data.karma.title},`
+                        karmabox.insertBefore(newLI, karmaEditButton)
+                        
                     }
 
                 }

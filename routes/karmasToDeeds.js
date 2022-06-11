@@ -16,19 +16,19 @@ const router = express.Router();
 router.post('/:karmaId(\\d+)/:deedId(\\d+)', requireAuth, asyncHandler(async (req,res)=> {
 const karmaId = req.params.karmaId
 const deedId = req.params.deedId
-
+const karma = await db.Karma.findByPk(karmaId)
 const newLink = await db.KarmasToDeed.create({
     karmaId,
     deedId,
 })
-res.json({message: "Success!"})
+res.json({message: "Success!", karma})
 
 }))
 
 router.post('/:karmaId(\\d+)/:deedId(\\d+)/delete', requireAuth, asyncHandler(async (req,res)=> {
     const karmaId = req.params.karmaId
     const deedId = req.params.deedId
-
+    const karma = await db.Karma.findByPk(karmaId)
     const link = await db.KarmasToDeed.findOne({
         where: {
 
@@ -37,7 +37,7 @@ router.post('/:karmaId(\\d+)/:deedId(\\d+)/delete', requireAuth, asyncHandler(as
         }
     })
     await link.destroy()
-    res.json({message: "Success!"})
+    res.json({message: "Success!", karma})
 
 }))
 
