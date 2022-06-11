@@ -13,16 +13,64 @@ h1 {
 }
 
 .form-box {
-  width: 400px;
+  width: 500px;
   height: 400px;
   border: black solid 1px;
   border-radius: 5px;
   position: fixed;
   top: 100px;
   left: 400px;
-  background: white;
+  background-color: white;
   animation: popup 0.5s;
+  padding: 10px;
+  z-index: 2;
+  opacity: 1;
 }
+
+
+.rating-label,
+.review-title,
+.review-body {
+  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+  font-size: 14px;
+  display: block;
+  padding: 3px;
+}
+
+.review-title-input {
+  width: 200px;
+  border: 1px solid #d8d8d8;
+  border-radius: 3px;
+}
+
+.review-body-text {
+  border: 1px solid #d8d8d8;
+  border-radius: 3px;
+}
+
+.review-save-cancel {
+  margin: 5px 5px;
+}
+
+.review-cancel {
+  display: inline-block;
+  margin-left: 6px;
+}
+
+.save-review,
+.cancel-review {
+  border-radius: 3px;
+  border: 1px solid #D6D0C4;
+  font-size: 14px;
+  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+  cursor: pointer;
+  color: #333333;
+  line-height: 1;
+  text-decoration: none;
+  background-color: #F4F1EA;
+  padding: 10px 12px;
+}
+
 
 @keyframes popup {
   0% {

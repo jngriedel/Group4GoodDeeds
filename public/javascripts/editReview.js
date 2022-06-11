@@ -73,6 +73,7 @@ document.addEventListener("DOMContentLoaded", (event)=>{
             event1.preventDefault();
             const title = document.getElementById(`title-${reviewId}`).value
             const body = document.getElementById(`body-${reviewId}`).value
+            //console.log(body)
             //checkstars
             let rating;
             if (star1.checked) rating = 1;
@@ -140,8 +141,10 @@ document.addEventListener("DOMContentLoaded", (event)=>{
 
 
         const cancelButt = document.getElementById(`cancel-edit-${reviewId}`)
+        //console.log(cancelButt)
         cancelButt.addEventListener('click', async (event2)=> {
-            event2.stopPropagation()
+
+            // event2.stopPropagation()
             event2.preventDefault();
 
             form.className = 'review-hidden'

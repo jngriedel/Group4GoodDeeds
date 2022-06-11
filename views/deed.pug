@@ -75,14 +75,14 @@ block content
 
   div(class='form-box-hidden')
     div(id='opinion')
-      div(id='pop-up-form')
+      div(class='review-form' id='pop-up-form')
         +validationErrorSummary(errors)
         form(action=`/deeds/${deed.id}` method='post')
             input(type='hidden' name='_csrf' value=csrfToken)
             input(type='hidden' id='deedHolder' value=deed.id)
-            +field('Title', 'title', null)
-            +field('Review Body', 'body', null)
-            label(for="star-container") Rating
+            label(class="review-title" for="title") Title
+            input(class="review-title-input" type="text" name="title" id="title")
+            label(class="rating-label" for="star-container") Rating
             div(class ="rating" id="star-container")
               input(id="star5" name="star" type="radio" value="5" class="radio-btn hide")
               label(for="star5") ☆
@@ -94,6 +94,9 @@ block content
               label(for="star2") ☆
               input(id="star1" name="star" type="radio" value="1" class="radio-btn hide")
               label(for="star1") ☆
-            div
-                button(id= 'post-review') Save Review
-                button(id='cancel') Cancel
+            label(class="review-body" for="body") Review Body
+            textarea(class="review-body-text" name="body", cols="60", rows="10" id="body")
+            div(class="review-save-cancel")
+              button(class="save-review" id= 'post-review') Save Review
+              div(class="review-cancel")
+                button(class="cancel-review" id='cancel') Cancel
