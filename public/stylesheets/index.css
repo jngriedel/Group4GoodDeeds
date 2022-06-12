@@ -238,7 +238,6 @@ h1 {
 
 .rating>label:hover:before,
 .rating>label:hover~label:before,
-.rating>input.radio-btn:checked~label:before,
 .rating>input.radio-btn:checked~label:before {
   left: 0;
   color: #f5d000;
