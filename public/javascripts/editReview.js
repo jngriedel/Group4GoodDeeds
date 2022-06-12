@@ -192,9 +192,12 @@ document.addEventListener("DOMContentLoaded", (event)=>{
 
                         const karmabox = document.getElementById(`reviewKarmas${reviewId}`)
                         const newLI = document.createElement('li')
+                        newLI.classList.add(`listKarma${reviewId}`)
+                        newLI.classList.add(`${reviewId}-${data.karma.id}-uncheck`)
+                        newLI.id = 'mydeeds-karmalist-intable'
                         newLI.innerText = `${data.karma.title},`
                         karmabox.insertBefore(newLI, karmaEditButton)
-                        
+
                     }
 
                 }
@@ -206,7 +209,8 @@ document.addEventListener("DOMContentLoaded", (event)=>{
 
                     const data = await res.json()
                     if (data.message === 'Success!') {
-
+                        const karmaToRemove = document.getElementsByClassName(`${reviewId}-${karmaId}-uncheck`)
+                        karmaToRemove[0].remove()
                     }
                 }
             })
