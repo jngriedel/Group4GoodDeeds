@@ -246,6 +246,17 @@ h1 {
 
 }
 
+.sign-up-redirect {
+  margin-left: 2px;
+  color: rgb(57, 57, 250);
+}
+.sign-up-redirect:hover {
+  text-decoration: underline;
+}
+.sign-up-redirect:visited{
+  text-decoration: none;
+  color:  rgb(57, 57, 250);
+}
 
 #logo {
   margin-left: 30px;

@@ -17,9 +17,9 @@ block content
 
             div(class='loginbtnwcancel')
                 button(type='submit' class='login-btn') Log-in
-                a(href='/') Cancel
+                a(href='/' class='sign-up-redirect') Cancel
         div(class='loginAndAfter') Don't have an account?
-            a(href='/users/sign-up') Sign-Up
+            a(href='/users/sign-up' class='sign-up-redirect') Sign-Up
         div(class='loginAndAfter')
             form(action='/users/demo-user' method='post')
                 input(type='hidden' name='_csrf' value=csrfToken)
