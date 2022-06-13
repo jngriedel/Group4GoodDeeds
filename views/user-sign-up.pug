@@ -21,6 +21,6 @@ block content
           +field('Confirm Password', 'confirmPassword', '', 'password')
         div(class="signup-inputs")
             button(type='submit' class='signup-btn') Create Account
-        a(href='/') Cancel
-        div
-            p: a(href='/users/log-in') Already have an account? Sign-In
+        a(href='/' class='sign-up-redirect') Cancel
+        div Already have an account?
+            a(href='/users/log-in' class='sign-up-redirect')  Sign-In
