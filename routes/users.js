@@ -149,8 +149,18 @@ router.post('/log-in', csrfProtection, loginValidators, asyncHandler(async(req, 
         if (await bcrypt.compare(password, user.password.toString())) {
           loginUser(req, res, user);
           res.redirect("/");
-        }
-
+        } else {
+          if (email || password) {
+            errors.push('Log-in failed with the provided email or password.');
+            }
+            validatorErrors.array().map((error) => errors.push(error.msg));
+            res.render('user-log-in', {
+                    title: 'Log In',
+                    email,
+                    errors,
+                    csrfToken: req.csrfToken(),
+                  });
+          }
     } else {
       if (email || password) {
       errors.push('Log-in failed with the provided email or password.');
